@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LazyBridge — Framework</title>
   <meta name="description" content="The complete mechanics of LazyBridge: primitives, tool loop, structured output, sessions, observability, and provider model.">
+  <link rel="canonical" href="https://lazybridge.com/framework.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LazyBridge">
+  <meta property="og:title" content="LazyBridge — Framework">
+  <meta property="og:description" content="The complete mechanics of LazyBridge: primitives, tool loop, structured output, sessions, observability, and provider model.">
+  <meta property="og:url" content="https://lazybridge.com/framework.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LazyBridge — Framework">
+  <meta name="twitter:description" content="The complete mechanics of LazyBridge: primitives, tool loop, structured output, sessions, observability, and provider model.">
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* Framework-specific */
@@ -369,6 +378,25 @@
       .level-badge { display: none; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "name": "LazyBridge Framework Documentation",
+    "description": "The complete mechanics of LazyBridge: primitives, tool loop, structured output, sessions, observability, and provider model.",
+    "url": "https://lazybridge.com/framework.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "LazyBridge",
+      "url": "https://lazybridge.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "LazyBridge",
+      "url": "https://lazybridge.com"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -988,28 +1016,28 @@ pip install lazybridge
           <div class="comm-row">
             <div class="comm-icon ok">↩</div>
             <div class="comm-text">
-              <h4>Return values — canonical</h4>
+              <h3>Return values — canonical</h3>
               <p>Agents communicate by returning values. An orchestrator calls a sub-agent as a tool; the return value becomes a tool result in the conversation. This is the primary mechanism.</p>
             </div>
           </div>
           <div class="comm-row">
             <div class="comm-icon std">ctx</div>
             <div class="comm-text">
-              <h4>LazyContext.from_agent() — for declared topologies</h4>
+              <h3>LazyContext.from_agent() — for declared topologies</h3>
               <p>Agent B reads agent A's last output via the system prompt. Declared at construction, evaluated at call time. Use when agents must remain independently callable, or the topology has multiple predecessors.</p>
             </div>
           </div>
           <div class="comm-row">
             <div class="comm-icon std">db</div>
             <div class="comm-text">
-              <h4>LazyStore — for decoupled agents</h4>
+              <h3>LazyStore — for decoupled agents</h3>
               <p>A shared blackboard. Use only when agents run at different times, in separate processes, or when any step may be skipped. Not for tightly coupled sequential pipelines.</p>
             </div>
           </div>
           <div class="comm-row">
             <div class="comm-icon no">✕</div>
             <div class="comm-text">
-              <h4>LazyStore as message bus — anti-pattern</h4>
+              <h3>LazyStore as message bus — anti-pattern</h3>
               <p>Do not use the store to pass data between tightly coupled sequential agents. Use <code>sess.as_tool(mode="chain")</code> instead. The store is a blackboard, not a message queue.</p>
             </div>
           </div>
@@ -1194,7 +1222,7 @@ pip install lazybridge
       <div style="padding: 64px 0; display: flex; gap: 16px; flex-wrap: wrap;">
         <a href="toolbox.html" class="btn btn-primary">Browse the toolbox →</a>
         <a href="index.html" class="btn btn-ghost">Back to home</a>
-        <a href="https://github.com" class="btn btn-ghost">GitHub →</a>
+        <a href="https://github.com/selvaz/LazyBridge" class="btn btn-ghost">GitHub →</a>
       </div>
 
     </div><!-- /fw-content -->

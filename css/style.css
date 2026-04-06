@@ -745,7 +745,7 @@ pre, code { font-family: var(--font-mono); font-size: 13px; }
   flex-shrink: 0;
   background: var(--accent-lo);
 }
-.eit-step-text h4 {
+.eit-step-text h3 {
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
@@ -1016,7 +1016,7 @@ pre, code { font-family: var(--font-mono); font-size: 13px; }
 .comm-icon.ok  { color: var(--green); border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.08); }
 .comm-icon.std { color: var(--accent); border-color: var(--accent-dim);  background: var(--accent-lo); }
 .comm-icon.no  { color: var(--red);   border-color: rgba(239,68,68,.3);  background: rgba(239,68,68,.08); }
-.comm-text h4  { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.comm-text h3  { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
 .comm-text p   { font-size: 13px; color: var(--text-2); line-height: 1.5; }
 
 /* Observability event log */

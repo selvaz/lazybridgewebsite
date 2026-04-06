@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LazyBridge — Everything is a tool</title>
   <meta name="description" content="A multi-provider Python framework where functions, agents, and full pipelines are all the same unit. Build LLM systems without growing a second system around them.">
+  <link rel="canonical" href="https://lazybridge.com/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LazyBridge">
+  <meta property="og:title" content="LazyBridge — Everything is a tool">
+  <meta property="og:description" content="A multi-provider Python framework where functions, agents, and full pipelines are all the same unit. Build LLM systems without growing a second system around them.">
+  <meta property="og:url" content="https://lazybridge.com/index.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LazyBridge — Everything is a tool">
+  <meta name="twitter:description" content="A multi-provider Python framework where functions, agents, and full pipelines are all the same unit. Build LLM systems without growing a second system around them.">
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* ── Homepage-specific ── */
@@ -428,6 +437,25 @@
       .pipeline-visual { padding: 20px; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LazyBridge",
+    "description": "A multi-provider Python framework where functions, agents, and full pipelines are all the same unit. Build LLM systems without growing a second system around them.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Python",
+    "url": "https://lazybridge.com",
+    "codeRepository": "https://github.com/selvaz/LazyBridge",
+    "programmingLanguage": "Python",
+    "keywords": "LLM, AI agents, multi-provider, Python framework, agentic AI, OpenAI, Anthropic",
+    "publisher": {
+      "@type": "Organization",
+      "name": "LazyBridge",
+      "url": "https://lazybridge.com"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -527,7 +555,8 @@
       the orchestrator calls the whole pipeline as a single function and gets a typed result back.
     </p>
     <div class="reveal" style="overflow-x:auto;">
-<svg viewBox="0 0 760 316" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;display:block;">
+<svg viewBox="0 0 760 316" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;display:block;" role="img" aria-labelledby="svg-pipeline-title">
+  <title id="svg-pipeline-title">LazyBridge pipeline diagram: orchestrator calls a chain session containing a parallel sub-session (tech, market, opinion agents) followed by writer and editor agents, returning a typed BlogPost result.</title>
   <style>.dg text { font-family: var(--font-mono, monospace); }</style>
   <defs>
     <marker id="dg-a"  viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
@@ -810,21 +839,21 @@
         <div class="eit-step" style="border-top: 1px solid var(--rule);">
           <div class="eit-icon">0</div>
           <div class="eit-step-text">
-            <h4>Zero Boilerplate</h4>
+            <h3>Zero Boilerplate</h3>
             <p>Less infrastructure code, more logic. Type hints and docstrings become tool schemas automatically.</p>
           </div>
         </div>
         <div class="eit-step">
           <div class="eit-icon">∞</div>
           <div class="eit-step-text">
-            <h4>Provider Agnostic</h4>
+            <h3>Provider Agnostic</h3>
             <p>Same pattern on OpenAI, Anthropic, Google, DeepSeek. Change one string to switch providers.</p>
           </div>
         </div>
         <div class="eit-step">
           <div class="eit-icon">◈</div>
           <div class="eit-step-text">
-            <h4>Memory · Tracking · Structured Output</h4>
+            <h3>Memory · Tracking · Structured Output</h3>
             <p>Stateful conversations with <code>Memory</code>. Session event logs with <code>LazySession</code>. Typed outputs with Pydantic. All built-in, all composable.</p>
           </div>
         </div>
@@ -887,28 +916,28 @@
         <div class="eit-step">
           <div class="eit-icon">fn</div>
           <div class="eit-step-text">
-            <h4>Function → tool</h4>
+            <h3>Function → tool</h3>
             <p>Type hints become JSON schema. Docstring becomes description. Zero boilerplate.</p>
           </div>
         </div>
         <div class="eit-step">
           <div class="eit-icon">ag</div>
           <div class="eit-step-text">
-            <h4>Agent → tool</h4>
+            <h3>Agent → tool</h3>
             <p><code>agent.as_tool()</code> wraps any agent. An orchestrator calls it by name.</p>
           </div>
         </div>
         <div class="eit-step">
           <div class="eit-icon">ss</div>
           <div class="eit-step-text">
-            <h4>Session → tool</h4>
+            <h3>Session → tool</h3>
             <p><code>sess.as_tool(mode="parallel")</code> or <code>"chain"</code> — N agents become one callable.</p>
           </div>
         </div>
         <div class="eit-step">
           <div class="eit-icon">pp</div>
           <div class="eit-step-text">
-            <h4>Pipeline → tool</h4>
+            <h3>Pipeline → tool</h3>
             <p>An entire nested pipeline — parallel research + chain editorial — is one tool. An outer orchestrator calls it without knowing anything inside.</p>
           </div>
         </div>
@@ -1044,14 +1073,14 @@
         <div class="eit-step" style="border-top: 1px solid var(--rule);">
           <div class="eit-icon">hu</div>
           <div class="eit-step-text">
-            <h4>Human developers</h4>
+            <h3>Human developers</h3>
             <p>Keep architectural control. The framework is invisible — your system is the product.</p>
           </div>
         </div>
         <div class="eit-step">
           <div class="eit-icon">ai</div>
           <div class="eit-step-text">
-            <h4>AI coding assistants</h4>
+            <h3>AI coding assistants</h3>
             <p>Generate more coherent, less fragile code. Consistent patterns mean fewer hallucinated APIs.</p>
           </div>
         </div>
@@ -1066,7 +1095,7 @@
         <div class="doc-card">
           <div class="doc-card-header">
             <div class="eit-icon">hu</div>
-            <h4>lazy_wiki — Human Guide</h4>
+            <h3>lazy_wiki — Human Guide</h3>
             <span class="doc-card-tag human">developers</span>
           </div>
           <p>
@@ -1082,7 +1111,7 @@
         <div class="doc-card">
           <div class="doc-card-header">
             <div class="eit-icon">ai</div>
-            <h4>lazy_wiki — AI Reference</h4>
+            <h3>lazy_wiki — AI Reference</h3>
             <span class="doc-card-tag bot">AI-native</span>
           </div>
           <p>
