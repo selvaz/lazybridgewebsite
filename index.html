@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LazyBridge — Everything is a tool</title>
+  <meta name="description" content="A multi-provider Python framework where functions, agents, and full pipelines are all the same unit. Build LLM systems without growing a second system around them.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Homepage-specific ── */
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding-top: 140px;
+      padding-bottom: 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero > .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(212,168,83,.04) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 60%, rgba(61,142,255,.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      margin-bottom: 32px;
+      animation: fadeIn 1s ease .2s both;
+    }
+
+    .hero-headline {
+      max-width: 900px;
+      margin-bottom: 36px;
+      animation: fadeInUp .8s ease .3s both;
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      margin-bottom: 48px;
+      animation: fadeInUp .8s ease .45s both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeInUp .8s ease .55s both;
+    }
+
+    .hero-install {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--dim);
+      padding: 10px 18px;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-install span { color: var(--accent); }
+
+    /* Large ruled section number */
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    /* Enemy section */
+    .enemy {
+      background: var(--ink-2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .enemy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 280px;
+    }
+
+    .enemy-col {
+      padding: 64px 48px;
+    }
+
+    .enemy-col:first-child {
+      border-right: 1px solid var(--rule);
+    }
+
+    .enemy-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .enemy-title.bad  { color: var(--red); }
+    .enemy-title.good { color: var(--green); }
+
+    .enemy-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .enemy-list li {
+      font-size: 15px;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .enemy-list li::before {
+      content: '—';
+      font-family: var(--font-mono);
+      font-size: 12px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .enemy-col:first-child .enemy-list li { color: var(--dim); }
+    .enemy-col:first-child .enemy-list li::before { color: var(--ink-3); }
+    .enemy-col:last-child .enemy-list li { color: var(--paper); }
+    .enemy-col:last-child .enemy-list li::before { color: var(--accent); }
+
+    /* Everything is a tool */
+    .eit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .eit-left {
+      padding-right: 64px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .eit-right {
+      padding-left: 64px;
+    }
+
+    .eit-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .eit-step:last-child { border-bottom: none; }
+
+    .eit-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .eit-step-text h4 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--paper);
+      margin-bottom: 4px;
+    }
+
+    .eit-step-text p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .eit-step-text pre {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: rgba(0,0,0,0.24);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--paper-3);
+      overflow-x: auto;
+    }
+
+    .eit-arrow {
+      text-align: center;
+      padding: 8px 0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    /* Proof section */
+    .proof-tabs {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius) var(--radius) 0 0;
+      overflow: hidden;
+    }
+
+    .proof-tab {
+      flex: 1;
+      padding: 14px 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--ink-2);
+      border: none;
+      border-right: 1px solid var(--rule);
+      cursor: pointer;
+      transition: all .15s;
+      text-align: left;
+    }
+
+    .proof-tab:last-child { border-right: none; }
+    .proof-tab:hover { color: var(--paper); background: var(--ink-3); }
+    .proof-tab.active { color: var(--accent); background: var(--ink-3); }
+
+    .proof-panels { border: 1px solid var(--rule); border-top: none; border-radius: 0 0 var(--radius) var(--radius); }
+    .proof-panel { display: none; }
+    .proof-panel.active { display: block; }
+    .proof-panel .code-block { border: none; border-radius: 0 0 var(--radius) var(--radius); }
+
+    /* Laws */
+    .laws-container {
+      max-width: 720px;
+    }
+
+    /* Comparison blocks */
+    .compare-table {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .compare-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ink-2);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .compare-header-cell {
+      padding: 14px 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .compare-header-cell:first-child {
+      color: var(--red);
+      border-right: 1px solid var(--rule);
+    }
+
+    .compare-header-cell:last-child { color: var(--green); }
+
+    /* Pipeline visual */
+    .pipeline-visual {
+      background: var(--ink-2);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 36px;
+      overflow-x: auto;
+    }
+
+    .pipeline-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 12px;
+    }
+
+    .pipeline-row:last-child { margin-bottom: 0; }
+
+    .pnode {
+      padding: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .pnode-agent { color: var(--blue); border-color: var(--blue-dim); background: rgba(61,142,255,.06); }
+    .pnode-tool  { color: var(--accent); border-color: var(--accent-dim); background: rgba(212,168,83,.06); }
+    .pnode-out   { color: var(--green); border-color: #1d6644; background: rgba(61,184,122,.06); }
+    .pnode-sess  { color: #c792ea; border-color: #6a3a8a; background: rgba(199,146,234,.06); }
+
+    .parrow {
+      padding: 0 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--dim);
+      white-space: nowrap;
+    }
+
+    .pipeline-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pipeline-brace {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0 8px 16px;
+    }
+
+    .pipeline-brace-line {
+      width: 2px;
+      height: 48px;
+      background: var(--rule);
+      border-radius: 1px;
+    }
+
+    /* Doc cards — Designed for Humans section */
+    .doc-card {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      background: var(--ink-2);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .2s;
+    }
+    .doc-card:hover { border-color: var(--accent); }
+    .doc-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .doc-card-header h4 {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--paper);
+      margin: 0;
+    }
+    .doc-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .doc-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .doc-card-link:hover { color: var(--accent-h); }
+    .doc-card-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+    .doc-card-tag.human { color: var(--accent); background: rgba(212,168,83,.08); border: 1px solid rgba(212,168,83,.2); }
+    .doc-card-tag.bot   { color: #3d8eff; background: rgba(61,142,255,.08); border: 1px solid rgba(61,142,255,.2); }
+
+    /* Final CTA */
+    .cta-section {
+      background: var(--ink-2);
+      border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width: 900px) {
+      .enemy-grid { grid-template-columns: 1fr; }
+      .enemy-col:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
+      .eit-grid { grid-template-columns: 1fr; }
+      .eit-left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 48px; margin-bottom: 48px; }
+      .eit-right { padding-left: 0; }
+      .proof-tabs { flex-wrap: wrap; }
+      .proof-tab { flex: none; min-width: 120px; }
+      .pipeline-visual { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="nav" style="padding: 0;">
+  <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+  <a class="nav-logo" href="index.html">lazy<span>bridge</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="framework.html">Framework</a></li>
+    <li><a href="toolbox.html">Toolbox</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Wiki ▾</a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="https://github.com/selvaz/LazyBridge/blob/main/lazy_wiki/human/quickstart.md" target="_blank">Human</a></li>
+        <li><a href="https://github.com/selvaz/LazyBridge/blob/main/lazy_wiki/bot/INDEX.md" target="_blank">Bot</a></li>
+      </ul>
+    </li>
+    <li><a href="https://github.com/selvaz/LazyBridge" class="nav-cta">GitHub →</a></li>
+  </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 1. HERO                                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="hero pt-nav">
+  <div class="container">
+    <span class="t-label hero-label">Python · Multi-provider · Open source</span>
+    <h1 class="t-display hero-headline">
+      lazy<em style="color: var(--accent)">bridge</em><br>
+      <span style="font-size: 0.68em; font-weight: 300;">Your Bridge to Agentic AI.</span>
+    </h1>
+    <p class="t-subhead hero-sub">
+      The fastest path from a single agent to full multi-provider orchestration. Zero boilerplate. Full control. Built-in tracking.
+    </p>
+    <div class="hero-ctas">
+      <a href="framework.html" class="btn btn-primary">Get Started</a>
+      <a href="#examples" class="btn btn-ghost">See Examples</a>
+      <span class="hero-install" style="color: #7ec8e3; border-color: rgba(126,200,227,0.35); background: rgba(126,200,227,0.06);">
+        <span style="color: #7ec8e3; opacity: 0.6;">$</span> pip install lazybridge
+      </span>
+      <a href="downloads/lazybridge-skill.zip" download="lazybridge-skill.zip" class="hero-install" style="color: #e8956d; border-color: rgba(232,149,109,0.4); background: rgba(232,149,109,0.05); text-decoration: none;">
+        <span style="color: #e8956d;">✦</span> claude code skill
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- TEXT BLOCK -->
+<section class="section-sm">
+  <div class="container">
+    <p class="t-body reveal" style="line-height: 1.85; color: var(--muted);">
+      <strong>LazyBridge</strong> is a Python framework for building agentic systems without accumulating orchestration debt.
+    </p>
+    <p class="t-body reveal" style="line-height: 1.85; color: var(--muted); margin-top: 20px;">
+      It starts with a single idea: <strong>the same interface should work at every level of complexity</strong> — a one-line LLM call, a tool-using agent, or a nested multi-agent pipeline. Functions become tools. Agents become tools. Sessions become tools. The system grows by composition, not by rewriting the architecture.
+    </p>
+    <p class="t-body reveal" style="line-height: 1.85; color: var(--muted); margin-top: 20px;">
+      The goal is not abstraction for its own sake. The goal is to <strong>keep control as complexity increases.</strong>
+    </p>
+    <p class="t-body reveal" style="line-height: 1.85; color: var(--muted); margin-top: 16px;">
+      LazyBridge stays provider-agnostic and treats these as first-class primitives:
+    </p>
+    <ul class="reveal" style="color: var(--muted); line-height: 2; margin: 10px 0 20px 1.5em; font-size: 1rem;">
+      <li>Structured output</li>
+      <li>Conversation memory</li>
+      <li>Context injection</li>
+      <li>Session tracking</li>
+    </ul>
+    <p class="t-body reveal" style="line-height: 1.85; color: var(--muted);">
+      The API remains readable by both human developers and AI coding assistants.<br>
+      Start simple. Scale into real orchestration. <strong>The grammar of the code never changes.</strong>
+    </p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SEE IT IN ACTION                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section" id="examples">
+  <div class="container">
+    <span class="section-num reveal">01</span>
+    <h2 class="t-headline reveal" style="margin-bottom: 12px;">See it in action</h2>
+    <p class="t-subhead reveal" style="margin-bottom: 48px; max-width: 540px;">
+      One API. Any scale. Five minutes to your first pipeline.
+    </p>
+
+    <div class="reveal">
+      <div class="proof-tabs">
+        <button class="proof-tab active" data-panel="p0">Single call</button>
+        <button class="proof-tab" data-panel="p1">Tool loop</button>
+        <button class="proof-tab" data-panel="p2">Agent as tool</button>
+        <button class="proof-tab" data-panel="p3">Pipeline as tool</button>
+        <button class="proof-tab" data-panel="p4">Nested</button>
+      </div>
+      <div class="proof-panels">
+        <div class="proof-panel active" id="p0">
+          <div class="code-block">
+            <span class="cb-label">01 — single call</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span>
+
+<span class="n">ai</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">ai</span><span class="p">.</span><span class="f">text</span><span class="p">(</span><span class="s">"Summarize the state of open-source LLMs"</span><span class="p">)</span></pre>
+          </div>
+        </div>
+        <div class="proof-panel" id="p1">
+          <div class="code-block">
+            <span class="cb-label">02 — tool loop: agent calls Python functions automatically</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazyTool</span>
+
+<span class="k">def</span> <span class="f">search</span><span class="p">(</span><span class="n">query</span><span class="t">: str</span><span class="p">,</span> <span class="n">max_results</span><span class="t">: int</span> <span class="p">=</span> <span class="m">5</span><span class="p">)</span> <span class="p">-></span> <span class="t">str</span><span class="p">:</span>
+    <span class="s">"""Search the web and return results."""</span>
+    <span class="p">...</span>
+
+<span class="c"># Schema is auto-generated from type hints and docstring</span>
+<span class="n">search_tool</span> <span class="p">=</span> <span class="o">LazyTool</span><span class="p">.</span><span class="f">from_function</span><span class="p">(</span><span class="n">search</span><span class="p">)</span>
+
+<span class="n">ai</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="c"># loop() runs tool calls until the model is done — no manual dispatch</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">ai</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span><span class="s">"Find recent AI papers and summarize them"</span><span class="p">,</span> <span class="n">tools</span><span class="p">=[</span><span class="n">search_tool</span><span class="p">])</span></pre>
+          </div>
+        </div>
+        <div class="proof-panel" id="p2">
+          <div class="code-block">
+            <span class="cb-label">03 — agent as tool: one agent calls another by name</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span>
+
+<span class="n">researcher</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"researcher"</span><span class="p">)</span>
+<span class="n">analyst</span>    <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"analyst"</span><span class="p">)</span>
+
+<span class="c"># Both agents become tools. The orchestrator decides when to call them.</span>
+<span class="n">orchestrator</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">orchestrator</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span>
+    <span class="s">"Research and analyse the EV market"</span><span class="p">,</span>
+    <span class="n">tools</span><span class="p">=[</span><span class="n">researcher</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(),</span> <span class="n">analyst</span><span class="p">.</span><span class="f">as_tool</span><span class="p">()]</span>
+<span class="p">)</span></pre>
+          </div>
+        </div>
+        <div class="proof-panel" id="p3">
+          <div class="code-block">
+            <span class="cb-label">04 — pipeline as tool: an entire session becomes one callable</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazySession</span>
+
+<span class="n">sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
+
+<span class="c"># Three parallel researchers + one editor chained after</span>
+<span class="n">pipeline</span> <span class="p">=</span> <span class="n">sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
+    <span class="s">"research_and_edit"</span><span class="p">,</span>
+    <span class="s">"Research a topic in parallel, then edit into a report"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
+    <span class="n">participants</span><span class="p">=[</span>
+        <span class="n">inner_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="s">"research"</span><span class="p">,</span> <span class="s">"..."</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"parallel"</span><span class="p">),</span>  <span class="c"># nested</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"editor"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">sess</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c"># To an outer orchestrator, this is just a function</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">pipeline</span><span class="p">.</span><span class="f">run</span><span class="p">({</span><span class="s">"task"</span><span class="p">:</span> <span class="s">"Analyse open-source LLM trends"</span><span class="p">})</span></pre>
+          </div>
+        </div>
+        <div class="proof-panel" id="p4">
+          <div class="code-block">
+            <span class="cb-label">05 — nested pipelines: complexity grows by composition, not by code</span>
+<pre><span class="c"># Inner session: three parallel web-search agents</span>
+<span class="n">research_sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
+<span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"tech"</span><span class="p">,</span>    <span class="n">session</span><span class="p">=</span><span class="n">research_sess</span><span class="p">,</span> <span class="n">native_tools</span><span class="p">=[</span><span class="s">"web_search"</span><span class="p">])</span>
+<span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"market"</span><span class="p">,</span>  <span class="n">session</span><span class="p">=</span><span class="n">research_sess</span><span class="p">,</span> <span class="n">native_tools</span><span class="p">=[</span><span class="s">"web_search"</span><span class="p">])</span>
+<span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"opinion"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">research_sess</span><span class="p">,</span> <span class="n">native_tools</span><span class="p">=[</span><span class="s">"web_search"</span><span class="p">])</span>
+<span class="n">research_tool</span> <span class="p">=</span> <span class="n">research_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="s">"research"</span><span class="p">,</span> <span class="s">"..."</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"parallel"</span><span class="p">)</span>
+
+<span class="c"># Outer session: research_tool is the first step of a chain</span>
+<span class="n">outer_sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
+<span class="n">pipeline</span> <span class="p">=</span> <span class="n">outer_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
+    <span class="s">"full_pipeline"</span><span class="p">,</span> <span class="s">"Parallel research → write → edit"</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
+    <span class="n">participants</span><span class="p">=[</span>
+        <span class="n">research_tool</span><span class="p">,</span>            <span class="c"># LazyTool (inner session)</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"writer"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">outer_sess</span><span class="p">),</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"editor"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">outer_sess</span><span class="p">,</span> <span class="n">output_schema</span><span class="p">=</span><span class="o">BlogPost</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c"># 40 lines. A full nested pipeline with web search, parallel execution,</span>
+<span class="c"># sequential editing, and typed structured output.</span>
+<span class="n">post</span> <span class="p">=</span> <span class="n">pipeline</span><span class="p">.</span><span class="f">run</span><span class="p">({</span><span class="s">"task"</span><span class="p">:</span> <span class="s">"Open-source LLMs in 2025"</span><span class="p">})</span></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 1. BUILD FAST. SCALE CLEANLY. STAY FLEXIBLE.            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <span class="section-num reveal">02</span>
+    <div class="eit-grid">
+      <div class="eit-left reveal">
+        <h2 class="t-display-md" style="margin-bottom: 20px;">Build fast.<br>Scale cleanly.<br>Stay flexible.</h2>
+        <p class="t-body-sm" style="margin-bottom: 24px;">
+          With LazyBridge you go from a single agent to a multi-agent pipeline
+          without changing mental model. One grammar at every scale.
+        </p>
+        <div class="eit-step" style="border-top: 1px solid var(--rule);">
+          <div class="eit-icon">0</div>
+          <div class="eit-step-text">
+            <h4>Zero Boilerplate</h4>
+            <p>Less infrastructure code, more logic. Type hints and docstrings become tool schemas automatically.</p>
+          </div>
+        </div>
+        <div class="eit-step">
+          <div class="eit-icon">∞</div>
+          <div class="eit-step-text">
+            <h4>Provider Agnostic</h4>
+            <p>Same pattern on OpenAI, Anthropic, Google, DeepSeek. Change one string to switch providers.</p>
+          </div>
+        </div>
+        <div class="eit-step">
+          <div class="eit-icon">◈</div>
+          <div class="eit-step-text">
+            <h4>Memory · Tracking · Structured Output</h4>
+            <p>Stateful conversations with <code>Memory</code>. Session event logs with <code>LazySession</code>. Typed outputs with Pydantic. All built-in, all composable.</p>
+          </div>
+        </div>
+        <p class="t-body-sm" style="margin-top: 24px; color: var(--muted); font-style: italic;">
+          "From single-agent to multi-agent orchestration in the same mental model."
+        </p>
+      </div>
+      <div class="eit-right reveal">
+        <div class="code-block">
+          <span class="cb-label">provider-agnostic · session tracking</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazySession</span>
+<span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">Event</span>
+
+<span class="n">sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">(</span><span class="n">db</span><span class="p">=</span><span class="s">"pipeline.db"</span><span class="p">,</span> <span class="n">tracking</span><span class="p">=</span><span class="s">"basic"</span><span class="p">)</span>
+
+<span class="c"># Same code. Different provider. One string to change.</span>
+<span class="n">agent</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">sess</span><span class="p">)</span>
+<span class="c"># or: "openai" | "google" | "deepseek"</span>
+
+<span class="n">result</span> <span class="p">=</span> <span class="n">agent</span><span class="p">.</span><span class="f">text</span><span class="p">(</span><span class="s">"Summarize the state of open-source LLMs"</span><span class="p">)</span>
+
+<span class="c"># Built-in event log — no external stack needed</span>
+<span class="n">calls</span> <span class="p">=</span> <span class="n">sess</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="f">get</span><span class="p">(</span><span class="n">event_type</span><span class="p">=</span><span class="o">Event</span><span class="p">.</span><span class="n">TOOL_CALL</span><span class="p">)</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 3. EVERYTHING IS A TOOL                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <span class="section-num reveal">03</span>
+    <div class="eit-grid">
+      <div class="eit-left reveal">
+        <h2 class="t-display-md" style="margin-bottom: 16px;">Everything<br>is a tool.</h2>
+        <p class="t-body" style="margin-bottom: 8px;">
+          The abstraction is concrete: a Python function becomes a tool with
+          <code>LazyTool.from_function(...)</code>, an agent becomes a tool with
+          <code>agent.as_tool()</code>, and a session can be packaged as one
+          callable unit.
+        </p>
+        <p class="t-body-sm" style="margin-top: 20px;">
+          Once everything shares the same interface, the outer orchestrator can call
+          a function-backed tool, an agent-backed tool, or a pipeline-backed tool in
+          exactly the same loop.
+        </p>
+        <ul class="enemy-list" style="margin-top: 20px; color: var(--muted);">
+          <li>Wrap existing Python functions directly</li>
+          <li>Promote agents into reusable specialists</li>
+          <li>Collapse pipelines into one callable surface</li>
+        </ul>
+      </div>
+
+      <div class="eit-right reveal">
+        <div class="eit-step">
+          <div class="eit-icon">fn</div>
+          <div class="eit-step-text">
+            <h4>Function → tool</h4>
+            <p>Type hints become JSON schema. Docstring becomes description. Zero boilerplate.</p>
+          </div>
+        </div>
+        <div class="eit-step">
+          <div class="eit-icon">ag</div>
+          <div class="eit-step-text">
+            <h4>Agent → tool</h4>
+            <p><code>agent.as_tool()</code> wraps any agent. An orchestrator calls it by name.</p>
+          </div>
+        </div>
+        <div class="eit-step">
+          <div class="eit-icon">ss</div>
+          <div class="eit-step-text">
+            <h4>Session → tool</h4>
+            <p><code>sess.as_tool(mode="parallel")</code> or <code>"chain"</code> — N agents become one callable.</p>
+          </div>
+        </div>
+        <div class="eit-step">
+          <div class="eit-icon">pp</div>
+          <div class="eit-step-text">
+            <h4>Pipeline → tool</h4>
+            <p>An entire nested pipeline — parallel research + chain editorial — is one tool. An outer orchestrator calls it without knowing anything inside.</p>
+          </div>
+        </div>
+        <div style="padding: 20px 0 0; display: flex; align-items: center; gap: 12px;">
+          <div class="badge badge-accent">Composable</div>
+          <div class="badge badge-blue">Nestable</div>
+          <div class="badge badge-green">Typed</div>
+          <div class="badge badge-dim">Multi-provider</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top: 48px;">
+      <div class="proof-tabs">
+        <button class="proof-tab active" data-panel="eit0">fn → tool</button>
+        <button class="proof-tab" data-panel="eit1">agent → tool</button>
+        <button class="proof-tab" data-panel="eit2">pipeline → tool</button>
+        <button class="proof-tab" data-panel="eit3">all together</button>
+      </div>
+      <div class="proof-panels">
+
+        <div class="proof-panel active" id="eit0">
+          <div class="code-block">
+            <span class="cb-label">LazyTool.from_function — type hints become schema, docstring becomes description</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazyTool</span>
+
+<span class="k">def</span> <span class="f">search_web</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="t">str</span><span class="p">,</span> <span class="n">max_results</span><span class="p">:</span> <span class="t">int</span> <span class="p">=</span> <span class="m">5</span><span class="p">)</span> <span class="p">-></span> <span class="t">str</span><span class="p">:</span>
+    <span class="s">"""Search the web. Returns top results as text."""</span>
+    <span class="p">...</span>
+
+<span class="c"># Type hints → JSON schema. Docstring → description. Zero config.</span>
+<span class="n">search_tool</span> <span class="p">=</span> <span class="o">LazyTool</span><span class="p">.</span><span class="f">from_function</span><span class="p">(</span><span class="n">search_web</span><span class="p">)</span>
+
+<span class="n">agent</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">agent</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span><span class="s">"What happened in AI this week?"</span><span class="p">,</span> <span class="n">tools</span><span class="p">=[</span><span class="n">search_tool</span><span class="p">])</span></pre>
+          </div>
+        </div>
+
+        <div class="proof-panel" id="eit1">
+          <div class="code-block">
+            <span class="cb-label">agent.as_tool() — any agent becomes a callable specialist</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span>
+
+<span class="n">analyst</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span>
+    <span class="s">"anthropic"</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">=</span><span class="s">"analyst"</span><span class="p">,</span>
+    <span class="n">system</span><span class="p">=</span><span class="s">"You are a data analyst. Be concise and quantitative."</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c"># Any agent becomes a named, callable tool for an orchestrator</span>
+<span class="n">analyst_tool</span> <span class="p">=</span> <span class="n">analyst</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
+    <span class="n">description</span><span class="p">=</span><span class="s">"Analyse data and return key insights."</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">orchestrator</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">orchestrator</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span><span class="s">"Analyse this dataset: ..."</span><span class="p">,</span> <span class="n">tools</span><span class="p">=[</span><span class="n">analyst_tool</span><span class="p">])</span></pre>
+          </div>
+        </div>
+
+        <div class="proof-panel" id="eit2">
+          <div class="code-block">
+            <span class="cb-label">sess.as_tool(mode="chain") — a full pipeline becomes one callable</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazySession</span>
+
+<span class="n">inner_sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
+<span class="n">pipeline_tool</span> <span class="p">=</span> <span class="n">inner_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
+    <span class="s">"research_and_summarise"</span><span class="p">,</span>
+    <span class="s">"Research a topic and return a concise summary."</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
+    <span class="n">participants</span><span class="p">=[</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"researcher"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">inner_sess</span><span class="p">),</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"summariser"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">inner_sess</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># researcher → summariser, wired automatically. One callable surface.</span>
+<span class="n">orchestrator</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">orchestrator</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span><span class="s">"Cover these topics: ..."</span><span class="p">,</span> <span class="n">tools</span><span class="p">=[</span><span class="n">pipeline_tool</span><span class="p">])</span></pre>
+          </div>
+        </div>
+
+        <div class="proof-panel" id="eit3">
+          <div class="code-block">
+            <span class="cb-label">fn + agent + pipeline — same interface, any depth, one orchestrator</span>
+<pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazySession</span><span class="p">,</span> <span class="o">LazyTool</span>
+
+<span class="c"># 1. Python function → tool</span>
+<span class="n">search_tool</span> <span class="p">=</span> <span class="o">LazyTool</span><span class="p">.</span><span class="f">from_function</span><span class="p">(</span><span class="n">search_web</span><span class="p">)</span>
+
+<span class="c"># 2. Agent → tool</span>
+<span class="n">analyst_tool</span> <span class="p">=</span> <span class="n">analyst</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="n">description</span><span class="p">=</span><span class="s">"Analyse data and return insights."</span><span class="p">)</span>
+
+<span class="c"># 3. Pipeline → tool</span>
+<span class="n">inner_sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
+<span class="n">pipeline_tool</span> <span class="p">=</span> <span class="n">inner_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
+    <span class="s">"research_and_summarise"</span><span class="p">,</span> <span class="s">"Research a topic and summarise it."</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
+    <span class="n">participants</span><span class="p">=[</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"researcher"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">inner_sess</span><span class="p">),</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"summariser"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">inner_sess</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># Same interface. Any depth. One orchestrator.</span>
+<span class="n">orchestrator</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">system</span><span class="p">=</span><span class="s">"You coordinate research tasks."</span><span class="p">)</span>
+<span class="n">result</span> <span class="p">=</span> <span class="n">orchestrator</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span>
+    <span class="s">"Prepare a full report on open-source LLMs."</span><span class="p">,</span>
+    <span class="n">tools</span><span class="p">=[</span><span class="n">search_tool</span><span class="p">,</span> <span class="n">analyst_tool</span><span class="p">,</span> <span class="n">pipeline_tool</span><span class="p">],</span>
+<span class="p">)</span></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 4. DESIGNED FOR HUMANS AND AI                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <span class="section-num reveal">04</span>
+    <div class="eit-grid">
+      <div class="eit-left reveal">
+        <h2 class="t-display-md" style="margin-bottom: 16px;">Designed for Humans<br>and AI Assistants.</h2>
+        <p class="t-body" style="margin-bottom: 20px;">
+          LazyBridge keeps code readable as orchestration grows.
+          Compact APIs, predictable structure, less boilerplate to paste and adapt.
+        </p>
+        <div class="eit-step" style="border-top: 1px solid var(--rule);">
+          <div class="eit-icon">hu</div>
+          <div class="eit-step-text">
+            <h4>Human developers</h4>
+            <p>Keep architectural control. The framework is invisible — your system is the product.</p>
+          </div>
+        </div>
+        <div class="eit-step">
+          <div class="eit-icon">ai</div>
+          <div class="eit-step-text">
+            <h4>AI coding assistants</h4>
+            <p>Generate more coherent, less fragile code. Consistent patterns mean fewer hallucinated APIs.</p>
+          </div>
+        </div>
+        <div style="padding: 20px 0 0; display: flex; align-items: center; gap: 12px;">
+          <div class="badge badge-accent">Readable</div>
+          <div class="badge badge-blue">Predictable</div>
+          <div class="badge badge-dim">AI-native</div>
+        </div>
+      </div>
+      <div class="eit-right reveal" style="display: flex; flex-direction: column; gap: 20px; justify-content: center;">
+
+        <div class="doc-card">
+          <div class="doc-card-header">
+            <div class="eit-icon">hu</div>
+            <h4>lazy_wiki — Human Guide</h4>
+            <span class="doc-card-tag human">developers</span>
+          </div>
+          <p>
+            Comprehensive documentation written for engineers. Covers every class,
+            method, and pattern — from a first pipeline to advanced multi-agent
+            orchestration. Start with the Quickstart and build from there.
+          </p>
+          <a href="https://github.com/selvaz/LazyBridge/blob/main/lazy_wiki/human/quickstart.md" class="doc-card-link" target="_blank" rel="noopener">
+            Read the Quickstart →
+          </a>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-card-header">
+            <div class="eit-icon">ai</div>
+            <h4>lazy_wiki — AI Reference</h4>
+            <span class="doc-card-tag bot">AI-native</span>
+          </div>
+          <p>
+            A structured reference index built for coding assistants and LLMs.
+            Every class, pattern, and rule is machine-readable and unambiguous.
+            Also available as a native <strong style="color: var(--paper);">Claude Code skill</strong> —
+            install it once and Claude Code understands LazyBridge natively, without
+            pasting docs or explaining the API.
+          </p>
+          <a href="https://github.com/selvaz/LazyBridge/blob/main/lazy_wiki/bot/INDEX.md" class="doc-card-link" target="_blank" rel="noopener">
+            Browse the AI reference →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 5. ADVANCED ORCHESTRATION                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <span class="section-num reveal">05</span>
+    <h2 class="t-headline reveal" style="margin-bottom: 16px;">Advanced orchestration,<br>without complexity debt.</h2>
+    <div class="reveal" style="margin-bottom: 48px; max-width: 600px;">
+      <ul class="enemy-list" style="color: var(--muted);">
+        <li>Multi-agent sessions with shared store, event tracking, and serializable graph</li>
+        <li>Conditional routing with <code>LazyRouter</code> — send to different agents based on outcome</li>
+        <li>Typed structured output via <code>output_schema=MyModel</code> — Pydantic at any pipeline depth</li>
+        <li>Native provider tools: web search, code execution, file tools — no wrappers needed</li>
+      </ul>
+    </div>
+
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+      <div>
+        <div class="pipeline-visual">
+          <p class="pipeline-label">Topology</p>
+          <div class="pipeline-row">
+            <div class="pnode pnode-sess">research_sess</div>
+            <div class="parrow">→</div>
+            <div class="pnode pnode-tool">research_tool</div>
+          </div>
+          <div style="padding-left: 20px; margin: 8px 0; border-left: 2px solid var(--rule);">
+            <div class="pipeline-row" style="margin-bottom: 6px;">
+              <div class="parrow" style="padding-left:0; color: var(--dim); font-size: 10px;">parallel</div>
+            </div>
+            <div class="pipeline-row" style="margin-bottom: 6px;">
+              <div class="pnode pnode-agent" style="font-size: 11px; padding: 6px 12px;">tech_scout [WEB]</div>
+            </div>
+            <div class="pipeline-row" style="margin-bottom: 6px;">
+              <div class="pnode pnode-agent" style="font-size: 11px; padding: 6px 12px;">market_scout [WEB]</div>
+            </div>
+            <div class="pipeline-row">
+              <div class="pnode pnode-agent" style="font-size: 11px; padding: 6px 12px;">opinion_scout [WEB]</div>
+            </div>
+          </div>
+          <div class="pipeline-row" style="margin-top: 12px;">
+            <div class="pnode pnode-tool">research_tool</div>
+            <div class="parrow">→ chain →</div>
+            <div class="pnode pnode-agent">writer</div>
+            <div class="parrow">→</div>
+            <div class="pnode pnode-agent">editor</div>
+          </div>
+          <div class="pipeline-row" style="margin-top: 12px;">
+            <div class="pnode pnode-out">BlogPost (typed)</div>
+          </div>
+        </div>
+        <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <span class="badge badge-blue">Parallel</span>
+          <span class="badge badge-accent">Chain</span>
+          <span class="badge badge-green">Typed output</span>
+          <span class="badge badge-dim">2 providers</span>
+          <span class="badge badge-dim">Web search</span>
+        </div>
+      </div>
+      <div>
+        <div class="code-block" style="font-size: 12px;">
+<pre><span class="k">from</span> <span class="n">pydantic</span> <span class="k">import</span> <span class="o">BaseModel</span>
+<span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazySession</span>
+<span class="k">from</span> <span class="n">lazybridge.core.types</span> <span class="k">import</span> <span class="o">NativeTool</span>
+
+<span class="k">class</span> <span class="o">BlogPost</span><span class="p">(</span><span class="o">BaseModel</span><span class="p">):</span>
+    <span class="n">title</span><span class="t">: str</span><span class="p">;</span> <span class="n">body</span><span class="t">: str</span><span class="p">;</span> <span class="n">tags</span><span class="t">: list[str]</span>
+
+<span class="c"># Layer 1 — parallel research</span>
+<span class="n">rs</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">(</span><span class="n">tracking</span><span class="p">=</span><span class="s">"basic"</span><span class="p">,</span> <span class="n">console</span><span class="p">=</span><span class="k">True</span><span class="p">)</span>
+<span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"tech"</span><span class="p">,</span>    <span class="n">session</span><span class="p">=</span><span class="n">rs</span><span class="p">,</span>
+          <span class="n">native_tools</span><span class="p">=[</span><span class="o">NativeTool</span><span class="p">.</span><span class="n">WEB_SEARCH</span><span class="p">])</span>
+<span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"market"</span><span class="p">,</span>  <span class="n">session</span><span class="p">=</span><span class="n">rs</span><span class="p">,</span>
+          <span class="n">native_tools</span><span class="p">=[</span><span class="o">NativeTool</span><span class="p">.</span><span class="n">WEB_SEARCH</span><span class="p">])</span>
+<span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"opinion"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">rs</span><span class="p">,</span>
+          <span class="n">native_tools</span><span class="p">=[</span><span class="o">NativeTool</span><span class="p">.</span><span class="n">WEB_SEARCH</span><span class="p">])</span>
+<span class="n">research_tool</span> <span class="p">=</span> <span class="n">rs</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="s">"research"</span><span class="p">,</span> <span class="s">"..."</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"parallel"</span><span class="p">)</span>
+
+<span class="c"># Layer 2 — chain editorial</span>
+<span class="n">os</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">(</span><span class="n">tracking</span><span class="p">=</span><span class="s">"basic"</span><span class="p">,</span> <span class="n">console</span><span class="p">=</span><span class="k">True</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="p">=</span> <span class="n">os</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
+    <span class="s">"blog_pipeline"</span><span class="p">,</span> <span class="s">"Research → write → edit"</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
+    <span class="n">participants</span><span class="p">=[</span>
+        <span class="n">research_tool</span><span class="p">,</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"writer"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">os</span><span class="p">),</span>
+        <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"editor"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">os</span><span class="p">,</span>
+                  <span class="n">output_schema</span><span class="p">=</span><span class="o">BlogPost</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">post</span> <span class="p">=</span> <span class="n">pipeline</span><span class="p">.</span><span class="f">run</span><span class="p">({</span><span class="s">"task"</span><span class="p">:</span> <span class="s">"Open-source LLMs in 2025"</span><span class="p">})</span>
+<span class="c"># post is a BlogPost instance. Typed. Done.</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 8. FINAL CTA                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section cta-section">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden;">
+      <div style="background: var(--ink); padding: 48px 40px;">
+        <p class="t-label" style="margin-bottom: 16px;">Framework</p>
+        <p class="t-headline" style="font-size: 28px; margin-bottom: 12px;">The mechanics</p>
+        <p class="t-body-sm" style="margin-bottom: 28px;">Every primitive explained. Every pattern demonstrated. The architecture behind the claim.</p>
+        <a href="framework.html" class="btn btn-ghost">Get Started →</a>
+      </div>
+      <div style="background: var(--ink); padding: 48px 40px;">
+        <p class="t-label" style="margin-bottom: 16px;">Toolbox</p>
+        <p class="t-headline" style="font-size: 28px; margin-bottom: 12px;">Reusable blocks</p>
+        <p class="t-body-sm" style="margin-bottom: 28px;">Tools, pipelines, and templates. Download, study, modify, nest. Everything is a tool.</p>
+        <a href="toolbox.html" class="btn btn-ghost">Browse toolbox →</a>
+      </div>
+      <div style="background: var(--ink); padding: 48px 40px;">
+        <p class="t-label" style="margin-bottom: 16px;">Install</p>
+        <p class="t-headline" style="font-size: 28px; margin-bottom: 12px;">Get started</p>
+        <p class="t-body-sm" style="margin-bottom: 28px;">One package. Set your API key. The rest is composition.</p>
+        <div class="hero-install" style="margin-bottom: 16px; display: inline-flex;">
+          <span>$</span> pip install lazybridge
+        </div><br>
+        <a href="https://github.com/selvaz/LazyBridge" class="btn btn-primary" style="margin-top: 8px;">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span class="footer-logo">lazy<span>bridge</span></span>
+    <ul class="footer-links">
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="toolbox.html">Toolbox</a></li>
+      <li><a href="https://github.com/selvaz/LazyBridge">GitHub</a></li>
+    </ul>
+    <span class="footer-copy">MIT License</span>
+  </div>
+</footer>
+
+<script>
+  // Proof tabs — scoped per container so multiple tab groups work independently
+  document.querySelectorAll('.proof-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.dataset.panel;
+      const tabsEl = tab.closest('.proof-tabs');
+      const panelsEl = tabsEl.nextElementSibling;
+      tabsEl.querySelectorAll('.proof-tab').forEach(t => t.classList.remove('active'));
+      panelsEl.querySelectorAll('.proof-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav dropdown with mouseleave delay
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    let t;
+    const menu = dd.querySelector('.nav-dropdown-menu');
+    dd.addEventListener('mouseenter', () => { clearTimeout(t); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', () => { t = setTimeout(() => { menu.style.display = ''; }, 180); });
+  });
+</script>
+</body>
+</html>
+

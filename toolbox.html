@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LazyBridge — Toolbox</title>
+  <meta name="description" content="A library of reusable LazyBridge tools, pipelines, and patterns. Download, study, modify, nest.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Toolbox-specific */
+    .tb-hero {
+      padding: 100px 0 64px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .tb-toolbar {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tb-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--dim);
+      white-space: nowrap;
+    }
+
+    .tb-count span { color: var(--accent); }
+
+    .tb-grid {
+      padding: 48px 0 80px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* Tool card extended */
+    .tool-card {
+      position: relative;
+    }
+
+    .tool-card[data-hidden="true"] {
+      display: none;
+    }
+
+    .tool-card-type {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .tool-card-topology {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--dim);
+      padding: 10px 14px;
+      background: var(--ink);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      line-height: 1.6;
+      overflow: hidden;
+    }
+
+    .tool-card-topology .topo-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+
+    .tool-card-topology .topo-row:last-child { margin-bottom: 0; }
+
+    .topo-node {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .topo-a { color: var(--blue);   border-color: var(--blue-dim); }
+    .topo-t { color: var(--accent); border-color: var(--accent-dim); }
+    .topo-o { color: var(--green);  border-color: #1d6644; }
+    .topo-s { color: #c792ea;       border-color: #6a3a8a; }
+
+    .topo-arrow { color: var(--dim); font-size: 9px; }
+
+    /* Category section header */
+    .tb-category-header {
+      grid-column: 1 / -1;
+      padding: 32px 0 16px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .tb-category-header:first-child { border-top: none; padding-top: 0; }
+
+    .tb-category-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .tb-category-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* Empty state */
+    .tb-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 0;
+      display: none;
+    }
+
+    .tb-empty.visible { display: block; }
+
+    /* Detail panel (slide-in) */
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+
+    .detail-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .detail-panel {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 560px;
+      max-width: 100vw;
+      background: var(--ink-2);
+      border-left: 1px solid var(--rule);
+      z-index: 201;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .25s ease;
+    }
+
+    .detail-panel.open { transform: none; }
+
+    .detail-header {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      background: var(--ink-2);
+      z-index: 1;
+    }
+
+    .detail-close {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: color .15s;
+    }
+
+    .detail-close:hover { color: var(--paper); }
+
+    .detail-body { padding: 32px; }
+
+    .detail-section {
+      margin-bottom: 28px;
+    }
+
+    .detail-section-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* Work-in-progress cards */
+    .tool-card-wip {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .tool-card-wip .tool-card-actions a,
+    .tool-card-wip .tool-card-actions button {
+      cursor: not-allowed;
+    }
+    .wip-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--dim);
+      background: transparent;
+      border: 1px solid var(--rule);
+    }
+
+    @media (max-width: 900px) {
+      .tb-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .tb-grid { grid-template-columns: 1fr; }
+      .tb-toolbar { flex-direction: column; align-items: flex-start; }
+      .detail-panel { width: 100vw; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" style="padding: 0;">
+  <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <a class="nav-logo" href="index.html">lazy<span>bridge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="toolbox.html" class="active">Toolbox</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle">Wiki ▾</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="https://github.com/selvaz/LazyBridge/blob/main/lazy_wiki/human/quickstart.md" target="_blank">Human</a></li>
+          <li><a href="https://github.com/selvaz/LazyBridge/blob/main/lazy_wiki/bot/INDEX.md" target="_blank">Bot</a></li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/selvaz/LazyBridge" class="nav-cta">GitHub →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<div class="tb-hero pt-nav">
+  <div class="container">
+    <span class="t-label" style="display: block; margin-bottom: 20px;">Toolbox</span>
+    <h1 class="t-display-md" style="max-width: 640px; margin-bottom: 16px;">
+      Reusable building blocks.
+    </h1>
+    <p style="font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.6;">
+      Tools and pipelines you can download, drop in, and compose.
+      Everything here is a <code>LazyTool</code>. That is the point.
+    </p>
+    <p style="font-size: 13px; color: var(--dim); margin-top: 12px;">
+      Four tools are available now. More are in active development — listed below as a preview of what is coming.
+    </p>
+  </div>
+</div>
+
+<!-- ── Toolbar ── -->
+<div class="container">
+  <div class="tb-toolbar">
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="tool">Tools</button>
+      <button class="filter-btn" data-filter="pipeline">Pipelines</button>
+    </div>
+    <span class="tb-count" id="count"><span id="visible-count">4</span> available · 3 coming soon</span>
+  </div>
+
+  <!-- ── Grid ── -->
+  <div class="tb-grid" id="tb-grid">
+
+    <!-- ── AVAILABLE ── -->
+    <div class="tb-category-header" data-category="tool">
+      <span class="tb-category-title">Available now</span>
+      <div class="tb-category-line"></div>
+    </div>
+
+    <!-- Card: lazybridge_skill -->
+    <div class="tool-card" data-category="tool" data-tags="tool">
+      <div class="tool-card-header">
+        <span class="tool-card-name">LazyBridge Claude Skill</span>
+        <span class="tool-card-type">Skill</span>
+      </div>
+      <p class="tool-card-desc">The official LazyBridge Claude Code skill. Gives any Claude Code session native understanding of the full LazyBridge API — every class, pattern, and rule. No docs to paste, no API to explain.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-t">✦ claude code skill</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-o">native framework support</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-accent">Claude Code</span>
+        <span class="badge badge-dim">AI-native</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim" onclick="openDetail('lazybridge_skill')">Details</button>
+        <a href="downloads/lazybridge-skill.zip" download="lazybridge-skill.zip" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- Card: read_docs -->
+    <div class="tool-card" data-category="tool" data-tags="tool">
+      <div class="tool-card-header">
+        <span class="tool-card-name">read_docs</span>
+        <span class="tool-card-type">Tool</span>
+      </div>
+      <p class="tool-card-desc">Reads PDF, DOCX, HTML, MD, and TXT files from a folder or single path. Returns LLM-ready text with file headers. Degrades gracefully if optional dependencies are missing.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-t">read_folder_docs(path, extensions)</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-o">str | json</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-dim">LazyTool.from_function</span>
+        <span class="badge badge-dim">PDF · DOCX · HTML · MD</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim" onclick="openDetail('read_docs')">Details</button>
+        <a href="downloads/read_docs_tool.py" download="read_docs_tool.py" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- Card: skill_manager -->
+    <div class="tool-card" data-category="tool" data-tags="tool">
+      <div class="tool-card-header">
+        <span class="tool-card-name">skill_manager</span>
+        <span class="tool-card-type">Tool</span>
+      </div>
+      <p class="tool-card-desc">Turn any documentation folder into a queryable local skill. Index once with <code>build_skill()</code>, then attach the skill to any agent via <code>skill_tool()</code>. BM25 retrieval — no embeddings, no vector DB, no API calls.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-t">build_skill(docs/)</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-o">bundle</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-t">skill_tool()</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-a">LazyTool</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-accent">BM25 retrieval</span>
+        <span class="badge badge-green">Local · No embeddings</span>
+        <span class="badge badge-dim">skill_pipeline</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim" onclick="openDetail('skill_manager')">Details</button>
+        <a href="downloads/doc_skills_tool.py" download="doc_skills_tool.py" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- ── PIPELINES ── -->
+    <div class="tb-category-header" data-category="pipeline">
+      <span class="tb-category-title">Pipelines</span>
+      <div class="tb-category-line"></div>
+    </div>
+
+    <!-- Card: research_pipeline -->
+    <div class="tool-card" data-category="pipeline" data-tags="pipeline">
+      <div class="tool-card-header">
+        <span class="tool-card-name">research_pipeline</span>
+        <span class="tool-card-type">Pipeline</span>
+      </div>
+      <p class="tool-card-desc">Two-agent research chain: researcher &rarr; writer via <code>LazyContext</code>. Includes a mock search tool and typed <code>Report</code> output (Pydantic). Multi-provider. Side-by-side comparison with the raw SDK included.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-t">search_tool</span>
+          <span class="topo-arrow">&rarr;</span>
+          <span class="topo-node topo-a">researcher</span>
+          <span class="topo-arrow">ctx &rarr;</span>
+          <span class="topo-node topo-a">writer</span>
+        </div>
+        <div class="topo-row">
+          <span class="topo-arrow">&rarr;</span>
+          <span class="topo-node topo-o">Report (typed)</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-accent">Chain</span>
+        <span class="badge badge-green">Typed output</span>
+        <span class="badge badge-dim">LazyContext</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim" onclick="openDetail('research_pipeline')">Details</button>
+        <a href="downloads/research_pipeline_lazybridge.py" download="research_pipeline_lazybridge.py" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- Card: investment_research_platform -->
+    <div class="tool-card" data-category="pipeline" data-tags="pipeline">
+      <div class="tool-card-header">
+        <span class="tool-card-name">investment_research_platform</span>
+        <span class="tool-card-type">Example</span>
+      </div>
+      <p class="tool-card-desc">Four production-ready variants of the same investment research workflow — orchestrator-directed, nested pipeline, fan-out synthesis, and fully typed multi-provider. Pick the architecture that fits.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-s">4 variants</span>
+        </div>
+        <div class="topo-row" style="padding-left: 8px;">
+          <span class="topo-node topo-a">market intel</span>
+          <span class="topo-arrow">+</span>
+          <span class="topo-node topo-a">risk analyst</span>
+          <span class="topo-arrow">&rarr;</span>
+          <span class="topo-node topo-o">InvestmentReport</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-blue">Parallel</span>
+        <span class="badge badge-accent">Chain</span>
+        <span class="badge badge-green">Typed</span>
+        <span class="badge badge-dim">Multi-provider</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim" onclick="openDetail('investment_research_platform')">Details</button>
+        <a href="downloads/investment_research_platform.py" download="investment_research_platform.py" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- ── COMING SOON ── -->
+    <div class="tb-category-header" data-category="pipeline">
+      <span class="tb-category-title">Coming soon</span>
+      <div class="tb-category-line"></div>
+    </div>
+
+    <!-- Card: multi_websearch_parallel (WIP) -->
+    <div class="tool-card tool-card-wip" data-category="pipeline" data-tags="pipeline">
+      <div class="tool-card-header">
+        <span class="tool-card-name">multi_websearch_parallel</span>
+        <span class="wip-badge">Work in progress</span>
+      </div>
+      <p class="tool-card-desc">Fan-out web search across multiple queries in parallel via <code>sess.as_tool(mode="parallel")</code>. Results concatenated and returned as a single tool call. Drop into any agent loop.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-s">LazySession</span>
+          <span class="topo-arrow">mode=parallel</span>
+        </div>
+        <div class="topo-row" style="padding-left: 12px;">
+          <span class="topo-node topo-a">search_1</span>
+          <span class="topo-arrow">+</span>
+          <span class="topo-node topo-a">search_2</span>
+          <span class="topo-arrow">+</span>
+          <span class="topo-node topo-a">search_N</span>
+        </div>
+        <div class="topo-row">
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-o">str (merged)</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-blue">Parallel</span>
+        <span class="badge badge-dim">Pipeline</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim">Details</button>
+        <a href="#" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- Card: database_reader (WIP) -->
+    <div class="tool-card tool-card-wip" data-category="pipeline" data-tags="tool">
+      <div class="tool-card-header">
+        <span class="tool-card-name">database_reader</span>
+        <span class="wip-badge">Work in progress</span>
+      </div>
+      <p class="tool-card-desc">Connects to SQL databases (SQLite, PostgreSQL, MySQL) and exposes a natural-language query interface as a <code>LazyTool</code>. The agent describes what it needs; the tool translates and executes.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-t">database_reader(query)</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-o">list[dict]</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-dim">LazyTool.from_function</span>
+        <span class="badge badge-dim">SQLite · Postgres · MySQL</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim">Details</button>
+        <a href="#" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <!-- Card: risk_manager_pipeline (WIP) -->
+    <div class="tool-card tool-card-wip" data-category="pipeline" data-tags="pipeline">
+      <div class="tool-card-header">
+        <span class="tool-card-name">risk_manager_pipeline</span>
+        <span class="wip-badge">Work in progress</span>
+      </div>
+      <p class="tool-card-desc">Multi-agent risk assessment pipeline. Parallel specialists (market, credit, liquidity, operational) feed a risk synthesizer that produces a structured report with severity ratings and recommended actions.</p>
+      <div class="tool-card-topology">
+        <div class="topo-row">
+          <span class="topo-node topo-a">market</span>
+          <span class="topo-arrow">+</span>
+          <span class="topo-node topo-a">credit</span>
+          <span class="topo-arrow">+</span>
+          <span class="topo-node topo-a">liquidity</span>
+        </div>
+        <div class="topo-row">
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-a">risk_synthesizer</span>
+          <span class="topo-arrow">→</span>
+          <span class="topo-node topo-o">RiskReport (typed)</span>
+        </div>
+      </div>
+      <div class="tool-card-meta">
+        <span class="badge badge-blue">Parallel</span>
+        <span class="badge badge-green">Typed</span>
+        <span class="badge badge-dim">Pipeline</span>
+      </div>
+      <div class="tool-card-actions">
+        <button class="btn btn-dim">Details</button>
+        <a href="#" class="btn btn-ghost">Download</a>
+      </div>
+    </div>
+
+    <div class="tb-empty" id="tb-empty">
+      <p class="t-body-sm">No items match this filter.</p>
+    </div>
+
+
+  </div><!-- /tb-grid -->
+
+  <!-- CTA -->
+  <div style="padding: 0 0 80px; border-top: 1px solid var(--rule); padding-top: 48px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <div>
+      <p class="t-label" style="margin-bottom: 8px;">Want to contribute?</p>
+      <p class="t-body-sm">The toolbox grows when people share. Open a PR on GitHub with a new tool or pipeline.</p>
+    </div>
+    <a href="https://github.com/selvaz/LazyBridge" class="btn btn-ghost" style="flex-shrink: 0;">Contribute on GitHub →</a>
+    <a href="framework.html" class="btn btn-dim" style="flex-shrink: 0;">Framework docs →</a>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── Detail panel ── -->
+<div class="detail-overlay" id="overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detail-panel">
+  <div class="detail-header">
+    <div>
+      <p class="t-label" id="dp-category" style="margin-bottom: 6px;"></p>
+      <h2 class="prim-name" id="dp-name"></h2>
+    </div>
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+  </div>
+  <div class="detail-body" id="dp-body"></div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span class="footer-logo">lazy<span>bridge</span></span>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="framework.html">Framework</a></li>
+      <li><a href="toolbox.html">Toolbox</a></li>
+      <li><a href="https://github.com/selvaz/LazyBridge">GitHub</a></li>
+    </ul>
+    <span class="footer-copy">MIT License</span>
+  </div>
+</footer>
+
+<script>
+  // ── Filter logic ──
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.tool-card');
+  const countEl = document.getElementById('visible-count');
+  const emptyEl = document.getElementById('tb-empty');
+  const categoryHeaders = document.querySelectorAll('.tb-category-header');
+
+  function applyFilter(filter) {
+    let visible = 0;
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const category = card.dataset.category || '';
+      const show = filter === 'all' || tags.includes(filter) || category === filter;
+      card.dataset.hidden = show ? 'false' : 'true';
+      if (show) visible++;
+    });
+
+    // Show/hide category headers
+    categoryHeaders.forEach(header => {
+      const cat = header.dataset.category;
+      const hasVisible = [...cards].some(c => c.dataset.category === cat && c.dataset.hidden === 'false');
+      header.style.display = (filter === 'all' || hasVisible) ? '' : 'none';
+    });
+
+    countEl.textContent = visible;
+    emptyEl.classList.toggle('visible', visible === 0);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  // ── Detail panel ──
+  const details = {
+    lazybridge_skill: {
+      name: 'LazyBridge Claude Skill',
+      category: 'Skill',
+      download: 'downloads/lazybridge-skill.zip',
+      downloadLabel: 'Download .zip',
+      desc: 'The official LazyBridge Claude Code skill. Gives any Claude Code session native understanding of the full LazyBridge API — every class, pattern, and rule. No docs to paste, no API to explain.',
+      usage: 'Unzip and place the lazybridge/ folder inside your Claude Code skills directory (~/Claude/skills/ on Mac, %APPDATA%/Claude/skills/ on Windows). Restart Claude Code. The skill activates automatically.',
+      code: `# After installing the skill, Claude Code knows LazyBridge natively.
+# Example session with no extra context needed:
+
+> Build a 3-agent research pipeline with parallel web search
+  and typed output using LazyBridge.
+
+# Claude Code generates correct LazyBridge code immediately.
+# No wiki pasting. No API explanation. No scaffolding.`,
+      notes: 'The skill includes all 11 reference files from lazy_wiki/bot/: LazyAgent, LazySession, LazyTool, LazyContext, LazyStore, LazyRouter, GraphSchema, patterns, advanced features, schema generation, and custom provider integration.'
+    },
+    read_docs: {
+      name: 'read_docs',
+      category: 'Tool',
+      download: 'downloads/read_docs_tool.py',
+      downloadLabel: 'Download .py',
+      desc: 'Reads PDF, DOCX, HTML, MD, and TXT files from a folder or single path. Returns LLM-ready text with file headers, or a JSON array with metadata. Degrades gracefully if optional deps are missing.',
+      usage: 'Pass to any agent that needs to read documents before summarising or analysing. Supports recursive folder scanning, format filtering, and both text and JSON output.',
+      code: `from lazybridge import LazyAgent, LazyTool
+from lazybridge.tools.read_docs import read_folder_docs
+
+docs_tool = LazyTool.from_function(
+    read_folder_docs,
+    name="read_documents",
+    guidance="Call this tool to read files before summarising or analysing them.",
+)
+
+agent = LazyAgent("anthropic")
+resp  = agent.loop(
+    "Read all PDFs in /reports/q4 and give me an executive summary.",
+    tools=[docs_tool],
+)`,
+      notes: 'Dependencies: pip install pypdf python-docx trafilatura. All optional — the tool returns a descriptive message instead of crashing if a dep is missing. CLI: python -m lazybridge.tools.read_docs /path --extensions pdf,docx'
+    },
+    skill_manager: {
+      name: 'skill_manager',
+      category: 'Tool',
+      download: 'downloads/doc_skills_tool.py',
+      downloadLabel: 'Download .py',
+      desc: 'Turn any documentation folder into a queryable local skill in two steps: (1) build_skill() indexes your docs into a self-contained bundle using BM25 retrieval — no embeddings, no vector DB, no external API. (2) skill_tool() wraps the bundle as a LazyTool you can attach to any agent. For higher retrieval quality, skill_pipeline() adds a router agent that rewrites the query before retrieval and an executor agent that synthesises a grounded answer from the results.',
+      usage: 'Run build_skill() once on your docs folder, or whenever docs change. Pass skill_tool() to any agent\'s loop(). Use skill_pipeline() when retrieval quality matters most — the router sharpens ambiguous queries before they hit the index.',
+      code: `from lazybridge.tools.doc_skills import build_skill, skill_tool, skill_pipeline
+from lazybridge import LazyAgent
+
+# ── Step 1: index your docs (run once) ────────────────────────
+meta = build_skill(
+    source_dirs=["./docs", "./reference"],
+    skill_name="my-project",
+    description="Full API reference for MyProject.",
+)
+# Produces: generated_skills/my-project/
+#   SKILL.md       ← operating instructions injected into the agent
+#   manifest.json  ← metadata + avgdl for BM25 scoring
+#   vocab.json     ← Robertson IDF weights for every indexed term
+#   chunks.jsonl   ← one JSON object per chunk
+
+# ── Step 2a: attach to any agent as a tool ────────────────────
+tool = skill_tool(meta["skill_dir"])
+resp = LazyAgent("anthropic").loop(
+    "How do I configure retry behaviour?",
+    tools=[tool],
+)
+
+# ── Step 2b: or use the two-step pipeline ─────────────────────
+# router rewrites the query → executor retrieves + synthesises
+pipeline = skill_pipeline(skill_dir=meta["skill_dir"])
+orchestrator = LazyAgent("anthropic")
+resp = orchestrator.loop(
+    "When should I use LazyStore vs LazyContext?",
+    tools=[pipeline],
+)`,
+      notes: 'BM25 (Robertson IDF, k1=1.5, b=0.75) with heading-match boost (+1.2) and exact-phrase boost (+4.0). No LLM call at query time — retrieval is pure Python. Add skill_builder_tool() to an orchestrator to let it index new docs autonomously at runtime.'
+    },
+    research_pipeline: {
+      name: 'research_pipeline',
+      category: 'Pipeline',
+      download: 'downloads/research_pipeline_lazybridge.py',
+      downloadLabel: 'Download .py',
+      desc: 'Two-agent research chain: researcher → writer via LazyContext. Includes a mock search tool and typed Report output (Pydantic). Multi-provider (Anthropic + OpenAI). Session tracking included.',
+      usage: 'Drop in and run. Swap provider strings and search function for your use case. The pipeline itself is a LazyTool — pass it to an orchestrator or run it standalone.',
+      code: `from lazybridge import LazyAgent, LazyContext, LazySession, LazyTool
+
+sess       = LazySession(tracking="basic")
+search     = LazyTool.from_function(search_company)
+
+researcher = LazyAgent("anthropic", name="researcher", session=sess)
+writer     = LazyAgent("openai",    name="writer",     session=sess)
+
+def run_pipeline(task: str) -> str:
+    researcher.loop(task, tools=[search])
+    return str(writer.json(
+        "Write a structured report based on the research.",
+        Report,
+        context=LazyContext.from_agent(researcher),
+    ))
+
+pipeline = LazyTool.from_function(run_pipeline)`,
+      notes: 'Requires pydantic. Provider swap = change "anthropic" / "openai". LazyContext.from_agent() is evaluated lazily at call time — safe to wire before agents run.'
+    },
+    investment_research_platform: {
+      name: 'investment_research_platform',
+      category: 'Example',
+      download: 'downloads/investment_research_platform.py',
+      downloadLabel: 'Download .py',
+      desc: 'Four production-ready variants of the same investment research workflow: orchestrator-directed, nested pipeline, fan-out synthesis, and fully typed multi-provider. Each variant is self-contained and runnable.',
+      usage: 'Pick the variant that matches your architecture. All four produce the same typed InvestmentReport. Swap tickers and provider strings. Add real data tools to replace the mock get_prices/get_macro stubs.',
+      code: `# Variant 1 — Orchestrator with sub-agents as tools
+orchestrator = LazyAgent("anthropic",
+    system="You are a senior investment analyst.")
+
+result = orchestrator.loop(
+    "Analyse NVDA, MSFT, GOOGL for a 12-month horizon.",
+    tools=[market_tool, risk_tool],
+    output_schema=InvestmentReport,
+)
+
+# Variant 2 — Nested pipeline (session.as_tool)
+pipeline = outer_sess.as_tool("invest", "...",
+    mode="chain",
+    participants=[market_agent, risk_agent, synthesizer])
+
+# Variant 3 — Fan-out + synthesis
+fan_tool = parallel_sess.as_tool("fan", "...", mode="parallel")
+
+# Variant 4 — Fully typed multi-provider
+report: InvestmentReport = synthesizer.loop(task, output_schema=InvestmentReport)`,
+      notes: 'All variants use typed output (Pydantic InvestmentReport). Variants 2–4 demonstrate LazySession.as_tool() — the key pattern for turning a multi-agent session into a single reusable tool.'
+    },
+  };
+
+  function openDetail(key) {
+    const d = details[key];
+    if (!d) return;
+
+    document.getElementById('dp-category').textContent = d.category;
+    document.getElementById('dp-name').textContent = d.name;
+    document.getElementById('dp-body').innerHTML = `
+      <div class="detail-section">
+        <span class="detail-section-title">What it does</span>
+        <p class="t-body-sm">${d.desc}</p>
+      </div>
+      <div class="detail-section">
+        <span class="detail-section-title">How to use</span>
+        <p class="t-body-sm">${d.usage}</p>
+      </div>
+      <div class="detail-section">
+        <span class="detail-section-title">Code</span>
+        <div class="code-block"><pre style="font-size: 12px; line-height: 1.7;">${escapeHtml(d.code)}</pre></div>
+      </div>
+      <div class="detail-section">
+        <span class="detail-section-title">Notes</span>
+        <p class="t-body-sm">${d.notes}</p>
+      </div>
+      <div style="margin-top: 24px; display: flex; gap: 10px;">
+        ${d.download && d.download !== '#' ? `<a href="${d.download}" download class="btn btn-primary">${d.downloadLabel || 'Download'}</a>` : ''}
+        <a href="https://github.com/selvaz/LazyBridge" class="btn btn-ghost">View on GitHub</a>
+      </div>
+    `;
+
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('detail-panel').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDetail() {
+    document.getElementById('overlay').classList.remove('open');
+    document.getElementById('detail-panel').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+  // Nav dropdown with mouseleave delay
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    let t;
+    const menu = dd.querySelector('.nav-dropdown-menu');
+    dd.addEventListener('mouseenter', () => { clearTimeout(t); menu.style.display = 'block'; });
+    dd.addEventListener('mouseleave', () => { t = setTimeout(() => { menu.style.display = ''; }, 180); });
+  });
+</script>
+</body>
+</html>
