@@ -435,7 +435,8 @@
 <nav class="nav" style="padding: 0;">
   <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
   <a class="nav-logo" href="index.html">lazy<span>bridge</span></a>
-  <ul class="nav-links">
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="framework.html">Framework</a></li>
     <li><a href="toolbox.html">Toolbox</a></li>
@@ -482,6 +483,7 @@
 <!-- TEXT BLOCK -->
 <section class="section-sm">
   <div class="container">
+    <h2 class="t-headline reveal" style="margin-bottom: 28px;">The idea behind it</h2>
     <p class="t-body reveal" style="line-height: 1.85; color: var(--muted);">
       <strong>LazyBridge</strong> is a Python framework for building agentic systems without accumulating orchestration debt.
     </p>
@@ -510,6 +512,132 @@
 <hr class="rule">
 
 <!-- ═══════════════════════════════════════════════════════ -->
+<!-- COMPOSITION DIAGRAM                                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section-sm">
+  <div class="container">
+    <h2 class="t-headline reveal" style="margin-bottom:10px;">How agents compose</h2>
+    <p class="t-body-sm reveal" style="color:var(--muted); margin-bottom:8px; max-width:620px;">
+      <strong style="color:var(--text);">Example:</strong> an orchestrator dispatches a task to a composed pipeline.
+      Three research agents run <strong style="color:var(--text);">in parallel</strong> (vertical, fan-out), then the merged output flows through a writer and editor
+      <strong style="color:var(--text);">in sequence</strong> (horizontal chain).
+    </p>
+    <p class="t-body-sm reveal" style="color:var(--muted); margin-bottom:32px; max-width:620px;">
+      Both the inner parallel session and the outer chain session expose <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent);background:rgba(100,220,180,0.08);padding:1px 5px;border-radius:3px;">.as_tool()</code> —
+      the orchestrator calls the whole pipeline as a single function and gets a typed result back.
+    </p>
+    <div class="reveal" style="overflow-x:auto;">
+<svg viewBox="0 0 760 316" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:520px;display:block;">
+  <style>.dg text { font-family: var(--font-mono, monospace); }</style>
+  <defs>
+    <marker id="dg-a"  viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,1 L7,4 L0,7 Z" fill="#555"/>
+    </marker>
+    <marker id="dg-ag" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,1 L7,4 L0,7 Z" fill="#64dcb4"/>
+    </marker>
+    <marker id="dg-ab" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,1 L7,4 L0,7 Z" fill="#7ec8e3"/>
+    </marker>
+    <marker id="dg-ret" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M8,1 L1,4 L8,7 Z" fill="#3a5a52"/>
+    </marker>
+  </defs>
+  <g class="dg">
+
+  <!-- ══ ORCHESTRATOR ══ -->
+  <rect x="240" y="6" width="280" height="44" rx="7"
+        fill="rgba(126,200,227,0.07)" stroke="rgba(126,200,227,0.35)" stroke-width="1.5"/>
+  <text x="256" y="24" fill="#7ec8e3" font-size="10.5" font-weight="500">orchestrator</text>
+  <text x="256" y="39" fill="#505050" font-size="8.5">LazyAgent  ·  .loop(task, tools=[pipeline])</text>
+
+  <!-- Dispatch arrow down -->
+  <line x1="380" y1="52" x2="380" y2="72" stroke="#7ec8e3" stroke-width="1.5" marker-end="url(#dg-ab)"/>
+  <text x="386" y="65" fill="#3a5a62" font-size="8">pipeline.run({'task': '...'})</text>
+
+  <!-- ══ OUTER LazySession (chain) ══ -->
+  <rect x="2" y="76" width="756" height="206" rx="10"
+        fill="rgba(255,255,255,0.012)" stroke="#282828" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="14" y="91" fill="#3c3c3c" font-size="9.5">LazySession  ·  mode="chain"</text>
+
+  <!-- ══ PARALLEL sub-session ══ -->
+  <rect x="12" y="98" width="188" height="168" rx="7"
+        fill="rgba(255,255,255,0.018)" stroke="#323232" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="22" y="112" fill="#484848" font-size="9">parallel</text>
+
+  <!-- Agent: tech (center y=135) -->
+  <rect x="20" y="118" width="170" height="34" rx="5"
+        fill="rgba(232,149,109,0.07)" stroke="rgba(232,149,109,0.38)" stroke-width="1"/>
+  <text x="34" y="132" fill="#e8956d" font-size="10" font-weight="500">tech</text>
+  <text x="34" y="145" fill="#565656" font-size="8">anthropic  ·  web_search</text>
+
+  <!-- Agent: market (center y=183) -->
+  <rect x="20" y="166" width="170" height="34" rx="5"
+        fill="rgba(232,149,109,0.07)" stroke="rgba(232,149,109,0.38)" stroke-width="1"/>
+  <text x="34" y="180" fill="#e8956d" font-size="10" font-weight="500">market</text>
+  <text x="34" y="193" fill="#565656" font-size="8">anthropic  ·  web_search</text>
+
+  <!-- Agent: opinion (center y=231) -->
+  <rect x="20" y="214" width="170" height="34" rx="5"
+        fill="rgba(232,149,109,0.07)" stroke="rgba(232,149,109,0.38)" stroke-width="1"/>
+  <text x="34" y="228" fill="#e8956d" font-size="10" font-weight="500">opinion</text>
+  <text x="34" y="241" fill="#565656" font-size="8">openai  ·  web_search</text>
+
+  <!-- Fork lines → merge at x=202, y=183 -->
+  <line x1="190" y1="135" x2="202" y2="135" stroke="#3e3e3e" stroke-width="1"/>
+  <line x1="190" y1="183" x2="202" y2="183" stroke="#3e3e3e" stroke-width="1"/>
+  <line x1="190" y1="231" x2="202" y2="231" stroke="#3e3e3e" stroke-width="1"/>
+  <line x1="202" y1="135" x2="202" y2="231" stroke="#3e3e3e" stroke-width="1"/>
+  <line x1="202" y1="183" x2="246" y2="183" stroke="#555" stroke-width="1.5" marker-end="url(#dg-a)"/>
+
+  <!-- Agent: writer (center y=183) -->
+  <rect x="250" y="160" width="145" height="46" rx="6"
+        fill="rgba(100,220,180,0.07)" stroke="rgba(100,220,180,0.32)" stroke-width="1.2"/>
+  <text x="264" y="179" fill="#64dcb4" font-size="10.5" font-weight="500">writer</text>
+  <text x="264" y="194" fill="#565656" font-size="8.5">anthropic</text>
+
+  <!-- Arrow writer → editor -->
+  <line x1="397" y1="183" x2="431" y2="183" stroke="#555" stroke-width="1.5" marker-end="url(#dg-a)"/>
+
+  <!-- Agent: editor (center y=183) -->
+  <rect x="435" y="160" width="162" height="46" rx="6"
+        fill="rgba(100,220,180,0.07)" stroke="rgba(100,220,180,0.32)" stroke-width="1.2"/>
+  <text x="449" y="179" fill="#64dcb4" font-size="10.5" font-weight="500">editor</text>
+  <text x="449" y="194" fill="#565656" font-size="8.5">openai  ·  output=BlogPost</text>
+
+  <!-- Arrow editor → output -->
+  <line x1="599" y1="183" x2="631" y2="183" stroke="#64dcb4" stroke-width="1.5" marker-end="url(#dg-ag)"/>
+
+  <!-- Output badge -->
+  <rect x="635" y="168" width="62" height="30" rx="5"
+        fill="rgba(100,220,180,0.14)" stroke="#64dcb4" stroke-width="1.5"/>
+  <text x="666" y="181" fill="#64dcb4" font-size="9" text-anchor="middle" font-weight="500">Blog</text>
+  <text x="666" y="193" fill="#64dcb4" font-size="8.5" text-anchor="middle">Post</text>
+
+  <!-- Return dashed path: output → right → up → orchestrator right edge -->
+  <path d="M697,183 H746 V29 H522" fill="none"
+        stroke="rgba(100,220,180,0.4)" stroke-width="1.2" stroke-dasharray="4,3"
+        marker-end="url(#dg-ret)"/>
+  <text fill="rgba(100,220,180,0.45)" font-size="8" text-anchor="middle"
+        transform="translate(752,130) rotate(90)">returns BlogPost</text>
+
+  <!-- as_tool annotations — two rows below the outer session box -->
+  <text x="14" y="296" fill="#3a6a5a" font-size="8.5">
+    ↑  inner_sess.as_tool(mode="parallel")  →  LazyTool
+  </text>
+  <text x="14" y="308" fill="#363636" font-size="8.5">
+    ↑  outer_sess.as_tool("pipeline", mode="chain")  →  the entire diagram is one callable LazyTool
+  </text>
+
+  </g>
+</svg>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══════════════════════════════════════════════════════ -->
 <!-- SEE IT IN ACTION                                        -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section class="section" id="examples">
@@ -529,96 +657,136 @@
         <button class="proof-tab" data-panel="p4">Nested</button>
       </div>
       <div class="proof-panels">
+
+        <!-- ── 01 SINGLE CALL ── -->
         <div class="proof-panel active" id="p0">
+          <div class="ex-desc">
+            <strong>The simplest possible start.</strong> Pick a provider, call <code>.text()</code> — you get back a string.
+            No SDK setup, no message arrays, no parsing. One line.
+          </div>
           <div class="code-block">
             <span class="cb-label">01 — single call</span>
 <pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span>
 
+<span class="c"># "anthropic" · "openai" · "google" · "deepseek" — same code, swap one string</span>
 <span class="n">ai</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+
+<span class="c"># .text() returns a plain string — no response object to unwrap</span>
 <span class="n">result</span> <span class="p">=</span> <span class="n">ai</span><span class="p">.</span><span class="f">text</span><span class="p">(</span><span class="s">"Summarize the state of open-source LLMs"</span><span class="p">)</span></pre>
           </div>
         </div>
+
+        <!-- ── 02 TOOL LOOP ── -->
         <div class="proof-panel" id="p1">
+          <div class="ex-desc">
+            <strong>Turn any Python function into a tool — automatically.</strong>
+            LazyBridge reads the type hints and docstring to build the JSON schema.
+            <code>.loop()</code> keeps calling tools until the model signals it's done. No manual dispatch loop.
+          </div>
           <div class="code-block">
-            <span class="cb-label">02 — tool loop: agent calls Python functions automatically</span>
+            <span class="cb-label">02 — tool loop</span>
 <pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazyTool</span>
 
+<span class="c"># A plain Python function — no decorator, no boilerplate</span>
 <span class="k">def</span> <span class="f">search</span><span class="p">(</span><span class="n">query</span><span class="t">: str</span><span class="p">,</span> <span class="n">max_results</span><span class="t">: int</span> <span class="p">=</span> <span class="m">5</span><span class="p">)</span> <span class="p">-></span> <span class="t">str</span><span class="p">:</span>
     <span class="s">"""Search the web and return results."""</span>
     <span class="p">...</span>
 
-<span class="c"># Schema is auto-generated from type hints and docstring</span>
+<span class="c"># Type hints + docstring → JSON schema, auto-generated</span>
 <span class="n">search_tool</span> <span class="p">=</span> <span class="o">LazyTool</span><span class="p">.</span><span class="f">from_function</span><span class="p">(</span><span class="n">search</span><span class="p">)</span>
 
 <span class="n">ai</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
-<span class="c"># loop() runs tool calls until the model is done — no manual dispatch</span>
+<span class="c"># .loop() runs the tool-call cycle until the model stops calling tools</span>
 <span class="n">result</span> <span class="p">=</span> <span class="n">ai</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span><span class="s">"Find recent AI papers and summarize them"</span><span class="p">,</span> <span class="n">tools</span><span class="p">=[</span><span class="n">search_tool</span><span class="p">])</span></pre>
           </div>
         </div>
+
+        <!-- ── 03 AGENT AS TOOL ── -->
         <div class="proof-panel" id="p2">
+          <div class="ex-desc">
+            <strong>Agents calling agents.</strong> Any <code>LazyAgent</code> becomes a tool via <code>.as_tool()</code>.
+            The orchestrator decides when to invoke each one — and they can run on different providers.
+            No glue code needed.
+          </div>
           <div class="code-block">
-            <span class="cb-label">03 — agent as tool: one agent calls another by name</span>
+            <span class="cb-label">03 — agent as tool</span>
 <pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span>
 
+<span class="c"># Two specialist agents — different providers, same interface</span>
 <span class="n">researcher</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"researcher"</span><span class="p">)</span>
 <span class="n">analyst</span>    <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"analyst"</span><span class="p">)</span>
 
-<span class="c"># Both agents become tools. The orchestrator decides when to call them.</span>
 <span class="n">orchestrator</span> <span class="p">=</span> <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">)</span>
+<span class="c"># .as_tool() wraps each agent — the orchestrator picks who to call and when</span>
 <span class="n">result</span> <span class="p">=</span> <span class="n">orchestrator</span><span class="p">.</span><span class="f">loop</span><span class="p">(</span>
     <span class="s">"Research and analyse the EV market"</span><span class="p">,</span>
     <span class="n">tools</span><span class="p">=[</span><span class="n">researcher</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(),</span> <span class="n">analyst</span><span class="p">.</span><span class="f">as_tool</span><span class="p">()]</span>
 <span class="p">)</span></pre>
           </div>
         </div>
+
+        <!-- ── 04 PIPELINE AS TOOL ── -->
         <div class="proof-panel" id="p3">
+          <div class="ex-desc">
+            <strong>A whole pipeline in one callable.</strong> <code>LazySession</code> groups agents together.
+            <code>.as_tool()</code> wraps the entire session — parallel, chain, or mixed — into a single tool
+            that any outer orchestrator can call like a function.
+          </div>
           <div class="code-block">
-            <span class="cb-label">04 — pipeline as tool: an entire session becomes one callable</span>
+            <span class="cb-label">04 — pipeline as tool</span>
 <pre><span class="k">from</span> <span class="n">lazybridge</span> <span class="k">import</span> <span class="o">LazyAgent</span><span class="p">,</span> <span class="o">LazySession</span>
 
 <span class="n">sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
 
-<span class="c"># Three parallel researchers + one editor chained after</span>
+<span class="c"># Inner parallel session + one chained editor → wrapped as a single tool</span>
 <span class="n">pipeline</span> <span class="p">=</span> <span class="n">sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
     <span class="s">"research_and_edit"</span><span class="p">,</span>
     <span class="s">"Research a topic in parallel, then edit into a report"</span><span class="p">,</span>
-    <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>         <span class="c"># steps run in sequence</span>
     <span class="n">participants</span><span class="p">=[</span>
-        <span class="n">inner_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="s">"research"</span><span class="p">,</span> <span class="s">"..."</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"parallel"</span><span class="p">),</span>  <span class="c"># nested</span>
+        <span class="n">inner_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="s">"research"</span><span class="p">,</span> <span class="s">"..."</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"parallel"</span><span class="p">),</span>  <span class="c"># runs in parallel</span>
         <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"editor"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">sess</span><span class="p">),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
-<span class="c"># To an outer orchestrator, this is just a function</span>
+<span class="c"># From the outside: just a function call — hides all internal complexity</span>
 <span class="n">result</span> <span class="p">=</span> <span class="n">pipeline</span><span class="p">.</span><span class="f">run</span><span class="p">({</span><span class="s">"task"</span><span class="p">:</span> <span class="s">"Analyse open-source LLM trends"</span><span class="p">})</span></pre>
           </div>
         </div>
+
+        <!-- ── 05 NESTED ── -->
         <div class="proof-panel" id="p4">
+          <div class="ex-desc">
+            <strong>Full multi-agent pipeline — ~40 lines.</strong> Three parallel searchers (mixed providers)
+            feed into a writer, then a typed-output editor. The inner session becomes a tool.
+            The outer session chains everything. <em>The grammar never changes.</em>
+          </div>
           <div class="code-block">
-            <span class="cb-label">05 — nested pipelines: complexity grows by composition, not by code</span>
-<pre><span class="c"># Inner session: three parallel web-search agents</span>
+            <span class="cb-label">05 — nested pipelines</span>
+<pre><span class="c"># Step 1 — three agents search in parallel (mixed providers)</span>
 <span class="n">research_sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
 <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"tech"</span><span class="p">,</span>    <span class="n">session</span><span class="p">=</span><span class="n">research_sess</span><span class="p">,</span> <span class="n">native_tools</span><span class="p">=[</span><span class="s">"web_search"</span><span class="p">])</span>
 <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"market"</span><span class="p">,</span>  <span class="n">session</span><span class="p">=</span><span class="n">research_sess</span><span class="p">,</span> <span class="n">native_tools</span><span class="p">=[</span><span class="s">"web_search"</span><span class="p">])</span>
 <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"opinion"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">research_sess</span><span class="p">,</span> <span class="n">native_tools</span><span class="p">=[</span><span class="s">"web_search"</span><span class="p">])</span>
+<span class="c"># Wrap the whole parallel session as a single reusable tool</span>
 <span class="n">research_tool</span> <span class="p">=</span> <span class="n">research_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span><span class="s">"research"</span><span class="p">,</span> <span class="s">"..."</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"parallel"</span><span class="p">)</span>
 
-<span class="c"># Outer session: research_tool is the first step of a chain</span>
+<span class="c"># Step 2 — chain: research_tool → writer → editor (typed output)</span>
 <span class="n">outer_sess</span> <span class="p">=</span> <span class="o">LazySession</span><span class="p">()</span>
 <span class="n">pipeline</span> <span class="p">=</span> <span class="n">outer_sess</span><span class="p">.</span><span class="f">as_tool</span><span class="p">(</span>
     <span class="s">"full_pipeline"</span><span class="p">,</span> <span class="s">"Parallel research → write → edit"</span><span class="p">,</span> <span class="n">mode</span><span class="p">=</span><span class="s">"chain"</span><span class="p">,</span>
     <span class="n">participants</span><span class="p">=[</span>
-        <span class="n">research_tool</span><span class="p">,</span>            <span class="c"># LazyTool (inner session)</span>
+        <span class="n">research_tool</span><span class="p">,</span>                                                         <span class="c"># inner session</span>
         <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"anthropic"</span><span class="p">,</span> <span class="n">name</span><span class="p">=</span><span class="s">"writer"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">outer_sess</span><span class="p">),</span>
         <span class="o">LazyAgent</span><span class="p">(</span><span class="s">"openai"</span><span class="p">,</span>    <span class="n">name</span><span class="p">=</span><span class="s">"editor"</span><span class="p">,</span> <span class="n">session</span><span class="p">=</span><span class="n">outer_sess</span><span class="p">,</span> <span class="n">output_schema</span><span class="p">=</span><span class="o">BlogPost</span><span class="p">),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
-<span class="c"># 40 lines. A full nested pipeline with web search, parallel execution,</span>
-<span class="c"># sequential editing, and typed structured output.</span>
+<span class="c"># result is a typed BlogPost — structured output, web search, parallel + chain, ~40 lines</span>
 <span class="n">post</span> <span class="p">=</span> <span class="n">pipeline</span><span class="p">.</span><span class="f">run</span><span class="p">({</span><span class="s">"task"</span><span class="p">:</span> <span class="s">"Open-source LLMs in 2025"</span><span class="p">})</span></pre>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -1099,13 +1267,26 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Nav dropdown with mouseleave delay
+  // Nav dropdown with mouseleave delay (desktop)
   document.querySelectorAll('.nav-dropdown').forEach(dd => {
     let t;
     const menu = dd.querySelector('.nav-dropdown-menu');
     dd.addEventListener('mouseenter', () => { clearTimeout(t); menu.style.display = 'block'; });
     dd.addEventListener('mouseleave', () => { t = setTimeout(() => { menu.style.display = ''; }, 180); });
   });
+
+  // Hamburger menu (mobile)
+  const ham = document.getElementById('navHamburger');
+  const nav = ham && ham.closest('nav');
+  if (ham && nav) {
+    ham.addEventListener('click', () => nav.classList.toggle('nav-open'));
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target)) nav.classList.remove('nav-open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('nav-open'));
+    });
+  }
 </script>
 </body>
 </html>

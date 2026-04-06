@@ -375,7 +375,8 @@
 <nav class="nav" style="padding: 0;">
   <div class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
     <a class="nav-logo" href="index.html">lazy<span>bridge</span></a>
-    <ul class="nav-links">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="framework.html" class="active">Framework</a></li>
       <li><a href="toolbox.html">Toolbox</a></li>
@@ -1230,13 +1231,26 @@ pip install lazybridge
 
   sections.forEach(s => observer.observe(s));
 
-  // Nav dropdown with mouseleave delay
+  // Nav dropdown with mouseleave delay (desktop)
   document.querySelectorAll('.nav-dropdown').forEach(dd => {
     let t;
     const menu = dd.querySelector('.nav-dropdown-menu');
     dd.addEventListener('mouseenter', () => { clearTimeout(t); menu.style.display = 'block'; });
     dd.addEventListener('mouseleave', () => { t = setTimeout(() => { menu.style.display = ''; }, 180); });
   });
+
+  // Hamburger menu (mobile)
+  const ham = document.getElementById('navHamburger');
+  const nav = ham && ham.closest('nav');
+  if (ham && nav) {
+    ham.addEventListener('click', () => nav.classList.toggle('nav-open'));
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target)) nav.classList.remove('nav-open');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('nav-open'));
+    });
+  }
 </script>
 </body>
 </html>
