@@ -1277,7 +1277,7 @@ pre, code { font-family: var(--font-mono); font-size: 13px; }
 .nav-open .nav-hamburger span:nth-child(2) { opacity: 0; }
 .nav-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .nav-hamburger { display: flex; }
 
   /* hide desktop links by default on mobile */

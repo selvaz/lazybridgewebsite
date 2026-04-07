@@ -842,12 +842,16 @@ report: InvestmentReport = synthesizer.loop(task, output_schema=InvestmentReport
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
 
-  // Nav dropdown with mouseleave delay (desktop)
+  // Nav dropdown with mouseleave delay (desktop only)
   document.querySelectorAll('.nav-dropdown').forEach(dd => {
     let t;
     const menu = dd.querySelector('.nav-dropdown-menu');
-    dd.addEventListener('mouseenter', () => { clearTimeout(t); menu.style.display = 'block'; });
-    dd.addEventListener('mouseleave', () => { t = setTimeout(() => { menu.style.display = ''; }, 180); });
+    dd.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) { clearTimeout(t); menu.style.display = 'block'; }
+    });
+    dd.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) { t = setTimeout(() => { menu.style.display = ''; }, 180); }
+    });
   });
 
   // Hamburger menu (mobile)
