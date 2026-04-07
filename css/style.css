@@ -1279,11 +1279,11 @@ pre, code { font-family: var(--font-mono); font-size: 13px; }
 .nav-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 900px) {
-  .nav-hamburger { display: flex; }
+  .nav-hamburger { display: flex !important; }
 
   /* hide desktop links by default on mobile */
   .nav-links {
-    display: none;
+    display: none !important;
     position: fixed;
     top: var(--nav-h);
     left: 0;
@@ -1297,7 +1297,7 @@ pre, code { font-family: var(--font-mono); font-size: 13px; }
     padding: 8px 0;
     z-index: 1000;
   }
-  .nav-open .nav-links { display: flex; }
+  .nav-open .nav-links { display: flex !important; }
 
   .nav-links li { width: 100%; }
   .nav-links a {
