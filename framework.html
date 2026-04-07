@@ -1264,10 +1264,10 @@ pip install lazybridge
     let t;
     const menu = dd.querySelector('.nav-dropdown-menu');
     dd.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 768) { clearTimeout(t); menu.style.display = 'block'; }
+      if (window.innerWidth > 900) { clearTimeout(t); menu.style.display = 'block'; }
     });
     dd.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 768) { t = setTimeout(() => { menu.style.display = ''; }, 180); }
+      if (window.innerWidth > 900) { t = setTimeout(() => { menu.style.display = ''; }, 180); }
     });
   });
 
