@@ -313,40 +313,57 @@
 .lb-code-panel pre { margin: 0; border-radius: 0; background: var(--lb-code-bg) !important; }
 .lb-code-panel code { background: transparent !important; }
 
-/* ── Dark syntax theme — Pygments emits light-mode colours by default ──────
-   Override every token class so the panel is readable on #0F172A.
-   Palette: Slate 100-400 for neutral, purple-300 for keywords,
-   emerald-300 for strings, sky-300 for builtins, amber-300 for numbers.  */
-.lb-code-panel .highlight .n,
-.lb-code-panel .highlight .nx  { color: #E2E8F0; }          /* Name (default) */
+/* ── Dark syntax theme ───────────────────────────────────────────────────────
+   Material uses --md-code-hl-* CSS variables for all token colours.
+   On the light scheme those variables are nearly-black, invisible on #0F172A.
+   We re-declare them scoped to .lb-code-panel so only the dark panel is
+   affected — the rest of the site keeps the default light-theme colours.   */
+.lb-code-panel {
+  --md-code-hl-name-color:        #E2E8F0;   /* identifiers             */
+  --md-code-hl-operator-color:    #94A3B8;   /* = + - * , . : ; ( ) [ ] */
+  --md-code-hl-punctuation-color: #94A3B8;   /* same as operator        */
+  --md-code-hl-keyword-color:     #C084FC;   /* from import def class   */
+  --md-code-hl-special-color:     #F472B6;   /* True False None         */
+  --md-code-hl-function-color:    #67E8F9;   /* function / class names  */
+  --md-code-hl-constant-color:    #67E8F9;   /* builtins print len      */
+  --md-code-hl-string-color:      #6EE7B7;   /* "strings"               */
+  --md-code-hl-number-color:      #FCD34D;   /* numbers 3 8.0           */
+  --md-code-hl-comment-color:     #475569;   /* # comments              */
+  --md-code-hl-generic-color:     #94A3B8;
+  --md-code-fg-color:             #CBD5E1;   /* default text            */
+  --md-code-bg-color:             #0F172A;   /* keep background dark    */
+}
+
+/* Belt-and-suspenders: also override the span classes directly in case
+   the theme inlines colour rather than using the variable.              */
+.lb-code-panel .highlight span   { color: var(--md-code-fg-color); }
 .lb-code-panel .highlight .o,
-.lb-code-panel .highlight .p   { color: #94A3B8; }          /* Operators = + , ( ) : */
+.lb-code-panel .highlight .p     { color: #94A3B8 !important; }
 .lb-code-panel .highlight .k,
+.lb-code-panel .highlight .kn,
 .lb-code-panel .highlight .kd,
 .lb-code-panel .highlight .kr,
-.lb-code-panel .highlight .kt  { color: #C084FC; }          /* Keywords def class return if for */
-.lb-code-panel .highlight .kn  { color: #C084FC; }          /* from import */
-.lb-code-panel .highlight .kc  { color: #F472B6; }          /* True False None */
-.lb-code-panel .highlight .nb  { color: #67E8F9; }          /* Builtins print len str */
-.lb-code-panel .highlight .nc  { color: #67E8F9; }          /* Class names */
+.lb-code-panel .highlight .kt    { color: #C084FC !important; }
+.lb-code-panel .highlight .kc    { color: #F472B6 !important; }
+.lb-code-panel .highlight .nb,
+.lb-code-panel .highlight .nc,
 .lb-code-panel .highlight .nf,
-.lb-code-panel .highlight .fm  { color: #67E8F9; }          /* Function names */
-.lb-code-panel .highlight .nn  { color: #E2E8F0; }          /* Namespace (module name) */
-.lb-code-panel .highlight .na  { color: #E2E8F0; }          /* Attribute */
+.lb-code-panel .highlight .fm    { color: #67E8F9 !important; }
+.lb-code-panel .highlight .n,
+.lb-code-panel .highlight .nn,
+.lb-code-panel .highlight .na,
+.lb-code-panel .highlight .nx    { color: #E2E8F0 !important; }
 .lb-code-panel .highlight .s,
 .lb-code-panel .highlight .s1,
 .lb-code-panel .highlight .s2,
 .lb-code-panel .highlight .sa,
-.lb-code-panel .highlight .sb,
-.lb-code-panel .highlight .sc,
-.lb-code-panel .highlight .dl  { color: #6EE7B7; }          /* Strings */
+.lb-code-panel .highlight .dl    { color: #6EE7B7 !important; }
 .lb-code-panel .highlight .mi,
 .lb-code-panel .highlight .mf,
-.lb-code-panel .highlight .mh  { color: #FCD34D; }          /* Numbers */
+.lb-code-panel .highlight .mh    { color: #FCD34D !important; }
 .lb-code-panel .highlight .c,
 .lb-code-panel .highlight .c1,
-.lb-code-panel .highlight .cm  { color: #475569; font-style: italic; } /* Comments */
-.lb-code-panel .highlight .w   { color: #E2E8F0; }          /* Whitespace */
+.lb-code-panel .highlight .cm    { color: #475569 !important; font-style: italic; }
 
 /* ── ECOSYSTEM ───────────────────────────────────────────────────────────── */
 .lb-ecosystem {
