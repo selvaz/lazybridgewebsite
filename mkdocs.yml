@@ -58,8 +58,15 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/selvaz/LazyBridge
+      name: GitHub
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/lazybridge/
+      name: PyPI
 
 nav:
   - Home: index.md
+  - Quickstart: https://core.lazybridge.com/quickstart/
+  - Concepts: https://core.lazybridge.com/concepts/mental-model/
+  - Guides: https://core.lazybridge.com/guides/basic/agent/
+  - Recipes: https://core.lazybridge.com/recipes/
+  - Reference: https://core.lazybridge.com/reference/
