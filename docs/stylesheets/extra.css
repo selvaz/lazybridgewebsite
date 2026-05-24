@@ -313,6 +313,41 @@
 .lb-code-panel pre { margin: 0; border-radius: 0; background: var(--lb-code-bg) !important; }
 .lb-code-panel code { background: transparent !important; }
 
+/* ── Dark syntax theme — Pygments emits light-mode colours by default ──────
+   Override every token class so the panel is readable on #0F172A.
+   Palette: Slate 100-400 for neutral, purple-300 for keywords,
+   emerald-300 for strings, sky-300 for builtins, amber-300 for numbers.  */
+.lb-code-panel .highlight .n,
+.lb-code-panel .highlight .nx  { color: #E2E8F0; }          /* Name (default) */
+.lb-code-panel .highlight .o,
+.lb-code-panel .highlight .p   { color: #94A3B8; }          /* Operators = + , ( ) : */
+.lb-code-panel .highlight .k,
+.lb-code-panel .highlight .kd,
+.lb-code-panel .highlight .kr,
+.lb-code-panel .highlight .kt  { color: #C084FC; }          /* Keywords def class return if for */
+.lb-code-panel .highlight .kn  { color: #C084FC; }          /* from import */
+.lb-code-panel .highlight .kc  { color: #F472B6; }          /* True False None */
+.lb-code-panel .highlight .nb  { color: #67E8F9; }          /* Builtins print len str */
+.lb-code-panel .highlight .nc  { color: #67E8F9; }          /* Class names */
+.lb-code-panel .highlight .nf,
+.lb-code-panel .highlight .fm  { color: #67E8F9; }          /* Function names */
+.lb-code-panel .highlight .nn  { color: #E2E8F0; }          /* Namespace (module name) */
+.lb-code-panel .highlight .na  { color: #E2E8F0; }          /* Attribute */
+.lb-code-panel .highlight .s,
+.lb-code-panel .highlight .s1,
+.lb-code-panel .highlight .s2,
+.lb-code-panel .highlight .sa,
+.lb-code-panel .highlight .sb,
+.lb-code-panel .highlight .sc,
+.lb-code-panel .highlight .dl  { color: #6EE7B7; }          /* Strings */
+.lb-code-panel .highlight .mi,
+.lb-code-panel .highlight .mf,
+.lb-code-panel .highlight .mh  { color: #FCD34D; }          /* Numbers */
+.lb-code-panel .highlight .c,
+.lb-code-panel .highlight .c1,
+.lb-code-panel .highlight .cm  { color: #475569; font-style: italic; } /* Comments */
+.lb-code-panel .highlight .w   { color: #E2E8F0; }          /* Whitespace */
+
 /* ── ECOSYSTEM ───────────────────────────────────────────────────────────── */
 .lb-ecosystem {
   padding: 3.5rem 7rem;
