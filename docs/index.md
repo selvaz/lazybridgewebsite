@@ -198,41 +198,38 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
   </div>
 </section>
 
-<!-- ═══════════════════ LAZYPULSE CASE ═══════════════════ -->
+<!-- ═══════════════════ LAZYPULSE FLOW ═══════════════════ -->
 <section class="lb-pulse-case">
-  <div class="lb-pulse-case__header">
-    <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
-    <h2>Turn inboxes into governed agentic services</h2>
+  <div class="lb-pulse-case__inner">
+    <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse in action</div>
+    <h2>From inbox to governed action</h2>
     <p class="lb-pulse-case__sub">
-      LazyPulse gives LazyBridge a heartbeat: poll inboxes, receive webhooks,
-      run agents on a schedule, gate risky actions through policy and review,
-      and leave an audit trail.
+      LazyPulse gives LazyBridge a heartbeat. Poll inboxes, receive webhooks,
+      gate risky actions through policy, and leave a tamper-proof audit trail.
     </p>
-  </div>
 
-  <div class="lb-pulse-flow">
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Input</span>
-      <span class="lb-pulse-step__value">Telegram &bull; Gmail &bull; Webhook</span>
+    <div class="lb-pulse-flow">
+      <div class="lb-pulse-step">
+        <span class="lb-pulse-step__label">Input</span>
+        <span class="lb-pulse-step__value">Telegram &bull; Gmail &bull; Webhook</span>
+      </div>
+      <div class="lb-pulse-connector"></div>
+      <div class="lb-pulse-step">
+        <span class="lb-pulse-step__label">Agent</span>
+        <span class="lb-pulse-step__value">LazyPulse &mdash; always-on, tick-driven</span>
+      </div>
+      <div class="lb-pulse-connector"></div>
+      <div class="lb-pulse-step">
+        <span class="lb-pulse-step__label">Policy</span>
+        <span class="lb-pulse-step__value">Auto-approve or escalate to human</span>
+      </div>
+      <div class="lb-pulse-connector"></div>
+      <div class="lb-pulse-step">
+        <span class="lb-pulse-step__label">Audit</span>
+        <span class="lb-pulse-step__value">Every decision logged &mdash; tamper-proof</span>
+      </div>
     </div>
-    <span class="lb-pulse-arrow">↓</span>
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Agent</span>
-      <span class="lb-pulse-step__value">LazyPulse agent — always-on, tick-driven</span>
-    </div>
-    <span class="lb-pulse-arrow">↓</span>
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Policy</span>
-      <span class="lb-pulse-step__value">Auto-approve or escalate to human review</span>
-    </div>
-    <span class="lb-pulse-arrow">↓</span>
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Audit</span>
-      <span class="lb-pulse-step__value">Every decision logged — tamper-proof</span>
-    </div>
-  </div>
 
-  <div class="lb-pulse-case__cta">
     <a href="https://pulse.lazybridge.com/" class="lb-btn lb-btn--primary">Explore LazyPulse &rarr;</a>
   </div>
 </section>
