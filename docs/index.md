@@ -11,13 +11,11 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
   <div class="lb-hero__copy">
     <div class="lb-pill">Zero-boilerplate &bull; Multi-provider &bull; Python framework</div>
 
-    <h1>Build LLM workflows without<br>orchestration <span class="accent">boilerplate</span></h1>
+    <h1>LazyBridge is the Python-first<br><span class="accent">composition layer</span> for LLM workflows.</h1>
 
     <p class="lb-subhead">
-      LazyBridge lets you compose LLMs, Python functions,
-      deterministic plans, humans, memory, sessions, stores
-      and external tools through one model:
-      <a href="https://core.lazybridge.com/concepts/everything-is-a-tool/" class="lb-inline-link">everything is a tool.</a>
+      Everything is a tool: functions, agents, plans, humans, and external systems
+      compose through one interface.
     </p>
 
     <div class="lb-cta-row">
