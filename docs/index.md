@@ -56,7 +56,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 <section class="lb-feature-cards">
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
     </div>
     <div class="lb-card__body">
       <h3>One abstraction, not five</h3>
@@ -67,7 +67,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
     </div>
     <div class="lb-card__body">
       <h3>Fail at build time, not at 3am</h3>
@@ -78,7 +78,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
     </div>
     <div class="lb-card__body">
       <h3>Nested systems stay traceable</h3>
@@ -90,10 +90,8 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
 <!-- ═══════════════════ CODE BLOCK ═══════════════════ -->
 <div class="lb-code-panel">
-  <div class="lb-code-header">
-    <span class="lb-code-caption">Same mental model: from a one-line agent to nested, checkpointed pipelines.</span>
-    <span class="lb-code-lang">Python</span>
-  </div>
+
+<span class="lb-code-caption">Same mental model: from a one-line agent to nested, checkpointed pipelines.</span>
 
 === "Simplest"
 
@@ -195,42 +193,6 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
       </div>
     </a>
 
-  </div>
-</section>
-
-<!-- ═══════════════════ LAZYPULSE FLOW ═══════════════════ -->
-<section class="lb-pulse-case">
-  <div class="lb-pulse-case__inner">
-    <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse in action</div>
-    <h2>From inbox to governed action</h2>
-    <p class="lb-pulse-case__sub">
-      LazyPulse gives LazyBridge a heartbeat. Poll inboxes, receive webhooks,
-      gate risky actions through policy, and leave a tamper-proof audit trail.
-    </p>
-
-    <div class="lb-pulse-flow">
-      <div class="lb-pulse-step">
-        <span class="lb-pulse-step__label">Input</span>
-        <span class="lb-pulse-step__value">Telegram &bull; Gmail &bull; Webhook</span>
-      </div>
-      <div class="lb-pulse-connector"></div>
-      <div class="lb-pulse-step">
-        <span class="lb-pulse-step__label">Agent</span>
-        <span class="lb-pulse-step__value">LazyPulse &mdash; always-on, tick-driven</span>
-      </div>
-      <div class="lb-pulse-connector"></div>
-      <div class="lb-pulse-step">
-        <span class="lb-pulse-step__label">Policy</span>
-        <span class="lb-pulse-step__value">Auto-approve or escalate to human</span>
-      </div>
-      <div class="lb-pulse-connector"></div>
-      <div class="lb-pulse-step">
-        <span class="lb-pulse-step__label">Audit</span>
-        <span class="lb-pulse-step__value">Every decision logged &mdash; tamper-proof</span>
-      </div>
-    </div>
-
-    <a href="https://pulse.lazybridge.com/" class="lb-btn lb-btn--primary">Explore LazyPulse &rarr;</a>
   </div>
 </section>
 
