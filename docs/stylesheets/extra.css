@@ -140,6 +140,13 @@
 .lb-hero__art { display: flex; justify-content: center; align-items: center; }
 .lb-hero__art img { width: 100%; max-width: 500px; object-fit: contain; }
 
+/* Hero image: white bubble in dark mode so dark-on-transparent PNG stays visible */
+[data-md-color-scheme="slate"] .lb-hero__art {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 1.5rem;
+}
+
 /* ── FEATURE CARDS ──────────────────────────────────────────────────────────── */
 .lb-feature-cards {
   display: grid;
