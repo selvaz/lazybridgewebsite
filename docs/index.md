@@ -89,7 +89,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 </section>
 
 <!-- ═══════════════════ CODE BLOCK ═══════════════════ -->
-<div class="lb-code-panel">
+<div class="lb-code-panel" markdown="1">
 
 <span class="lb-code-caption">Same mental model: from a one-line agent to nested, checkpointed pipelines.</span>
 
