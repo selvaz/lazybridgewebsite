@@ -2,25 +2,26 @@
 hide:
   - navigation
   - toc
-title: LazyBridge — Python composition layer for LLM workflows
-description: Composable LLM workflows where everything is a tool — functions, agents, plans, humans and external systems share one interface.
+title: LazyBridge — Python composition runtime for LLM workflows
+description: Build LLM workflows where functions, agents, plans, humans and external systems all compose through one tool interface.
 ---
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="lb-hero">
   <div class="lb-hero__copy">
-    <div class="lb-pill">Zero-boilerplate &bull; Multi-provider &bull; Python framework</div>
+    <div class="lb-pill">Everything is a tool &bull; Python-first &bull; Composition runtime</div>
 
-    <h1>LazyBridge is the Python-first<br><span class="accent">composition layer</span> for LLM workflows.</h1>
+    <h1>LazyBridge is the Python framework for <span class="accent">composable LLM workflows</span>.</h1>
 
     <p class="lb-subhead">
-      Everything is a tool: functions, agents, plans, humans, and external systems
-      compose through one interface.
+      Functions, agents, deterministic plans, humans and external systems
+      all compose through one tool interface &mdash; with validation,
+      checkpointing and tracing built in.
     </p>
 
     <div class="lb-cta-row">
       <a href="https://core.lazybridge.com/quickstart/" class="lb-btn lb-btn--primary">Get started &rarr;</a>
-      <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-btn lb-btn--ghost">Read the concepts</a>
+      <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-btn lb-btn--ghost">See the model</a>
     </div>
 
     <div class="lb-chips">
@@ -48,7 +49,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
   </div>
 
   <div class="lb-hero__art">
-    <img src="assets/hero.png" alt="LazyBridge mascot — run your pipelines" />
+    <img src="assets/hero.png" alt="LazyBridge mascot" />
   </div>
 </section>
 
@@ -82,7 +83,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
     </div>
     <div class="lb-card__body">
       <h3>Nested systems stay traceable</h3>
-      <p>Agents can call plans, plans can call agents, and sub-agents can become tools — while sessions, event logs, costs, and OpenTelemetry spans roll up automatically.</p>
+      <p>Agents can call plans, plans can call agents, and sub-agents can become tools &mdash; while sessions, event logs, costs, and OpenTelemetry spans roll up automatically.</p>
       <a href="https://core.lazybridge.com/guides/mid/session/" class="lb-card__link">See Session &rarr;</a>
     </div>
   </div>
@@ -93,7 +94,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
 
 <div class="lb-concepts__header">
 <h2>How it works</h2>
-<p class="lb-concepts__sub">The composition model — from a single agent to always-on services.</p>
+<p class="lb-concepts__sub">The composition model &mdash; from a single agent to always-on governed services.</p>
 </div>
 
 === "Complexity"
@@ -105,13 +106,13 @@ description: Composable LLM workflows where everything is a tool — functions, 
 === "Agent model"
 
     <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State: Engine decides, Tools acts, State keeps" />
+      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State" />
     </div>
 
 === "Engine"
 
     <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor to control autonomy" />
+      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor" />
     </div>
 
 === "Recursive tools"
@@ -147,7 +148,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
 === "Policy"
 
     <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/pulse-policy-matrix.jpg" alt="Trust × Action Matrix: PulsePolicy authorizes by sender identity before the worker runs" />
+      <img src="assets/diagrams/pulse-policy-matrix.jpg" alt="Trust &times; Action Matrix: PulsePolicy authorizes by sender identity before the worker runs" />
     </div>
 
 </div>
@@ -187,42 +188,13 @@ description: Composable LLM workflows where everything is a tool — functions, 
     print(article("AI agents in 2026").text())
     ```
 
-=== "With verify + resume"
-
-    ```python
-    from lazybridge import Agent, LLMEngine, Plan, Step, Session, Store, from_step
-    from lazybridge.ext.otel import OTelExporter
-
-    judge     = Agent(engine=LLMEngine("claude-sonnet-4-6"), name="judge")
-    search    = Agent(engine=LLMEngine("gpt-5.4-mini"),      name="search")
-    summarise = Agent(engine=LLMEngine("gemini-2.5-pro"),    name="summarise")
-    writer    = Agent(engine=LLMEngine("claude-sonnet-4-6"), name="write")
-
-    research = Agent(
-        engine=Plan(Step("search"), Step("summarise")),
-        tools=[search, summarise], name="research",
-    )
-    article = Agent(
-        engine=Plan(
-            Step("research"),
-            Step("write", context=from_step("research"),
-                 verify=judge, max_verify=3, checkpoint_key="write"),
-            checkpoint_key="research",
-        ),
-        tools=[research, writer],
-        session=Session(store=Store(db="run.sqlite"),
-                        exporters=[OTelExporter()]),
-    )
-    print(article("AI agents in 2026").text())
-    ```
-
 </div>
 
 <!-- ═══════════════════ ECOSYSTEM ═══════════════════ -->
 <section class="lb-ecosystem">
   <div class="lb-ecosystem__header">
-    <h2>Not a framework — a composition runtime.</h2>
-    <p>Three focused packages. One mental model.</p>
+    <h2>The LazyBridge ecosystem</h2>
+    <p>Not an agent framework &mdash; a composition runtime. Three focused packages, one mental model.</p>
   </div>
 
   <div class="lb-ecosystem__cards">
@@ -240,7 +212,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
     <a href="https://pulse.lazybridge.com/" class="lb-eco-card">
       <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
       <h3>LazyPulse</h3>
-      <p>Turn workflows into always-on agentic services. Receive events from Telegram, Gmail, or webhooks, run policy, request review, and keep an audit trail.</p>
+      <p>Turn workflows into always-on governed services. Receive events from Telegram, Gmail, or webhooks, run policy, request review, and keep an audit trail.</p>
       <div class="lb-eco-card__footer">
         <code>pip install lazypulse</code>
         <span class="lb-eco-arrow">&rarr;</span>
@@ -280,7 +252,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
     <span class="lb-pulse-arrow">&darr;</span>
     <div class="lb-pulse-step">
       <span class="lb-pulse-step__label">Agent</span>
-      <span class="lb-pulse-step__value">LazyPulse agent — always-on, tick-driven</span>
+      <span class="lb-pulse-step__value">LazyPulse agent &mdash; always-on, tick-driven</span>
     </div>
     <span class="lb-pulse-arrow">&darr;</span>
     <div class="lb-pulse-step">
@@ -290,7 +262,7 @@ description: Composable LLM workflows where everything is a tool — functions, 
     <span class="lb-pulse-arrow">&darr;</span>
     <div class="lb-pulse-step">
       <span class="lb-pulse-step__label">Audit</span>
-      <span class="lb-pulse-step__value">Every decision logged — tamper-proof</span>
+      <span class="lb-pulse-step__value">Every decision logged &mdash; tamper-proof</span>
     </div>
   </div>
 
