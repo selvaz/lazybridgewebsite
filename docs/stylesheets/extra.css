@@ -16,8 +16,38 @@
   --lb-surface:     var(--md-default-bg-color);
 }
 
+/* ── Dark mode overrides ────────────────────────────────────────────────────── */
 [data-md-color-scheme="slate"] {
+  --lb-purple:      #A78BFA;                   /* lightened for dark-bg legibility */
   --lb-purple-soft: rgba(107, 93, 211, 0.15);
+  --lb-purple-mid:  rgba(167, 139, 250, 0.4);
+}
+
+/* Primary button: keep #6B5DD3 bg so white text stays WCAG AA (≈5:1) */
+[data-md-color-scheme="slate"] .lb-btn--primary           { background: #6B5DD3; }
+[data-md-color-scheme="slate"] .lb-btn--primary:hover     { background: #4A3FB5; }
+
+/* Elevated card surfaces */
+[data-md-color-scheme="slate"] .lb-card,
+[data-md-color-scheme="slate"] .lb-eco-card               { background: var(--md-code-bg-color); }
+
+/* Provider logos (dark SVGs → invert for dark bg) */
+[data-md-color-scheme="slate"] .lb-providers__logos img        { filter: grayscale(1) invert(1); opacity: 0.55; }
+[data-md-color-scheme="slate"] .lb-providers__logos img:hover  { filter: grayscale(0) invert(1); opacity: 0.9; }
+
+/* Hero art: white card so PNG mascot looks clean on dark bg */
+[data-md-color-scheme="slate"] .lb-hero__art {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 1.5rem;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Pulse case: slightly elevated purple tint in dark mode */
+[data-md-color-scheme="slate"] .lb-pulse-case {
+  background: rgba(107, 93, 211, 0.18);
+  border-color: rgba(167, 139, 250, 0.3);
 }
 
 /* ── Material content reset ─────────────────────────────────────────────────── */
@@ -28,8 +58,6 @@
 .lb-hero,
 .lb-feature-cards,
 .lb-code-panel,
-.lb-progressive,
-.lb-concepts,
 .lb-ecosystem,
 .lb-providers {
   max-width: 1280px;
@@ -232,10 +260,17 @@
 }
 
 /* ── CONCEPTS (tabbed diagrams) ─────────────────────────────────────────────── */
+/* Wider than the shared gutter so diagrams fill more of the viewport */
 .lb-concepts {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
   border-top: 1px solid var(--lb-border);
+  box-sizing: border-box;
 }
 
 .lb-concepts__header {
@@ -277,10 +312,10 @@
 /* ── LAZYPULSE CASE STUDY ───────────────────────────────────────────────────── */
 .lb-pulse-case {
   max-width: 720px;
-  margin: 0 auto 4rem;
+  margin: 3rem auto 4rem;
   padding: 3rem 2rem;
-  background: var(--lb-purple-soft);
-  border: 1px solid rgba(107, 93, 211, 0.25);
+  background: var(--lb-surface);
+  border: 1px solid var(--lb-border);
   border-radius: 16px;
   text-align: center;
 }
@@ -463,10 +498,9 @@
   .lb-hero,
   .lb-feature-cards,
   .lb-code-panel,
-  .lb-progressive,
-  .lb-concepts,
   .lb-ecosystem,
   .lb-providers { padding-left: 3rem; padding-right: 3rem; }
+  .lb-concepts  { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
 
 @media (max-width: 900px) {
@@ -488,11 +522,15 @@
     padding-bottom: 2rem;
   }
 
-  .lb-progressive,
-  .lb-code-panel,
-  .lb-concepts {
+  .lb-code-panel {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .lb-concepts {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
   }

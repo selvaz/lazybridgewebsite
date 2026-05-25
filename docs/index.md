@@ -2,8 +2,8 @@
 hide:
   - navigation
   - toc
-title: LazyBridge — Build LLM workflows without orchestration boilerplate
-description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pipelines that are also tools.
+title: LazyBridge — Python composition layer for LLM workflows
+description: Composable LLM workflows where everything is a tool — functions, agents, plans, humans and external systems share one interface.
 ---
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
@@ -56,7 +56,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 <section class="lb-feature-cards">
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
     </div>
     <div class="lb-card__body">
       <h3>One abstraction, not five</h3>
@@ -67,7 +67,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
     </div>
     <div class="lb-card__body">
       <h3>Fail at build time, not at 3am</h3>
@@ -78,7 +78,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
     </div>
     <div class="lb-card__body">
       <h3>Nested systems stay traceable</h3>
@@ -88,16 +88,69 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
   </div>
 </section>
 
-<!-- ═══════════════════ PROGRESSIVE COMPLEXITY ═══════════════════ -->
-<section class="lb-progressive">
-  <div class="lb-progressive__header">
-    <h2>Start simple. Add power without changing the model.</h2>
-    <p>one model, <strong>more capability</strong></p>
-  </div>
-  <div class="lb-diagram-wrap">
-    <img src="assets/diagrams/progressive-complexity.png" alt="Progressive Complexity: 6 steps from a single Agent call to a full Multi-Agent System" />
-  </div>
-</section>
+<!-- ═══════════════════ CONCEPTS (unified diagram deck) ═══════════════════ -->
+<div class="lb-concepts" markdown="1">
+
+<div class="lb-concepts__header">
+<h2>How it works</h2>
+<p class="lb-concepts__sub">The composition model — from a single agent to always-on services.</p>
+</div>
+
+=== "Complexity"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/progressive-complexity.png" alt="Progressive Complexity: 6 steps from a single Agent call to a full Multi-Agent System" />
+    </div>
+
+=== "Agent model"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State: Engine decides, Tools acts, State keeps" />
+    </div>
+
+=== "Engine"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor to control autonomy" />
+    </div>
+
+=== "Recursive tools"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/recursive-tools.png" alt="Recursive Tools: functions, MCP, plans, and agents all compose through the same tool interface" />
+    </div>
+
+=== "Plan → Agent"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/plan-calls-agent.png" alt="Plan Calls Agent: a plan step can invoke a nested agent" />
+    </div>
+
+=== "Human review"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/human-review-loop.png" alt="Human Review Loop: agent produces output, human approves, edits, or stops" />
+    </div>
+
+=== "Pulse overview"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/pulse-agent-overview.jpg" alt="PulseAgent Overview: LazyPulse adds adapters, tick loop, and policy to a LazyBridge Agent" />
+    </div>
+
+=== "Tick loop"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/pulse-tick-loop.jpg" alt="One Tick, Start to Finish: Recover, Intake, Execute, Emit on every heartbeat" />
+    </div>
+
+=== "Policy"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/pulse-policy-matrix.jpg" alt="Trust × Action Matrix: PulsePolicy authorizes by sender identity before the worker runs" />
+    </div>
+
+</div>
 
 <!-- ═══════════════════ CODE BLOCK ═══════════════════ -->
 <div class="lb-code-panel" markdown="1">
@@ -165,45 +218,47 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
 </div>
 
-<!-- ═══════════════════ CONCEPTS ═══════════════════ -->
-<div class="lb-concepts" markdown="1">
+<!-- ═══════════════════ ECOSYSTEM ═══════════════════ -->
+<section class="lb-ecosystem">
+  <div class="lb-ecosystem__header">
+    <h2>Not a framework — a composition runtime.</h2>
+    <p>Three focused packages. One mental model.</p>
+  </div>
 
-<div class="lb-concepts__header">
-<h2>Under the hood</h2>
-<p class="lb-concepts__sub">The mental model behind the composition layer.</p>
-</div>
+  <div class="lb-ecosystem__cards">
 
-=== "Agent model"
+    <a href="https://core.lazybridge.com/" class="lb-eco-card">
+      <div class="lb-eco-card__badge lb-eco-card__badge--core">core</div>
+      <h3>LazyBridge</h3>
+      <p>The composition runtime. Build agents and pipelines where functions, plans, humans, and other agents all share one tool interface.</p>
+      <div class="lb-eco-card__footer">
+        <code>pip install lazybridge</code>
+        <span class="lb-eco-arrow">&rarr;</span>
+      </div>
+    </a>
 
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State: Engine decides, Tools acts, State keeps" />
-    </div>
+    <a href="https://pulse.lazybridge.com/" class="lb-eco-card">
+      <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
+      <h3>LazyPulse</h3>
+      <p>Turn workflows into always-on agentic services. Receive events from Telegram, Gmail, or webhooks, run policy, request review, and keep an audit trail.</p>
+      <div class="lb-eco-card__footer">
+        <code>pip install lazypulse</code>
+        <span class="lb-eco-arrow">&rarr;</span>
+      </div>
+    </a>
 
-=== "Engine switchboard"
+    <a href="https://tools.lazybridge.com/" class="lb-eco-card">
+      <div class="lb-eco-card__badge lb-eco-card__badge--tools">tools</div>
+      <h3>LazyTools</h3>
+      <p>Connector clients, reusable tool providers, and safety wrappers for bringing external systems into LazyBridge without bloating the core.</p>
+      <div class="lb-eco-card__footer">
+        <code>pip install lazytoolkit</code>
+        <span class="lb-eco-arrow">&rarr;</span>
+      </div>
+    </a>
 
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor to control autonomy" />
-    </div>
-
-=== "Recursive tools"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/recursive-tools.png" alt="Recursive Tools: functions, MCP, plans, and agents all compose through the same tool interface" />
-    </div>
-
-=== "Plan calls agent"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/plan-calls-agent.png" alt="Plan Calls Agent: a plan step can invoke a nested agent" />
-    </div>
-
-=== "Human review loop"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/human-review-loop.png" alt="Human Review Loop: agent produces output, human approves, edits, or stops" />
-    </div>
-
-</div>
+  </div>
+</section>
 
 <!-- ═══════════════════ LAZYPULSE CASE ═══════════════════ -->
 <section class="lb-pulse-case">
@@ -241,48 +296,6 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 
   <div class="lb-pulse-case__cta">
     <a href="https://pulse.lazybridge.com/" class="lb-btn lb-btn--primary">Explore LazyPulse &rarr;</a>
-  </div>
-</section>
-
-<!-- ═══════════════════ ECOSYSTEM ═══════════════════ -->
-<section class="lb-ecosystem">
-  <div class="lb-ecosystem__header">
-    <h2>The LazyBridge ecosystem</h2>
-    <p>Three focused packages. One mental model.</p>
-  </div>
-
-  <div class="lb-ecosystem__cards">
-
-    <a href="https://core.lazybridge.com/" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--core">core</div>
-      <h3>LazyBridge</h3>
-      <p>The composition runtime. Build agents and pipelines where functions, plans, humans, and other agents all share one tool interface.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install lazybridge</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
-
-    <a href="https://tools.lazybridge.com/" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--tools">tools</div>
-      <h3>LazyTools</h3>
-      <p>Connector clients, reusable tool providers, and safety wrappers for bringing external systems into LazyBridge without bloating the core.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install lazytoolkit</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
-
-    <a href="https://pulse.lazybridge.com/" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
-      <h3>LazyPulse</h3>
-      <p>Turn workflows into always-on agentic services. Receive events from Telegram, Gmail, or webhooks, run policy, request review, and keep an audit trail.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install lazypulse</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
-
   </div>
 </section>
 
