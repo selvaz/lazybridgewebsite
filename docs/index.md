@@ -49,7 +49,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
   </div>
 
   <div class="lb-hero__art">
-    <img src="assets/hero.png" alt="LazyBridge mascot &mdash; run your pipelines" />
+    <img src="assets/hero.png" alt="LazyBridge mascot" />
   </div>
 </section>
 
@@ -89,16 +89,51 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
   </div>
 </section>
 
-<!-- ═══════════════════ PROGRESSIVE COMPLEXITY ═══════════════════ -->
-<section class="lb-progressive">
-  <div class="lb-progressive__header">
-    <h2>Start simple. Add power without changing the model.</h2>
-    <p>one model, <strong>more capability</strong></p>
-  </div>
-  <div class="lb-diagram-wrap">
-    <img src="assets/diagrams/progressive-complexity.png" alt="Progressive Complexity: 6 steps from a single Agent call to a full Multi-Agent System" />
-  </div>
-</section>
+<!-- ═══════════════════ DIAGRAM DECK (unified) ═══════════════════ -->
+<div class="lb-concepts" markdown="1">
+
+<div class="lb-concepts__header">
+<h2>Under the hood</h2>
+<p class="lb-concepts__sub">From a one-liner to governed multi-agent pipelines &mdash; one composition model throughout.</p>
+</div>
+
+=== "Complexity"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/progressive-complexity.png" alt="Progressive Complexity: 6 steps from a single Agent call to a full Multi-Agent System" />
+    </div>
+
+=== "Agent model"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State" />
+    </div>
+
+=== "Engine"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor" />
+    </div>
+
+=== "Recursive tools"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/recursive-tools.png" alt="Recursive Tools: functions, MCP, plans, and agents all compose through the same tool interface" />
+    </div>
+
+=== "Plan → Agent"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/plan-calls-agent.png" alt="Plan Calls Agent: a plan step can invoke a nested agent" />
+    </div>
+
+=== "Human review"
+
+    <div class="lb-diagram-wrap">
+      <img src="assets/diagrams/human-review-loop.png" alt="Human Review Loop: agent produces output, human approves, edits, or stops" />
+    </div>
+
+</div>
 
 <!-- ═══════════════════ CODE BLOCK ═══════════════════ -->
 <div class="lb-code-panel" markdown="1">
@@ -175,46 +210,6 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     <a href="https://pulse.lazybridge.com/" class="lb-btn lb-btn--primary">Explore LazyPulse &rarr;</a>
   </div>
 </section>
-
-<!-- ═══════════════════ CONCEPTS ═══════════════════ -->
-<div class="lb-concepts" markdown="1">
-
-<div class="lb-concepts__header">
-<h2>Under the hood</h2>
-<p class="lb-concepts__sub">The mental model behind the composition layer.</p>
-</div>
-
-=== "Agent model"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State: Engine decides, Tools acts, State keeps" />
-    </div>
-
-=== "Engine switchboard"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor to control autonomy" />
-    </div>
-
-=== "Recursive tools"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/recursive-tools.png" alt="Recursive Tools: functions, MCP, plans, and agents all compose through the same tool interface" />
-    </div>
-
-=== "Plan calls agent"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/plan-calls-agent.png" alt="Plan Calls Agent: a plan step can invoke a nested agent" />
-    </div>
-
-=== "Human review loop"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/human-review-loop.png" alt="Human Review Loop: agent produces output, human approves, edits, or stops" />
-    </div>
-
-</div>
 
 <!-- ═══════════════════ ECOSYSTEM ═══════════════════ -->
 <section class="lb-ecosystem">
