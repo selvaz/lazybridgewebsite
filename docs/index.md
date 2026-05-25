@@ -59,9 +59,9 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
     </div>
     <div class="lb-card__body">
-      <h3>Recursive composition</h3>
-      <p>A Plan is an Agent. An Agent is a Tool. Pipelines compose without glue, at any depth, with automatic cost and observability rollup.</p>
-      <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-card__link">Learn more &rarr;</a>
+      <h3>One abstraction, not five</h3>
+      <p>Most agent frameworks split your system into chains, graphs, tools, agents, routers, and executors. LazyBridge collapses them into one recursive model: everything is a tool.</p>
+      <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-card__link">See how it composes →</a>
     </div>
   </div>
 
@@ -70,9 +70,9 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
     </div>
     <div class="lb-card__body">
-      <h3>Plans fail fast</h3>
-      <p>PlanCompileError catches duplicate names, forward references, type drift, and broken sentinels — at construction, before any LLM call.</p>
-      <a href="https://core.lazybridge.com/guides/full/plan/" class="lb-card__link">Learn more &rarr;</a>
+      <h3>Fail at build time, not at 3am</h3>
+      <p>Deterministic plans catch duplicate steps, broken references, type drift, and invalid sentinels before the first LLM call runs.</p>
+      <a href="https://core.lazybridge.com/guides/full/plan/" class="lb-card__link">See validation →</a>
     </div>
   </div>
 
@@ -81,9 +81,9 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
     </div>
     <div class="lb-card__body">
-      <h3>Observable by default</h3>
-      <p>Session + OpenTelemetry semconv. Cost rollup across nested agents, GenAI-standard spans, structured event log — opt-out, not opt-in.</p>
-      <a href="https://core.lazybridge.com/guides/mid/session/" class="lb-card__link">Learn more &rarr;</a>
+      <h3>Nested systems stay traceable</h3>
+      <p>Agents can call plans, plans can call agents, and sub-agents can become tools — while sessions, event logs, costs, and OpenTelemetry spans roll up automatically.</p>
+      <a href="https://core.lazybridge.com/guides/mid/session/" class="lb-card__link">See Session →</a>
     </div>
   </div>
 </section>
@@ -91,7 +91,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
 <!-- ═══════════════════ CODE BLOCK ═══════════════════ -->
 <div class="lb-code-panel">
   <div class="lb-code-header">
-    <span class="lb-code-caption">The simple case stays one line. The architecture expands only when the problem grows — without changing the mental model.</span>
+    <span class="lb-code-caption">Same mental model: from a one-line agent to nested, checkpointed pipelines.</span>
     <span class="lb-code-lang">Python</span>
   </div>
 
@@ -168,7 +168,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
     <a href="https://core.lazybridge.com/" class="lb-eco-card">
       <div class="lb-eco-card__badge lb-eco-card__badge--core">core</div>
       <h3>LazyBridge</h3>
-      <p>The agent runtime. Multi-provider orchestration through one contract — Engine + Tools + State. From a single agent to nested Plan-of-Plans.</p>
+      <p>The composition runtime. Build agents and pipelines where functions, plans, humans, and other agents all share one tool interface.</p>
       <div class="lb-eco-card__footer">
         <code>pip install lazybridge</code>
         <span class="lb-eco-arrow">&rarr;</span>
@@ -178,7 +178,7 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
     <a href="https://tools.lazybridge.com/" class="lb-eco-card">
       <div class="lb-eco-card__badge lb-eco-card__badge--tools">tools</div>
       <h3>LazyTools</h3>
-      <p>Reusable tool providers, connector clients, and safety wrappers. MCP, gateways, doc-skill pipelines — ready to drop into any agent.</p>
+      <p>Connector clients, reusable tool providers, and safety wrappers for bringing external systems into LazyBridge without bloating the core.</p>
       <div class="lb-eco-card__footer">
         <code>pip install lazytoolkit</code>
         <span class="lb-eco-arrow">&rarr;</span>
@@ -188,13 +188,52 @@ description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pi
     <a href="https://pulse.lazybridge.com/" class="lb-eco-card">
       <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
       <h3>LazyPulse</h3>
-      <p>Always-on orchestration. Tick loops, event adapters, policy enforcement, and audit ledger for production-grade agentic services.</p>
+      <p>Turn workflows into always-on agentic services. Receive events from Telegram, Gmail, or webhooks, run policy, request review, and keep an audit trail.</p>
       <div class="lb-eco-card__footer">
         <code>pip install lazypulse</code>
         <span class="lb-eco-arrow">&rarr;</span>
       </div>
     </a>
 
+  </div>
+</section>
+
+<!-- ═══════════════════ LAZYPULSE CASE ═══════════════════ -->
+<section class="lb-pulse-case">
+  <div class="lb-pulse-case__header">
+    <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
+    <h2>Turn inboxes into governed agentic services</h2>
+    <p class="lb-pulse-case__sub">
+      LazyPulse gives LazyBridge a heartbeat: poll inboxes, receive webhooks,
+      run agents on a schedule, gate risky actions through policy and review,
+      and leave an audit trail.
+    </p>
+  </div>
+
+  <div class="lb-pulse-flow">
+    <div class="lb-pulse-step">
+      <span class="lb-pulse-step__label">Input</span>
+      <span class="lb-pulse-step__value">Telegram &bull; Gmail &bull; Webhook</span>
+    </div>
+    <span class="lb-pulse-arrow">↓</span>
+    <div class="lb-pulse-step">
+      <span class="lb-pulse-step__label">Agent</span>
+      <span class="lb-pulse-step__value">LazyPulse agent — always-on, tick-driven</span>
+    </div>
+    <span class="lb-pulse-arrow">↓</span>
+    <div class="lb-pulse-step">
+      <span class="lb-pulse-step__label">Policy</span>
+      <span class="lb-pulse-step__value">Auto-approve or escalate to human review</span>
+    </div>
+    <span class="lb-pulse-arrow">↓</span>
+    <div class="lb-pulse-step">
+      <span class="lb-pulse-step__label">Audit</span>
+      <span class="lb-pulse-step__value">Every decision logged — tamper-proof</span>
+    </div>
+  </div>
+
+  <div class="lb-pulse-case__cta">
+    <a href="https://pulse.lazybridge.com/" class="lb-btn lb-btn--primary">Explore LazyPulse &rarr;</a>
   </div>
 </section>
 
