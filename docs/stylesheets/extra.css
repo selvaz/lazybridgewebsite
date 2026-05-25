@@ -1,5 +1,5 @@
 /* ── Brand tokens ────────────────────────────────────────────────────────────── */
-/* Pin Material’s deep purple to our exact brand shade — same as core.lazybridge.com */
+/* Pin Material's deep purple to our exact brand shade — same as core.lazybridge.com */
 [data-md-color-primary="deep purple"] {
   --md-primary-fg-color:        #6B5DD3;
   --md-primary-fg-color--light: #8B7DE3;
@@ -215,6 +215,88 @@
   display: block;
 }
 
+/* ── LAZYPULSE CASE STUDY ────────────────────────────────────────────────── */
+.lb-pulse-case {
+  max-width: 720px;
+  margin: 0 auto 4rem;
+  padding: 3rem 2rem;
+  background: var(--lb-surface);
+  border: 1px solid var(--lb-border);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.lb-pulse-case__header {
+  margin-bottom: 2.5rem;
+}
+
+.lb-pulse-case__header .lb-eco-card__badge {
+  margin: 0 auto 0.75rem;
+}
+
+.lb-pulse-case__header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--lb-text-h);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.lb-pulse-case__sub {
+  font-size: 1rem;
+  color: var(--lb-text-body);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.lb-pulse-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0 auto 2rem;
+}
+
+.lb-pulse-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--lb-purple-soft);
+  border: 1px solid var(--lb-border);
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.lb-pulse-step__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lb-purple);
+  min-width: 48px;
+  text-align: left;
+}
+
+.lb-pulse-step__value {
+  font-size: 0.9rem;
+  color: var(--lb-text-h);
+  text-align: left;
+}
+
+.lb-pulse-arrow {
+  font-size: 1.2rem;
+  color: var(--lb-purple);
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.lb-pulse-case__cta {
+  margin-top: 1.5rem;
+}
+
 /* ── ECOSYSTEM ───────────────────────────────────────────────────────────── */
 .lb-ecosystem {
   padding-top: 3rem;
@@ -380,6 +462,17 @@
   }
 
   .lb-code-panel { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  .lb-pulse-case {
+    margin: 0 1.5rem 2rem;
+    padding: 2rem 1.25rem;
+  }
+  .lb-pulse-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    max-width: 100%;
+  }
 
   .lb-ecosystem {
     padding-left: 1.5rem;
