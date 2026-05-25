@@ -1,4 +1,4 @@
-/* ── LazyBridge landing — design tokens ──────────────────────────────────── */
+/* ── LazyBridge landing — design tokens ──────────────────────────────────────────── */
 :root {
   --lb-purple:        #6B5DD3;
   --lb-purple-hover:  #5B4DC3;
@@ -24,11 +24,11 @@
   --lb-surface:   #1E293B;
 }
 
-/* ── Reset Material's content max-width on landing ───────────────────────── */
+/* ── Reset Material's content max-width on landing ────────────────────────────── */
 .md-content__inner { max-width: 100% !important; padding: 0 !important; }
 .md-content { padding-bottom: 0 !important; }
 
-/* ── HERO ─────────────────────────────────────────────────────────────────── */
+/* ── HERO ─────────────────────────────────────────────────────────────────────────────── */
 .lb-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,7 +169,7 @@
   /* no border-radius — mascot has transparent bg */
 }
 
-/* ── FEATURE CARDS ───────────────────────────────────────────────────────── */
+/* ── FEATURE CARDS ──────────────────────────────────────────────────────────────────── */
 .lb-feature-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -235,7 +235,7 @@
 }
 .lb-card__link:hover { text-decoration: underline !important; }
 
-/* ── CODE PANEL ──────────────────────────────────────────────────────────── */
+/* ── CODE PANEL ──────────────────────────────────────────────────────────────────────────── */
 .lb-code-panel {
   margin: 0 7rem 3rem;
   max-width: 1280px;
@@ -313,7 +313,7 @@
 .lb-code-panel pre { margin: 0; border-radius: 0; background: var(--lb-code-bg) !important; }
 .lb-code-panel code { background: transparent !important; }
 
-/* ── Dark syntax theme ───────────────────────────────────────────────────────
+/* ── Dark syntax theme ───────────────────────────────────────────────────────────────────────────────
    Material uses --md-code-hl-* CSS variables for all token colours.
    On the light scheme those variables are nearly-black, invisible on #0F172A.
    We re-declare them scoped to .lb-code-panel so only the dark panel is
@@ -365,7 +365,7 @@
 .lb-code-panel .highlight .c1,
 .lb-code-panel .highlight .cm    { color: #475569 !important; font-style: italic; }
 
-/* ── ECOSYSTEM ───────────────────────────────────────────────────────────── */
+/* ── ECOSYSTEM ─────────────────────────────────────────────────────────────────────────────── */
 .lb-ecosystem {
   padding: 3.5rem 7rem;
   max-width: 1280px;
@@ -481,7 +481,7 @@
   transform: translateX(0);
 }
 
-/* ── PROVIDER STRIP ──────────────────────────────────────────────────────── */
+/* ── PROVIDER STRIP ──────────────────────────────────────────────────────────────────────────── */
 .lb-providers {
   padding: 2.5rem 7rem 4rem;
   text-align: center;
@@ -515,7 +515,7 @@
 }
 .lb-providers__logos img:hover { filter: none; opacity: 1; }
 
-/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .lb-hero,
   .lb-feature-cards,
@@ -537,4 +537,102 @@
   .lb-ecosystem__cards { grid-template-columns: 1fr; }
   .lb-providers { padding: 2rem 1.5rem 3rem; }
   .lb-providers__logos { gap: 1.5rem; }
+}
+
+/* ── LazyPulse Case Study Section ───────────────────────────────────────────────────── */
+.lb-pulse-case {
+  max-width: 720px;
+  margin: 0 auto 4rem;
+  padding: 3rem 2rem;
+  background: var(--lb-surface);
+  border: 1px solid var(--lb-border);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.lb-pulse-case__header {
+  margin-bottom: 2.5rem;
+}
+
+.lb-pulse-case__header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--lb-text-h);
+  margin: 0.75rem 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.lb-pulse-case__sub {
+  font-size: 1rem;
+  color: var(--lb-text-body);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.lb-pulse-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0 auto 2rem;
+}
+
+.lb-pulse-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--lb-purple-soft);
+  border: 1px solid var(--lb-purple-mid);
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.lb-pulse-step__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lb-purple);
+  min-width: 48px;
+  text-align: left;
+}
+
+.lb-pulse-step__value {
+  font-size: 0.9rem;
+  color: var(--lb-text-h);
+  text-align: left;
+}
+
+.lb-pulse-arrow {
+  font-size: 1.2rem;
+  color: var(--lb-purple-mid);
+  line-height: 1;
+}
+
+.lb-pulse-case__cta {
+  margin-top: 1.5rem;
+}
+
+/* Dark mode: solo variabili, nessun colore hardcoded */
+[data-md-color-scheme="slate"] .lb-pulse-step {
+  background: var(--lb-purple-soft);
+  border-color: var(--lb-purple-mid);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .lb-pulse-case {
+    padding: 2rem 1.25rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+  .lb-pulse-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    max-width: 100%;
+  }
 }
