@@ -1,12 +1,10 @@
 /* ── Brand tokens ────────────────────────────────────────────────────────────── */
-/* Pin Material's deep purple to our exact brand shade — same as core.lazybridge.com */
 [data-md-color-primary="deep purple"] {
   --md-primary-fg-color:        #6B5DD3;
   --md-primary-fg-color--light: #8B7DE3;
   --md-primary-fg-color--dark:  #4A3FB5;
 }
 
-/* Convenience aliases used only in landing-page components below */
 :root {
   --lb-purple:      var(--md-primary-fg-color);
   --lb-purple-soft: #EDEAFB;
@@ -22,7 +20,7 @@
   --lb-purple-soft: rgba(107, 93, 211, 0.15);
 }
 
-/* ── Material content reset (landing is full-width, no sidebar padding) ────── */
+/* ── Material content reset ─────────────────────────────────────────────────── */
 .md-content__inner { max-width: 100% !important; padding: 0 !important; }
 .md-content         { padding-bottom: 0 !important; }
 
@@ -30,6 +28,8 @@
 .lb-hero,
 .lb-feature-cards,
 .lb-code-panel,
+.lb-progressive,
+.lb-concepts,
 .lb-ecosystem,
 .lb-providers {
   max-width: 1280px;
@@ -40,7 +40,7 @@
   box-sizing: border-box;
 }
 
-/* ── HERO ──────────────────────────────────────────────────────────────────── */
+/* ── HERO ───────────────────────────────────────────────────────────────────── */
 .lb-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -72,7 +72,6 @@
   margin: 0 0 1rem;
   letter-spacing: -0.02em;
 }
-
 .lb-hero h1 .accent { color: var(--lb-purple); }
 
 .lb-subhead {
@@ -103,7 +102,6 @@
   white-space: nowrap;
   line-height: 1;
 }
-
 .lb-btn--primary {
   background: var(--lb-purple);
   color: #fff !important;
@@ -114,7 +112,6 @@
   box-shadow: 0 4px 14px rgba(107, 93, 211, 0.4);
   transform: translateY(-1px);
 }
-
 .lb-btn--ghost {
   background: transparent;
   color: var(--lb-text-h) !important;
@@ -127,7 +124,6 @@
 }
 
 .lb-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-
 .lb-chip {
   display: inline-flex;
   align-items: center;
@@ -144,7 +140,7 @@
 .lb-hero__art { display: flex; justify-content: center; align-items: center; }
 .lb-hero__art img { width: 100%; max-width: 500px; object-fit: contain; }
 
-/* ── FEATURE CARDS ──────────────────────────────────────────────────────── */
+/* ── FEATURE CARDS ──────────────────────────────────────────────────────────── */
 .lb-feature-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -179,23 +175,19 @@
   justify-content: center;
   color: var(--lb-purple);
 }
-
 .lb-card__body { flex: 1; }
-
 .lb-card h3 {
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--lb-text-h);
   margin: 0 0 0.35rem;
 }
-
 .lb-card p {
   font-size: 0.85rem;
   color: var(--lb-text-body);
   line-height: 1.65;
   margin: 0 0 0.6rem;
 }
-
 .lb-card__link {
   font-size: 0.8rem;
   font-weight: 600;
@@ -204,9 +196,33 @@
 }
 .lb-card__link:hover { text-decoration: underline !important; }
 
-/* ── CODE PANEL ─────────────────────────────────────────────────────────── */
-/* Let Material render tabs natively — we only add wrapper spacing */
-.lb-code-panel { padding-top: 0; padding-bottom: 3rem; }
+/* ── PROGRESSIVE COMPLEXITY ─────────────────────────────────────────────────── */
+.lb-progressive {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--lb-border);
+}
+
+.lb-progressive__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.lb-progressive__header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lb-text-h);
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.02em;
+}
+.lb-progressive__header p {
+  font-size: 0.95rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+}
+.lb-progressive__header strong { color: #F97316; }
+
+/* ── CODE PANEL ─────────────────────────────────────────────────────────────── */
+.lb-code-panel { padding-top: 3rem; padding-bottom: 3rem; border-top: 1px solid var(--lb-border); }
 
 .lb-code-caption {
   font-size: 0.82rem;
@@ -215,7 +231,50 @@
   display: block;
 }
 
-/* ── LAZYPULSE CASE STUDY ────────────────────────────────────────────────── */
+/* ── CONCEPTS (tabbed diagrams) ─────────────────────────────────────────────── */
+.lb-concepts {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--lb-border);
+}
+
+.lb-concepts__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.lb-concepts__header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lb-text-h);
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.02em;
+}
+.lb-concepts__sub {
+  font-size: 0.95rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+}
+
+/* ── DIAGRAM WRAPPER ────────────────────────────────────────────────────────── */
+/* Always white so diagrams (which have white bg) look clean in dark mode too */
+.lb-diagram-wrap {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.07);
+}
+.lb-diagram-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+[data-md-color-scheme="slate"] .lb-diagram-wrap {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── LAZYPULSE CASE STUDY ───────────────────────────────────────────────────── */
 .lb-pulse-case {
   max-width: 720px;
   margin: 0 auto 4rem;
@@ -225,15 +284,8 @@
   border-radius: 16px;
   text-align: center;
 }
-
-.lb-pulse-case__header {
-  margin-bottom: 2.5rem;
-}
-
-.lb-pulse-case__header .lb-eco-card__badge {
-  margin: 0 auto 0.75rem;
-}
-
+.lb-pulse-case__header { margin-bottom: 2.5rem; }
+.lb-pulse-case__header .lb-eco-card__badge { margin: 0 auto 0.75rem; }
 .lb-pulse-case__header h2 {
   font-size: 1.75rem;
   font-weight: 700;
@@ -241,7 +293,6 @@
   margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
 }
-
 .lb-pulse-case__sub {
   font-size: 1rem;
   color: var(--lb-text-body);
@@ -257,7 +308,6 @@
   gap: 0.25rem;
   margin: 0 auto 2rem;
 }
-
 .lb-pulse-step {
   display: flex;
   align-items: center;
@@ -269,7 +319,6 @@
   width: 100%;
   max-width: 420px;
 }
-
 .lb-pulse-step__label {
   font-size: 0.7rem;
   font-weight: 700;
@@ -279,33 +328,26 @@
   min-width: 48px;
   text-align: left;
 }
-
 .lb-pulse-step__value {
   font-size: 0.9rem;
   color: var(--lb-text-h);
   text-align: left;
 }
-
 .lb-pulse-arrow {
   font-size: 1.2rem;
   color: var(--lb-purple);
   line-height: 1;
   opacity: 0.6;
 }
+.lb-pulse-case__cta { margin-top: 1.5rem; }
 
-.lb-pulse-case__cta {
-  margin-top: 1.5rem;
-}
-
-/* ── ECOSYSTEM ───────────────────────────────────────────────────────────── */
+/* ── ECOSYSTEM ───────────────────────────────────────────────────────────────── */
 .lb-ecosystem {
   padding-top: 3rem;
   padding-bottom: 3rem;
   border-top: 1px solid var(--lb-border);
 }
-
 .lb-ecosystem__header { text-align: center; margin-bottom: 2rem; }
-
 .lb-ecosystem__header h2 {
   font-size: 1.5rem;
   font-weight: 800;
@@ -313,12 +355,7 @@
   margin: 0 0 0.35rem;
   letter-spacing: -0.02em;
 }
-
-.lb-ecosystem__header p {
-  font-size: 0.95rem;
-  color: var(--lb-text-muted);
-  margin: 0;
-}
+.lb-ecosystem__header p { font-size: 0.95rem; color: var(--lb-text-muted); margin: 0; }
 
 .lb-ecosystem__cards {
   display: grid;
@@ -354,25 +391,17 @@
   margin-bottom: 0.75rem;
   width: fit-content;
 }
-
+/* Light mode badge colors */
 .lb-eco-card__badge--core  { background: #EDE9FE; color: #7C3AED; }
 .lb-eco-card__badge--tools { background: #E0F2FE; color: #0369A1; }
 .lb-eco-card__badge--pulse { background: #FEF3C7; color: #B45309; }
+/* Dark mode badge overrides */
+[data-md-color-scheme="slate"] .lb-eco-card__badge--core  { background: rgba(124, 58, 237, 0.2); color: #A78BFA; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--tools { background: rgba(3, 105, 161, 0.2);   color: #38BDF8; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--pulse { background: rgba(180, 83, 9, 0.2);    color: #FCD34D; }
 
-.lb-eco-card h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--lb-text-h);
-  margin: 0 0 0.4rem;
-}
-
-.lb-eco-card p {
-  font-size: 0.85rem;
-  color: var(--lb-text-body);
-  line-height: 1.65;
-  flex: 1;
-  margin: 0 0 1rem;
-}
+.lb-eco-card h3 { font-size: 1rem; font-weight: 700; color: var(--lb-text-h); margin: 0 0 0.4rem; }
+.lb-eco-card p  { font-size: 0.85rem; color: var(--lb-text-body); line-height: 1.65; flex: 1; margin: 0 0 1rem; }
 
 .lb-eco-card__footer {
   display: flex;
@@ -382,7 +411,6 @@
   padding-top: 0.65rem;
   border-top: 1px solid var(--lb-border);
 }
-
 .lb-eco-card__footer code {
   font-size: 0.76rem;
   color: var(--lb-text-muted);
@@ -390,7 +418,6 @@
   padding: 0.18rem 0.45rem;
   border-radius: 4px;
 }
-
 .lb-eco-arrow {
   font-size: 1rem;
   color: var(--lb-purple);
@@ -401,14 +428,13 @@
 }
 .lb-eco-card:hover .lb-eco-arrow { opacity: 1; transform: translateX(0); }
 
-/* ── PROVIDERS ──────────────────────────────────────────────────────────── */
+/* ── PROVIDERS ───────────────────────────────────────────────────────────────── */
 .lb-providers {
   padding-top: 2.5rem;
   padding-bottom: 4rem;
   text-align: center;
   border-top: 1px solid var(--lb-border);
 }
-
 .lb-providers__caption {
   font-size: 0.75rem;
   font-weight: 600;
@@ -417,7 +443,6 @@
   letter-spacing: 0.08em;
   margin-bottom: 1.5rem;
 }
-
 .lb-providers__logos {
   display: flex;
   align-items: center;
@@ -425,7 +450,6 @@
   gap: 2.5rem;
   flex-wrap: wrap;
 }
-
 .lb-providers__logos img {
   height: 24px;
   filter: grayscale(1);
@@ -434,11 +458,13 @@
 }
 .lb-providers__logos img:hover { filter: none; opacity: 1; }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .lb-hero,
   .lb-feature-cards,
   .lb-code-panel,
+  .lb-progressive,
+  .lb-concepts,
   .lb-ecosystem,
   .lb-providers { padding-left: 3rem; padding-right: 3rem; }
 }
@@ -452,15 +478,8 @@
     padding-right: 1.5rem;
     gap: 1.5rem;
   }
-
-  /* Show mascot on mobile, smaller and centered below copy */
-  .lb-hero__art {
-    display: flex;
-    justify-content: center;
-  }
-  .lb-hero__art img {
-    max-width: 160px;
-  }
+  .lb-hero__art { display: flex; justify-content: center; }
+  .lb-hero__art img { max-width: 160px; }
 
   .lb-feature-cards {
     grid-template-columns: 1fr;
@@ -469,7 +488,14 @@
     padding-bottom: 2rem;
   }
 
-  .lb-code-panel { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .lb-progressive,
+  .lb-code-panel,
+  .lb-concepts {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
 
   .lb-pulse-case {
     margin: 0 1.5rem 2rem;
