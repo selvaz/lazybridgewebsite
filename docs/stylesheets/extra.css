@@ -256,7 +256,6 @@
 }
 
 /* ── DIAGRAM WRAPPER ────────────────────────────────────────────────────────── */
-/* Always white so diagrams (which have white bg) look clean in dark mode too */
 .lb-diagram-wrap {
   background: #ffffff;
   border-radius: 16px;
@@ -391,11 +390,9 @@
   margin-bottom: 0.75rem;
   width: fit-content;
 }
-/* Light mode badge colors */
 .lb-eco-card__badge--core  { background: #EDE9FE; color: #7C3AED; }
 .lb-eco-card__badge--tools { background: #E0F2FE; color: #0369A1; }
 .lb-eco-card__badge--pulse { background: #FEF3C7; color: #B45309; }
-/* Dark mode badge overrides */
 [data-md-color-scheme="slate"] .lb-eco-card__badge--core  { background: rgba(124, 58, 237, 0.2); color: #A78BFA; }
 [data-md-color-scheme="slate"] .lb-eco-card__badge--tools { background: rgba(3, 105, 161, 0.2);   color: #38BDF8; }
 [data-md-color-scheme="slate"] .lb-eco-card__badge--pulse { background: rgba(180, 83, 9, 0.2);    color: #FCD34D; }
@@ -479,7 +476,7 @@
     gap: 1.5rem;
   }
   .lb-hero__art { display: flex; justify-content: center; }
-  .lb-hero__art img { max-width: 160px; }
+  .lb-hero__art img { max-width: 260px; }
 
   .lb-feature-cards {
     grid-template-columns: 1fr;
