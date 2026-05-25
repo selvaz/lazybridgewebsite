@@ -476,7 +476,7 @@
     gap: 1.5rem;
   }
   .lb-hero__art { display: flex; justify-content: center; }
-  .lb-hero__art img { max-width: 260px; }
+  .lb-hero__art img { max-width: 380px; }
 
   .lb-feature-cards {
     grid-template-columns: 1fr;
