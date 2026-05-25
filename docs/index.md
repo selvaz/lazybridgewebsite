@@ -57,44 +57,44 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 <section class="lb-feature-cards">
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
     </div>
     <div class="lb-card__body">
-      <h3>One abstraction, not five</h3>
-      <p>Most agent frameworks split your system into chains, graphs, tools, agents, routers, and executors. LazyBridge collapses them into one recursive model: everything is a tool.</p>
+      <h3>Agent frameworks create orchestration debt.</h3>
+      <p>Chains, graphs, routers, executors, tools and agents become separate concepts with separate APIs. LazyBridge collapses them into one recursive model: everything is a tool.</p>
       <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-card__link">See how it composes &rarr;</a>
     </div>
   </div>
 
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
     </div>
     <div class="lb-card__body">
-      <h3>Fail at build time, not at 3am</h3>
-      <p>Deterministic plans catch duplicate steps, broken references, type drift, and invalid sentinels before the first LLM call runs.</p>
+      <h3>Fail before tokens burn.</h3>
+      <p>Deterministic plans catch duplicate steps, broken references, type drift, and invalid sentinels before the first LLM call runs &mdash; not at 3am when your pipeline breaks in production.</p>
       <a href="https://core.lazybridge.com/guides/full/plan/" class="lb-card__link">See validation &rarr;</a>
     </div>
   </div>
 
   <div class="lb-card">
     <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
     </div>
     <div class="lb-card__body">
-      <h3>Nested systems stay traceable</h3>
+      <h3>Trace nested systems.</h3>
       <p>Agents can call plans, plans can call agents, and sub-agents can become tools &mdash; while sessions, event logs, costs, and OpenTelemetry spans roll up automatically.</p>
       <a href="https://core.lazybridge.com/guides/mid/session/" class="lb-card__link">See Session &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════ CONCEPTS (unified diagram deck) ═══════════════════ -->
+<!-- ═══════════════════ DIAGRAM DECK (unified) ═══════════════════ -->
 <div class="lb-concepts" markdown="1">
 
 <div class="lb-concepts__header">
-<h2>How it works</h2>
-<p class="lb-concepts__sub">The composition model &mdash; from a single agent to always-on governed services.</p>
+<h2>Under the hood</h2>
+<p class="lb-concepts__sub">From a one-liner to governed multi-agent pipelines &mdash; one composition model throughout.</p>
 </div>
 
 === "Complexity"
@@ -236,11 +236,11 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 <section class="lb-pulse-case">
   <div class="lb-pulse-case__header">
     <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
-    <h2>Turn inboxes into governed agentic services</h2>
+    <h2>From workflow to governed service.</h2>
     <p class="lb-pulse-case__sub">
-      LazyPulse gives LazyBridge a heartbeat: poll inboxes, receive webhooks,
-      run agents on a schedule, gate risky actions through policy and review,
-      and leave an audit trail.
+      LazyPulse runs LazyBridge agents on inboxes, webhooks and schedules,
+      applies policy before risky actions, escalates to human review
+      and logs every decision.
     </p>
   </div>
 
