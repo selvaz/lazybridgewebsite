@@ -16,8 +16,11 @@
   --lb-surface:     var(--md-default-bg-color);
 }
 
+/* Dark mode: lighten purple so all text/icons using --lb-purple are readable */
 [data-md-color-scheme="slate"] {
+  --lb-purple:      #A78BFA;
   --lb-purple-soft: rgba(107, 93, 211, 0.15);
+  --lb-purple-mid:  #C4B5FD;
 }
 
 /* ── Material content reset ─────────────────────────────────────────────────── */
@@ -400,8 +403,8 @@
 .lb-eco-card__badge--core  { background: #EDE9FE; color: #7C3AED; }
 .lb-eco-card__badge--tools { background: #E0F2FE; color: #0369A1; }
 .lb-eco-card__badge--pulse { background: #FEF3C7; color: #B45309; }
-[data-md-color-scheme="slate"] .lb-eco-card__badge--core  { background: rgba(124, 58, 237, 0.2); color: #A78BFA; }
-[data-md-color-scheme="slate"] .lb-eco-card__badge--tools { background: rgba(3, 105, 161, 0.2);   color: #38BDF8; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--core  { background: rgba(124, 58, 237, 0.2); color: #C4B5FD; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--tools { background: rgba(3, 105, 161, 0.2);   color: #7DD3FC; }
 [data-md-color-scheme="slate"] .lb-eco-card__badge--pulse { background: rgba(180, 83, 9, 0.2);    color: #FCD34D; }
 
 .lb-eco-card h3 { font-size: 1rem; font-weight: 700; color: var(--lb-text-h); margin: 0 0 0.4rem; }
