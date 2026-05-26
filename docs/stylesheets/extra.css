@@ -21,6 +21,11 @@
   --lb-purple:      #A78BFA;
   --lb-purple-soft: rgba(107, 93, 211, 0.15);
   --lb-purple-mid:  #C4B5FD;
+  /* On slate the default --light (0.56) / --lighter (0.32) tokens are too dim to
+     read. Match core.lazybridge.com: body text at full strength, secondary one
+     step down — keeps light-mode hierarchy untouched. */
+  --lb-text-body:   var(--md-default-fg-color);
+  --lb-text-muted:  var(--md-default-fg-color--light);
 }
 /* Buttons: dark enough bg for white text (A78BFA fails contrast, 6B5DD3 passes) */
 [data-md-color-scheme="slate"] .lb-btn--primary              { background: #6B5DD3; }
