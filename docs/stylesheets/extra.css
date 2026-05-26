@@ -29,6 +29,11 @@
   /* Headings: lift above body so titles stand out (default fg is only 0.82,
      same as body now). Near-white, full opacity. */
   --lb-text-h:      hsla(232, 16%, 96%, 1);
+  /* Surface & border are declared at :root, where the var() resolves against
+     the *light* scheme (the scheme attr lives on <body>, not :root). Re-resolve
+     them here so chip / pulse-step backgrounds aren't light-on-light in dark. */
+  --lb-surface:     var(--md-default-bg-color);
+  --lb-border:      var(--md-default-fg-color--lightest);
 }
 /* Buttons: dark enough bg for white text (A78BFA fails contrast, 6B5DD3 passes) */
 [data-md-color-scheme="slate"] .lb-btn--primary              { background: #6B5DD3; }
