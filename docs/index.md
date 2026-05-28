@@ -273,14 +273,12 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 
 <!-- ═══════════════════ PROVIDERS ═══════════════════ -->
 <section class="lb-providers">
-  <p class="lb-providers__caption">Works with the best models and tools</p>
+  <p class="lb-providers__caption">Native adapters for the leading providers &mdash; plus any model via LiteLLM or LM Studio</p>
   <div class="lb-providers__logos">
     <img src="assets/providers/anthropic.svg" alt="Anthropic" title="Anthropic" />
     <img src="assets/providers/openai.svg"    alt="OpenAI"    title="OpenAI" />
     <img src="assets/providers/google.svg"    alt="Google"    title="Google" />
     <img src="assets/providers/deepseek.svg"  alt="DeepSeek"  title="DeepSeek" />
-    <img src="assets/providers/meta.svg"      alt="Meta"      title="Meta" />
-    <img src="assets/providers/mistral.svg"   alt="Mistral"   title="Mistral" />
     <img src="assets/providers/ollama.svg"    alt="Ollama"    title="Ollama" />
   </div>
 </section>
