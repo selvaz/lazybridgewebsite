@@ -1,5 +1,5 @@
 site_name: LazyBridge
-site_description: Zero-boilerplate multi-provider LLM agent framework. Compose LLM pipelines that are also tools.
+site_description: A Python composition runtime for LLM workflows — not an agent framework. Compose functions, agents, plans and humans through one tool interface.
 site_url: https://lazybridge.com/
 repo_url: https://github.com/selvaz/LazyBridge
 repo_name: selvaz/LazyBridge
