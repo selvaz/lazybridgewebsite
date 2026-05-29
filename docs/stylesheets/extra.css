@@ -450,7 +450,7 @@
 /* ── PROVIDERS ───────────────────────────────────────────────────────────────── */
 .lb-providers {
   padding-top: 2.5rem;
-  padding-bottom: 4rem;
+  padding-bottom: 2.5rem;
   text-align: center;
   border-top: 1px solid var(--lb-border);
 }
@@ -619,4 +619,81 @@
   .lb-updates { padding-left: 1.5rem; padding-right: 1.5rem; }
   .lb-update-item { flex-direction: column; gap: 0.5rem; }
   .lb-update-item__meta { flex-direction: row; align-items: center; min-width: 0; }
+
+  .lb-footer { padding: 2.5rem 1.5rem; }
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────────── */
+.lb-footer {
+  background: var(--md-code-bg-color);
+  border-top: 1px solid var(--lb-border);
+  text-align: center;
+  padding: 3rem 6rem 2.5rem;
+}
+
+.lb-footer__name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lb-text-muted);
+  margin: 0 0 0.4rem;
+}
+
+.lb-footer__tagline {
+  font-size: 0.9rem;
+  color: var(--lb-text-body);
+  margin: 0 0 1.25rem;
+}
+
+.lb-footer__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--lb-purple) !important;
+  text-decoration: none !important;
+  background: var(--lb-purple-soft);
+  border: 1px solid rgba(107, 93, 211, 0.2);
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.15s, box-shadow 0.15s;
+  margin-bottom: 1.5rem;
+}
+.lb-footer__email:hover {
+  background: rgba(107, 93, 211, 0.14);
+  box-shadow: 0 2px 10px rgba(107, 93, 211, 0.15);
+}
+
+.lb-footer__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.lb-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--lb-text-muted) !important;
+  text-decoration: none !important;
+  transition: color 0.15s;
+}
+.lb-footer__link:hover { color: var(--lb-purple) !important; }
+
+.lb-footer__sep {
+  font-size: 0.65rem;
+  color: var(--lb-text-muted);
+  opacity: 0.5;
+}
+
+.lb-footer__copy {
+  font-size: 0.76rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+  opacity: 0.6;
 }
