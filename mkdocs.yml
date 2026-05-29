@@ -32,6 +32,7 @@ theme:
     text: Inter
     code: JetBrains Mono
   features:
+    - navigation.tabs
     - navigation.top
     - content.code.copy
     - content.tabs.link
@@ -62,6 +63,9 @@ extra:
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/lazybridge/
       name: PyPI
+    - icon: fontawesome/solid/envelope
+      link: mailto:LazyBridgeLabs@gmail.com
+      name: Email LazyBridge Labs
 
 nav:
   - Home: index.md
