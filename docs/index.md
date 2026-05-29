@@ -99,7 +99,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 
 === "Complexity"
 
-    <div class="lb-diagram-wrap lb-diagram-wrap--wide">
+    <div class="lb-diagram-wrap">
       <img src="assets/diagrams/progressive-complexity.png" alt="Progressive Complexity: 6 steps from a single Agent call to a full Multi-Agent System" />
     </div>
 

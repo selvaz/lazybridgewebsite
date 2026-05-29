@@ -65,6 +65,11 @@
 [data-md-color-scheme="slate"] .lb-eco-card__badge--pulse { background: rgba(180, 83, 9, 0.2);    color: #FCD34D; }
 
 /* ── Material content reset ─────────────────────────────────────────────────── */
+/* Material caps .md-grid (the tabs row *and* the main content wrapper) at 61rem
+   (~976px) and centres it, which left the landing narrow with empty side margins.
+   Lift it to the 1280px the .lb-* sections are already designed around, applied to
+   tabs + content together so the whole page shares one width. */
+.md-grid { max-width: 1280px; }
 .md-content__inner { max-width: 100% !important; padding: 0 !important; }
 .md-content         { padding-bottom: 0 !important; }
 
@@ -296,23 +301,6 @@
 }
 [data-md-color-scheme="slate"] .lb-diagram-wrap {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* Wide text-heavy diagram (progressive-complexity): on narrow viewports a fluid
-   width shrinks the baked-in text past legibility. Let it keep a readable width
-   and scroll horizontally instead. Only the --wide variant is affected; other
-   diagrams stay fluid. */
-@media (max-width: 720px) {
-  .lb-diagram-wrap--wide {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-  .lb-diagram-wrap--wide img {
-    min-width: 760px;
-    width: 760px;
-    max-width: none;
-  }
 }
 
 /* ── LAZYPULSE CASE STUDY ───────────────────────────────────────────────────── */
@@ -639,7 +627,7 @@
 
   .lb-footer { padding: 2.5rem 1.5rem; }
   .lb-footer__tagline { font-size: 0.82rem; }
-  .lb-footer__email { font-size: clamp(0.7rem, 3.5vw, 0.9rem); padding: 0.5rem 1rem; }
+  .lb-footer__email { font-size: clamp(0.7rem, 3.5vw, 0.9rem); padding: 0.5rem 1rem; white-space: normal; }
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────────────────── */
@@ -680,7 +668,12 @@
   transition: background 0.15s, box-shadow 0.15s;
   margin-bottom: 1.5rem;
   white-space: nowrap;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
+/* Let the address itself break before it can spill past the pill edge. */
+.lb-footer__email span { min-width: 0; overflow-wrap: anywhere; }
 .lb-footer__email:hover {
   background: rgba(107, 93, 211, 0.14);
   box-shadow: 0 2px 10px rgba(107, 93, 211, 0.15);
