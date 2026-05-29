@@ -622,7 +622,13 @@
 
   .lb-footer { padding: 2.5rem 1.5rem; }
   .lb-footer__tagline { font-size: 0.82rem; }
-  .lb-footer__email { font-size: 0.82rem; padding: 0.5rem 0.9rem; gap: 0.4rem; }
+  .lb-footer__email {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.75rem;
+    gap: 0.3rem;
+    max-width: 100%;
+    word-break: break-all;
+  }
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────────────────── */
@@ -654,7 +660,6 @@
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
-  white-space: nowrap;
   color: var(--lb-purple) !important;
   text-decoration: none !important;
   background: var(--lb-purple-soft);
@@ -663,6 +668,10 @@
   border-radius: 8px;
   transition: background 0.15s, box-shadow 0.15s;
   margin-bottom: 1.5rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 .lb-footer__email:hover {
   background: rgba(107, 93, 211, 0.14);
