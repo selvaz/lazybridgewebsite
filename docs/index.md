@@ -308,8 +308,8 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
         <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
       </div>
       <div class="lb-update-item__body">
-        <p class="lb-update-title">Store.items() prefix scan</p>
-        <p class="lb-update-desc">Indexed range scan on the persistent store &mdash; enumerate all keys and values under a prefix in a single call, backed by a covering index for fast lookups at any scale.</p>
+        <p class="lb-update-title">LazyBridge v0.9 &mdash; one framework becomes three</p>
+        <p class="lb-update-desc">v0.9 marks the point where a single monolithic package was split into three focused libraries: <strong>LazyBridge</strong> (the composition runtime), <strong>LazyPulse</strong> (always-on governed services), and <strong>LazyTools</strong> (connector clients and safety wrappers). Each package ships and versions independently, so teams only install what they need.</p>
       </div>
     </li>
 
