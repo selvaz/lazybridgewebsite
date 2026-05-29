@@ -298,6 +298,23 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Wide text-heavy diagram (progressive-complexity): on narrow viewports a fluid
+   width shrinks the baked-in text past legibility. Let it keep a readable width
+   and scroll horizontally instead. Only the --wide variant is affected; other
+   diagrams stay fluid. */
+@media (max-width: 720px) {
+  .lb-diagram-wrap--wide {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .lb-diagram-wrap--wide img {
+    min-width: 760px;
+    width: 760px;
+    max-width: none;
+  }
+}
+
 /* ── LAZYPULSE CASE STUDY ───────────────────────────────────────────────────── */
 .lb-pulse-case {
   max-width: 720px;
