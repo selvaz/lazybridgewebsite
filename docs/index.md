@@ -329,12 +329,12 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 </section>
 
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer class="lb-footer">
+<div class="lb-footer">
   <p class="lb-footer__name">LazyBridge Labs</p>
   <p class="lb-footer__tagline">Questions, feedback, or partnership enquiries &mdash; we read every email.</p>
   <a href="mailto:LazyBridgeLabs@gmail.com" class="lb-footer__email">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-    LazyBridgeLabs@gmail.com
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    <span>LazyBridgeLabs@gmail.com</span>
   </a>
   <div class="lb-footer__links">
     <a href="https://github.com/selvaz/LazyBridge" class="lb-footer__link">
@@ -347,4 +347,4 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     <a href="https://github.com/selvaz/LazyBridge/blob/main/CHANGELOG.md" class="lb-footer__link">Changelog</a>
   </div>
   <p class="lb-footer__copy">&copy; 2026 LazyBridge Labs</p>
-</footer>
+</div>
