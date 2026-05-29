@@ -188,6 +188,22 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     print(article("AI agents in 2026").text())
     ```
 
+=== "Agents route each other"
+
+    ```python
+    from lazybridge import Agent, AgentPool, LLMEngine, conclude
+
+    pool = AgentPool()
+    researcher = Agent(engine=LLMEngine("claude-sonnet-4-6", max_tool_calls_per_turn=1),
+                       name="researcher", tools=[pool.as_tool(), conclude])
+    writer     = Agent(engine=LLMEngine("claude-sonnet-4-6", max_tool_calls_per_turn=1),
+                       name="writer", tools=[pool.as_tool(), conclude])
+    pool.register(researcher, writer)        # register after construction
+
+    # researcher may route("writer", ...); any agent may conclude(...)
+    print(researcher("Brief me on 2026 AI trends.").text())
+    ```
+
 </div>
 
 <!-- ═══════════════════ ECOSYSTEM ═══════════════════ -->
@@ -279,6 +295,17 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
   </div>
 
   <ul class="lb-update-list">
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">May 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">Dynamic multi-agent graphs &mdash; agents route each other</p>
+        <p class="lb-update-desc"><code>AgentPool</code> exposes a single <code>route(agent_name,&nbsp;task)</code> tool so agents delegate to each other by name &mdash; topology decided by the model at runtime, not wired up front. <code>conclude(&hellip;)</code> lets any agent, however deeply nested, end the whole task and return straight to the original caller. Pair with <code>LLMEngine(max_tool_calls_per_turn=1)</code> to keep the graph on a single, traceable path. <a href="https://core.lazybridge.com/guides/mid/dynamic-graph/">See the guide &rarr;</a></p>
+      </div>
+    </li>
 
     <li class="lb-update-item">
       <div class="lb-update-item__meta">
