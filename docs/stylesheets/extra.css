@@ -73,6 +73,7 @@
 .lb-feature-cards,
 .lb-code-panel,
 .lb-ecosystem,
+.lb-updates,
 .lb-providers {
   max-width: 1280px;
   margin-left: auto;
@@ -476,12 +477,82 @@
 }
 .lb-providers__logos img:hover { filter: none; opacity: 1; }
 
+/* ── UPDATES ─────────────────────────────────────────────────────────────────── */
+.lb-updates {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--lb-border);
+}
+.lb-updates__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.lb-updates__header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lb-text-h);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+.lb-updates__sub {
+  font-size: 0.95rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+}
+
+.lb-update-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 780px;
+}
+
+.lb-update-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--lb-border);
+  align-items: flex-start;
+}
+.lb-update-item:last-child { border-bottom: none; }
+
+.lb-update-item__meta {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-width: 90px;
+}
+
+.lb-update-date {
+  font-size: 0.76rem;
+  color: var(--lb-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.lb-update-item__body { flex: 1; min-width: 0; }
+.lb-update-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--lb-text-h);
+  margin: 0 0 0.25rem;
+}
+.lb-update-desc {
+  font-size: 0.85rem;
+  color: var(--lb-text-body);
+  line-height: 1.65;
+  margin: 0;
+}
+
 /* ── RESPONSIVE ─────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .lb-hero,
   .lb-feature-cards,
   .lb-code-panel,
   .lb-ecosystem,
+  .lb-updates,
   .lb-providers { padding-left: 3rem; padding-right: 3rem; }
   .lb-concepts   { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
@@ -544,4 +615,8 @@
     padding-bottom: 3rem;
   }
   .lb-providers__logos { gap: 1.25rem; }
+
+  .lb-updates { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .lb-update-item { flex-direction: column; gap: 0.5rem; }
+  .lb-update-item__meta { flex-direction: row; align-items: center; min-width: 0; }
 }

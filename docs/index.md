@@ -271,6 +271,51 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
   </div>
 </section>
 
+<!-- ═══════════════════ UPDATES ═══════════════════ -->
+<section class="lb-updates">
+  <div class="lb-updates__header">
+    <h2>What's new</h2>
+    <p class="lb-updates__sub">Key releases and milestones across the LazyBridge ecosystem.</p>
+  </div>
+
+  <ul class="lb-update-list">
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">May 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">First framework to support Claude Opus 4.8</p>
+        <p class="lb-update-desc">LazyBridge ships <code>claude-opus-4-8</code> support on day one &mdash; adaptive thinking, no-sampling mode, updated thinking-token extraction (SDK &ge;&nbsp;0.105), and tier cascade (<code>top&nbsp;&rarr;&nbsp;opus-4-8</code>, <code>expensive&nbsp;&rarr;&nbsp;opus-4-7</code>).</p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">May 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">LazyPulse v0.2.0 &mdash; cron triggers &amp; PulsePolicy</p>
+        <p class="lb-update-desc">Schedule agents on cron expressions with timezone support. <code>PulsePolicy</code> gates every action on sender trust level before the worker runs, with concurrency-safe compare-and-swap scheduling.</p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">May 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">Store.items() prefix scan</p>
+        <p class="lb-update-desc">Indexed range scan on the persistent store &mdash; enumerate all keys and values under a prefix in a single call, backed by a covering index for fast lookups at any scale.</p>
+      </div>
+    </li>
+
+  </ul>
+</section>
+
 <!-- ═══════════════════ PROVIDERS ═══════════════════ -->
 <section class="lb-providers">
   <p class="lb-providers__caption">Native adapters for the leading providers &mdash; plus any model via LiteLLM or LM Studio</p>
