@@ -622,7 +622,7 @@
 
   .lb-footer { padding: 2.5rem 1.5rem; }
   .lb-footer__tagline { font-size: 0.82rem; }
-  .lb-footer__email { font-size: 0.85rem; padding: 0.5rem 1rem; }
+  .lb-footer__email { font-size: clamp(0.7rem, 3.5vw, 0.9rem); padding: 0.5rem 1rem; }
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────────────────── */
@@ -649,7 +649,7 @@
 }
 
 .lb-footer__email {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
@@ -661,15 +661,8 @@
   padding: 0.55rem 1.2rem;
   border-radius: 8px;
   transition: background 0.15s, box-shadow 0.15s;
-  margin: 0 auto 1.5rem;
-  width: fit-content;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-.lb-footer__email span {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-all;
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
 }
 .lb-footer__email:hover {
   background: rgba(107, 93, 211, 0.14);
