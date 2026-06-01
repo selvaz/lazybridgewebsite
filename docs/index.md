@@ -314,6 +314,11 @@ planner = Agent(
     name="planner",
 )
 
+# workers can be sub-agents or plain functions — stubbed here for brevity
+def research(task: str) -> str: ...
+def math(task: str) -> str: ...
+def writer(task: str) -> str: ...
+
 guardian = Agent(
     engine=ReplanEngine(
         store=Store(db="project.sqlite"),
@@ -321,7 +326,7 @@ guardian = Agent(
         resume=True,          # resume from the last checkpointed round
         max_rounds=10,
     ),
-    tools=[planner, research, math, writer],   # workers: agents or plain functions
+    tools=[planner, research, math, writer],
     name="guardian",
 )
 
