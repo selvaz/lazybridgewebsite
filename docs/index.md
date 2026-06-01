@@ -298,6 +298,17 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 
     <li class="lb-update-item">
       <div class="lb-update-item__meta">
+        <span class="lb-update-date">Jun 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--tools">tools</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">Code Support Agent &mdash; delegate to Claude Code &amp; Codex</p>
+        <p class="lb-update-desc">LazyTools adds a <strong>Code Support Agent</strong> connector that puts <strong>Claude Code</strong> and <strong>Codex</strong> behind a LazyBridge agent &mdash; each in two modes: <strong>CLI</strong> (the CLI is the agent: one call, one delegated task) or <strong>MCP</strong> (the CLI exposes its own tools for your agent to orchestrate). <code>build_cli_collaboration()</code> makes the two collaborate &mdash; Claude Code analyses, Codex critiques, a synthesizer plans, an executor implements &mdash; as a single tool. <a href="https://tools.lazybridge.com/code-support/">See the guide &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
         <span class="lb-update-date">May 2026</span>
         <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
       </div>
