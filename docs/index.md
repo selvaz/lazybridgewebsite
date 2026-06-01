@@ -300,6 +300,40 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     <li class="lb-update-item">
       <div class="lb-update-item__meta">
         <span class="lb-update-date">Jun 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">ReplanEngine &mdash; the adaptive replan loop, with checkpoint/resume</p>
+        <p class="lb-update-desc">The dynamic counterpart to <code>Plan</code>: instead of a fixed DAG, a <strong>planner agent</strong> (built with <code>output=PlanRound</code>) decides the work one round at a time. <code>ReplanEngine</code> dispatches the tasks it emits &mdash; agents, plain functions, or pool routes alike &mdash; running <code>parallel=True</code> siblings concurrently, then feeds the results back for the next round. Workers can be plain functions, so it works on a simple agent too. Pass <code>store=</code> + <code>checkpoint_key=</code> and it <strong>checkpoints after every round</strong>, so a crash resumes from the right round instead of redoing completed work &mdash; same single-writer semantics as <code>Plan</code>.</p>
+        <pre><code class="language-python">from lazybridge import Agent, LLMEngine, ReplanEngine, Store
+from lazybridge.engines.replan import PlanRound
+
+planner = Agent(
+    engine=LLMEngine("claude-opus-4-8", system="You are a task planner."),
+    output=PlanRound,
+    name="planner",
+)
+
+guardian = Agent(
+    engine=ReplanEngine(
+        store=Store(db="project.sqlite"),
+        checkpoint_key="report-apple-google",
+        resume=True,          # resume from the last checkpointed round
+        max_rounds=10,
+    ),
+    tools=[planner, research, math, writer],   # workers: agents or plain functions
+    name="guardian",
+)
+
+guardian("Combined headcount of Apple and Google in 2024, then a short note on staffing.")
+guardian("continue")          # picks up from the last completed round</code></pre>
+        <p class="lb-update-desc"><a href="https://core.lazybridge.com/guides/full/replan-engine/">ReplanEngine guide &rarr;</a> &middot; <a href="https://core.lazybridge.com/recipes/dynamic-replanning/">Dynamic re-planning recipe &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">Jun 2026</span>
         <span class="lb-eco-card__badge lb-eco-card__badge--tools">tools</span>
       </div>
       <div class="lb-update-item__body">
