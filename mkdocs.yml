@@ -169,7 +169,7 @@ extra:
       link: https://pypi.org/project/lazybridge/
       name: PyPI
     - icon: fontawesome/solid/envelope
-      link: mailto:lazylabsllm@gmail.com
+      link: mailto:LazyBridgeLabs@gmail.com
       name: Email LazyBridge Labs
 
 nav:
