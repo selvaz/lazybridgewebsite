@@ -551,35 +551,6 @@
   margin: 0;
 }
 
-/* Code sample inside an update card — kept within the card frame: long lines
-   scroll horizontally instead of widening the whole page, and the box matches
-   the site's other code surfaces (--md-code-bg-color). */
-.lb-update-code {
-  display: block;
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 0.75rem 0;
-  padding: 0.8rem 1rem;
-  background: var(--md-code-bg-color);
-  border: 1px solid var(--lb-border);
-  border-radius: 8px;
-  font-size: 0.74rem;
-  line-height: 1.55;
-}
-.lb-update-code code {
-  display: inline-block;
-  white-space: pre;
-  font-family: var(--md-code-font-family, SFMono-Regular, Consolas, monospace);
-  color: var(--md-code-fg-color);
-  background: none;
-  border: 0;
-  padding: 0;
-  font-size: inherit;
-}
-.lb-update-desc + .lb-update-code { margin-top: 0.75rem; }
-
 /* ── RESPONSIVE ─────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .lb-hero,
