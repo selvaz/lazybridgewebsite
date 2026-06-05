@@ -628,6 +628,7 @@
 
   .lb-footer__bar { padding-left: 1.5rem; padding-right: 1.5rem; gap: 0.5rem 1rem; }
   .lb-footer__copy { white-space: normal; overflow-wrap: anywhere; }
+  .footer-built-by { padding-left: 1.5rem; padding-right: 1.5rem; }
 }
 
 /* ── FOOTER ──────────────────────────────────────────────────────────────────── */
@@ -685,3 +686,15 @@
 }
 .lb-footer__link svg { flex-shrink: 0; }
 .lb-footer__link:hover { color: var(--lb-purple) !important; }
+
+/* ── HOW THIS WAS BUILT ──────────────────────────────────────────────────────── */
+.footer-built-by {
+  font-size: 13px;
+  color: var(--lb-text-muted);
+  margin-top: 24px;
+  margin-bottom: 0;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
