@@ -229,7 +229,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     <a href="https://pulse.lazybridge.com/" class="lb-eco-card">
       <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
       <h3>LazyPulse</h3>
-      <p>Turn workflows into always-on governed services. Receive events from Telegram, Gmail, or webhooks, run policy, request review, and keep an audit trail.</p>
+      <p>Turn workflows into always-on governed services. Gmail push notifications, Telegram, and webhooks feed a tick loop that runs policy, requests review, and keeps an audit trail.</p>
       <div class="lb-eco-card__footer">
         <code>pip install lazypulse</code>
         <span class="lb-eco-arrow">&rarr;</span>
@@ -300,6 +300,28 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     <li class="lb-update-item">
       <div class="lb-update-item__meta">
         <span class="lb-update-date">Jun 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">Event-driven Gmail &mdash; push notifications are the new default</p>
+        <p class="lb-update-desc">Gmail now tells the agent when mail arrives instead of being polled: <code>GmailPushInbox</code> arms Gmail's <code>users.watch</code> onto a Cloud&nbsp;Pub/Sub topic (and re-arms it before expiry), receives push notifications on a token-protected endpoint, and makes <strong>one</strong> <code>history.list</code> call per email received &mdash; <strong>zero Gmail API calls while the mailbox is quiet</strong>. At-least-once delivery with a persisted cursor that never skips mail, burst-safe draining, self-healing resync, and exponential backoff on adapter failures. <a href="https://pulse.lazybridge.com/gmail/">Gmail push &amp; polling guide &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">Jun 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">True token streaming for Plan &amp; ReplanEngine</p>
+        <p class="lb-update-desc"><code>Agent(engine=plan).stream(&hellip;)</code> now streams tokens <strong>live from each sequential step</strong> as the pipeline runs &mdash; watch it think step by step instead of waiting for one final block. Parallel bands stay silent (no token interleaving), early disconnects cancel the in-flight run, and <code>Plan(stream_buffer=)</code> bounds the queue. Plus <code>Plan.store_write_is_current()</code>: sidecar consumers can now mechanically detect the checkpoint crash-window instead of reconciling by hand. <a href="https://core.lazybridge.com/guides/full/plan/#streaming">Plan streaming &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">Jun 2026</span>
         <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
       </div>
       <div class="lb-update-item__body">
@@ -315,7 +337,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
       </div>
       <div class="lb-update-item__body">
         <p class="lb-update-title">Code Support Agent &mdash; delegate to Claude Code &amp; Codex</p>
-        <p class="lb-update-desc">LazyTools adds a <strong>Code Support Agent</strong> connector that puts <strong>Claude Code</strong> and <strong>Codex</strong> behind a LazyBridge agent &mdash; each in two modes: <strong>CLI</strong> (the CLI is the agent: one call, one delegated task) or <strong>MCP</strong> (the CLI exposes its own tools for your agent to orchestrate). <code>build_cli_collaboration()</code> makes the two collaborate &mdash; Claude Code analyses, Codex critiques, a synthesizer plans, an executor implements &mdash; as a single tool. <a href="https://tools.lazybridge.com/code-support/">See the guide &rarr;</a></p>
+        <p class="lb-update-desc">LazyTools adds a <strong>Code Support Agent</strong> connector that puts <strong>Claude Code</strong> and <strong>Codex</strong> behind a LazyBridge agent &mdash; each in two modes: <strong>CLI</strong> (the CLI is the agent: one call, one delegated task) or <strong>MCP</strong> (the CLI exposes its own tools for your agent to orchestrate). <strong>Read-only by construction</strong>: write access lives behind the gated <code>CodeWriteTools</code> capability (mandatory <code>base_dir</code> sandbox + one-shot confirmation). <code>build_cli_collaboration()</code> runs the default three-session flow &mdash; Claude Code analyses, Codex critiques, a synthesizer writes the <em>plan</em>; execution is opt-in and sandboxed. <a href="https://tools.lazybridge.com/code-support/">See the guide &rarr;</a></p>
       </div>
     </li>
 
