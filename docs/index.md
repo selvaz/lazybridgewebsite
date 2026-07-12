@@ -212,7 +212,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
   <div class="lb-ecosystem__header">
     <h2>The LazyBridge ecosystem</h2>
     <p>Not an agent framework &mdash; a composition runtime. A stable core, its extensions, and a finance data stack &mdash; one mental model.</p>
-    <p class="lb-eco-note">Only <strong>LazyBridge</strong> is published on PyPI. Everything else installs from GitHub at a pinned release tag &mdash; copy the command on each card.</p>
+    <p class="lb-eco-note">Only <strong>LazyBridge</strong> is published on PyPI. Everything else installs from GitHub &mdash; copy the command on each card (append <code>@vX.Y.Z</code> to pin a release tag).</p>
   </div>
 
   <div class="lb-ecosystem__cards">
@@ -232,7 +232,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
       <h3>LazyPulse</h3>
       <p>Turn workflows into always-on governed services. Gmail push notifications, Telegram, and webhooks feed a tick loop that runs policy, requests review, and keeps an audit trail.</p>
       <div class="lb-eco-card__footer">
-        <code>pip install "lazypulse @ git+https://github.com/selvaz/LazyPulse.git@v0.3.1"</code>
+        <code>pip install "lazypulse @ git+https://github.com/selvaz/LazyPulse.git"</code>
         <span class="lb-eco-arrow">&rarr;</span>
       </div>
     </a>
@@ -242,7 +242,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
       <h3>LazyTools</h3>
       <p>Connector clients, reusable tool providers, and safety wrappers for bringing external systems into LazyBridge without bloating the core.</p>
       <div class="lb-eco-card__footer">
-        <code>pip install "lazytoolkit @ git+https://github.com/selvaz/LazyTools.git@v0.3.2"</code>
+        <code>pip install "lazytoolkit @ git+https://github.com/selvaz/LazyTools.git"</code>
         <span class="lb-eco-arrow">&rarr;</span>
       </div>
     </a>
@@ -252,7 +252,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
       <h3>LazyCrawler</h3>
       <p>Web crawl &amp; search in three modes &mdash; pure (no-LLM), local-ML (zero tokens), and smart (LazyBridge LLM) &mdash; with a secure-by-default SSRF guard. Surfaced into agents through LazyTools.</p>
       <div class="lb-eco-card__footer">
-        <code>pip install "lazycrawler @ git+https://github.com/selvaz/LazyCrawler.git@v0.15.0"</code>
+        <code>pip install "lazycrawler @ git+https://github.com/selvaz/LazyCrawler.git"</code>
         <span class="lb-eco-arrow">&rarr;</span>
       </div>
     </a>
@@ -262,7 +262,7 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
       <h3>market-data-hub</h3>
       <p>The single source of financial data for the ecosystem: a DuckDB warehouse with a read-only discovery, resolution and extraction API. Agents reach it through LazyTools&rsquo; <code>datahub_*</code> tools &mdash; ids in, bounded results out.</p>
       <div class="lb-eco-card__footer">
-        <code>pip install "market-data-hub @ git+https://github.com/selvaz/market-data-hub.git@&lt;ref&gt;"</code>
+        <code>pip install "market-data-hub @ git+https://github.com/selvaz/market-data-hub.git"</code>
         <span class="lb-eco-arrow">&rarr;</span>
       </div>
     </a>
