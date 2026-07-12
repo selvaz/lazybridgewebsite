@@ -267,6 +267,16 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
       </div>
     </a>
 
+    <a href="https://github.com/selvaz/LazyFin" class="lb-eco-card">
+      <div class="lb-eco-card__badge lb-eco-card__badge--finance">finance</div>
+      <h3>LazyFin <span style="font-weight:400;font-size:0.75em">(private)</span></h3>
+      <p>Portfolio Manager AI &mdash; the finance <strong>domain layer</strong> on top of the whole stack: canonical data model, deterministic finance kernel (returns, exposure, risk, optimizer), security-selection scoring, and PM agents. Agents orchestrate and explain; deterministic engines calculate and enforce constraints.</p>
+      <div class="lb-eco-card__footer">
+        <code>LazyFin &rarr; {LazyPulse, LazyCrawler, LazyTools} &rarr; LazyBridge</code>
+        <span class="lb-eco-arrow">&rarr;</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
