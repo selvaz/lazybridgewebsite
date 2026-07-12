@@ -63,6 +63,8 @@
 [data-md-color-scheme="slate"] .lb-eco-card__badge--core  { background: rgba(124, 58, 237, 0.2); color: #C4B5FD; }
 [data-md-color-scheme="slate"] .lb-eco-card__badge--tools { background: rgba(3, 105, 161, 0.2);   color: #7DD3FC; }
 [data-md-color-scheme="slate"] .lb-eco-card__badge--pulse { background: rgba(180, 83, 9, 0.2);    color: #FCD34D; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--data    { background: rgba(21, 128, 61, 0.2);  color: #86EFAC; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--finance { background: rgba(190, 24, 93, 0.2);  color: #F9A8D4; }
 
 /* ── Material content reset ─────────────────────────────────────────────────── */
 /* Material caps .md-grid (the tabs row *and* the main content wrapper) at 61rem
@@ -423,6 +425,8 @@
 .lb-eco-card__badge--core  { background: #EDE9FE; color: #7C3AED; }
 .lb-eco-card__badge--tools { background: #E0F2FE; color: #0369A1; }
 .lb-eco-card__badge--pulse { background: #FEF3C7; color: #B45309; }
+.lb-eco-card__badge--data    { background: #DCFCE7; color: #15803D; }
+.lb-eco-card__badge--finance { background: #FCE7F3; color: #BE185D; }
 
 .lb-eco-card h3 { font-size: 1rem; font-weight: 700; color: var(--lb-text-h); margin: 0 0 0.4rem; }
 .lb-eco-card p  { font-size: 0.85rem; color: var(--lb-text-body); line-height: 1.65; flex: 1; margin: 0 0 1rem; }
