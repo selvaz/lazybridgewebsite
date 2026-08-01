@@ -330,6 +330,17 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
 
     <li class="lb-update-item">
       <div class="lb-update-item__meta">
+        <span class="lb-update-date">Aug 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--tools">tools</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">DB registry &amp; artifact catalog &mdash; find any repo's database, catalog any report</p>
+        <p class="lb-update-desc">LazyTools adds a core, always-installed <code>registry</code> module: <code>KNOWN_DBS</code> declares &mdash; in code, one PR at a time &mdash; which env var names which repo's database, so callers resolve a path instead of guessing an env var name. Alongside it, a per-repo SQLite artifact catalog (<code>register_artifact</code>/<code>search_artifacts</code>) lets scheduled jobs and agents register reports, digests, and analysis results as searchable metadata &mdash; without pushing raw payloads through an LLM's context. <code>search_everywhere()</code> fans out across every repo's catalog at once. market-data-hub, LazyCrawler, LazyStats, and LazyPortfolio are wired in already. <a href="https://tools.lazybridge.com/registry/">See the guide &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
         <span class="lb-update-date">Jul 2026</span>
         <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
       </div>
