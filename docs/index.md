@@ -331,6 +331,17 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
     <li class="lb-update-item">
       <div class="lb-update-item__meta">
         <span class="lb-update-date">Aug 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">Claude Code is now a native LazyBridge engine</p>
+        <p class="lb-update-desc"><code>ClaudeCodeEngine</code> runs the Claude Code runtime through the same <code>Agent</code>, <code>Memory</code>, <code>Session</code>, and <code>tools=</code> interface as <code>LLMEngine</code>. Install the optional <code>lazybridge[claude-code]</code> extra, sign in once with Claude Code, then use it as a standard engine with read-only filesystem and web tools by default. <a href="https://core.lazybridge.com/guides/full/claude-code-engine/">Read the Claude Code Engine guide &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">Aug 2026</span>
         <span class="lb-eco-card__badge lb-eco-card__badge--tools">tools</span>
       </div>
       <div class="lb-update-item__body">
