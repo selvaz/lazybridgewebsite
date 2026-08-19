@@ -45,6 +45,10 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Human-in-the-loop
       </span>
+      <span class="lb-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        Coding agents
+      </span>
     </div>
   </div>
 
@@ -334,8 +338,19 @@ description: Build LLM workflows where functions, agents, plans, humans and exte
         <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
       </div>
       <div class="lb-update-item__body">
-        <p class="lb-update-title">Claude Code is now a native LazyBridge engine</p>
-        <p class="lb-update-desc"><code>ClaudeCodeEngine</code> runs the Claude Code runtime through the same <code>Agent</code>, <code>Memory</code>, <code>Session</code>, and <code>tools=</code> interface as <code>LLMEngine</code>. Install the optional <code>lazybridge[claude-code]</code> extra, sign in once with Claude Code, then use it as a standard engine with read-only filesystem and web tools by default. <a href="https://core.lazybridge.com/guides/full/claude-code-engine/">Read the Claude Code Engine guide &rarr;</a></p>
+        <p class="lb-update-title">LazyBridge 1.2.0 &mdash; a coding agent that may write, once someone says yes</p>
+        <p class="lb-update-desc">A gated coding agent could never be <em>asked</em> about a write: the engine handed the runtime a read-only tool list, so the model simply never had <code>Write</code>. <code>ClaudeCodePolicy.extra_tools</code> grants those names, and granting is not pre-approving &mdash; every call still routes through the approval gate. Because <code>file_roots</code> confinement is a hook over the file tools only, <code>Bash</code> has no path sandbox at all: the engine now <strong>refuses at construction</strong> to grant it without a gate, rather than advertising a boundary it cannot deliver. Also in this release: <code>CodexEngine(thread_source=&hellip;)</code> and <code>ClaudeCodeEngine(tag=&hellip;)</code> label the threads and sessions an engine creates, so a retention pass can find its own and leave your interactive ones alone. <a href="https://core.lazybridge.com/guides/full/coding-agents/">Coding agents in practice &rarr;</a> &middot; <a href="https://core.lazybridge.com/changelog/">Changelog &rarr;</a></p>
+      </div>
+    </li>
+
+    <li class="lb-update-item">
+      <div class="lb-update-item__meta">
+        <span class="lb-update-date">Aug 2026</span>
+        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
+      </div>
+      <div class="lb-update-item__body">
+        <p class="lb-update-title">LazyBridge 1.1.0 &mdash; Claude Code and Codex become engines</p>
+        <p class="lb-update-desc">The two local coding runtimes are now ordinary LazyBridge engines: same <code>Agent</code>, <code>Memory</code>, <code>Session</code> and <code>tools=</code> surface as <code>LLMEngine</code>, each reusing its own CLI login rather than an API key in the project. <code>ClaudeCodeEngine</code> speaks to the Claude Agent SDK in-process; <code>CodexEngine</code> speaks JSON-RPC to <code>codex app-server</code>. Both keep durable conversations &mdash; <code>persist_session=</code> / <code>persist_thread=</code> hand back a handle a <em>later process</em> can resume, and a resumed conversation stops re-sending <code>Memory</code>, because the runtime already holds the history. This release also adds <code>DurableBlackboard</code>: a to-do list in a <code>Store</code> with claim, lease and attempt limits, so work interrupted by a crash returns to the queue instead of staying "in progress" forever. <a href="https://core.lazybridge.com/guides/full/claude-code-engine/">Claude Code engine &rarr;</a> &middot; <a href="https://core.lazybridge.com/guides/full/codex-engine/">Codex engine &rarr;</a></p>
       </div>
     </li>
 
