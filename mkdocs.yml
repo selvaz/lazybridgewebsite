@@ -42,6 +42,10 @@ theme:
 
 plugins:
   - search
+  - blog:
+      blog_dir: blog
+      blog_toc: true
+      post_url_format: "{slug}"
   # Redirect the old apex doc URLs (lazybridge.com/<path>/) — left over from
   # before the technical docs were re-homed to core.lazybridge.com — to their
   # new locations. GitHub Pages can't do server-side 301s, so this generates a
@@ -174,6 +178,7 @@ extra:
 
 nav:
   - Home: index.md
+  - Blog: blog/index.md
   - Quickstart: https://core.lazybridge.com/quickstart/
   - Concepts: https://core.lazybridge.com/concepts/mental-model/
   - Guides: https://core.lazybridge.com/guides/basic/agent/

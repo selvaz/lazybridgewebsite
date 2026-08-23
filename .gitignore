@@ -2,3 +2,9 @@ site/
 .venv/
 __pycache__/
 *.pyc
+
+# LazyMarketingDesk's confirmed-but-not-yet-promoted drafts land here,
+# deliberately outside docs_dir so gh-deploy never builds them. Not site
+# content -- a human reviews these and promotes the good ones into
+# docs/blog/posts/ by hand.
+_drafts/
