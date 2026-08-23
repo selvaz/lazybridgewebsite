@@ -1,3 +1,8 @@
 mkdocs>=1.6
 mkdocs-material>=9.5
-mkdocs-redirects>=1.2
+# Pinned to 1.2.2: PyPI's 1.2.3 does not match any tagged release in the
+# official github.com/mkdocs/mkdocs-redirects repo and injects an
+# unauthorized dependency on "properdocs" plus a fake MkDocs-2.0 build
+# warning -- an unofficial, non-consensual PyPI publish. Do not bump past
+# 1.2.2 without checking the release actually exists in upstream GitHub.
+mkdocs-redirects==1.2.2
