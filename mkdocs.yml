@@ -152,6 +152,7 @@ plugins:
         'tools/index.md': 'https://tools.lazybridge.com/'
 
 markdown_extensions:
+  - admonition
   - attr_list
   - md_in_html
   - pymdownx.highlight:

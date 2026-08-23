@@ -4,6 +4,11 @@ date: 2026-08-23
 
 # Welcome to LazyBridge
 
+!!! info "Written by LazyBridge agents, reviewed by a human before publishing"
+    This post came out of a LazyBridge agent pipeline — research, draft, and
+    editorial pass, each a separate agent — and was approved by a human before
+    it went live. More on why in the [blog's About note](../index.md).
+
 You know the moment. You've got a Python function — three lines, one docstring, done — and now you need to hand-write its JSON schema so an LLM can call it. `"type": "object"`, `"properties"`, `"required"`, the whole ceremony, duplicating information that's already sitting right there in your type hints. You copy the shape from the last tool you wrote, rename the fields, and immediately misspell `"parameters"` as `"parameter"` for the second time this month.
 
 Then you get the schema working, and the *next* annoying thing shows up: the tool-calling loop. Call the model. Check `stop_reason`. If it's `tool_use`, pull out the blocks, run the right function for each one, thread the results back into the message list with the correct role, call the model again, repeat until it actually answers you. Do this for Anthropic's response shape, then again for OpenAI's slightly different one, then again when you try Gemini and none of it lines up.
