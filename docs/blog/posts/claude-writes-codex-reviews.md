@@ -19,7 +19,7 @@ That's a legitimate thing to hesitate over. It's also the wrong question to be a
 
 A coding CLI here means a local program you're already logged into on your machine — `claude` (the Claude Code CLI) or `codex` (the Codex CLI or desktop app) — authenticated against your existing Claude Pro/Max or ChatGPT/Codex plan, the same way you'd authenticate a browser session. No `ANTHROPIC_API_KEY`, no `OPENAI_API_KEY`, nothing that shows up as per-token usage on an API dashboard.
 
-`ClaudeCodeEngine` drives the local `claude` CLI directly and runs requests against your Pro/Max subscription login. `CodexEngine` drives the local `codex` CLI (or the Codex desktop app, resolved via a `codex_executable()` lookup) and runs requests against your ChatGPT/Codex plan login. What changes is *which execution path* a given agent's requests travel down — subscription-authenticated CLI process vs. metered API key — not whether the requests are somehow free. They aren't. Your Claude or ChatGPT plan has its own usage limits and terms, and running two agents through two CLIs still uses two allotments of *something*. The distinction that actually matters for your monthly bill is this: neither engine adds metered per-token API spend on top of a plan you're already paying for.
+`ClaudeCodeEngine` drives the local `claude` CLI directly and runs requests against your Pro/Max subscription login. `CodexEngine` drives the local `codex` CLI (or the Codex desktop app, resolved via a `codex_executable()` lookup) and runs requests against your ChatGPT/Codex plan login. What changes is *which execution path* a given agent's requests travel down — subscription-authenticated CLI process vs. metered API key — not whether the requests are somehow free. They aren't: your Claude or ChatGPT plan has its own usage limits and terms, and running two agents through two CLIs still uses two allotments of *something*.
 
 ## Write, review, retry — not a routing graph
 
@@ -29,7 +29,7 @@ The pattern LazyBridge gives you for "have a second agent check the first agent'
 2. Hand the writer's output, plus the original task, to whatever you passed as `verify=`, and ask it a yes/no question: approved, or rejected with a reason?
 3. Parse the verdict. Anything that reads as approval passes. Anything that reads as rejection — or that the parser doesn't recognize — is treated as REJECTED. The failure mode is fail-safe, not fail-open.
 4. If rejected, retry. But not the reviewer's complaint in isolation — LazyBridge re-runs the *original task*, with the rejection feedback appended as extra context, so the writer gets another full attempt informed by what went wrong.
-5. This repeats up to `max_verify` attempts (default 3). If the last attempt is still rejected, LazyBridge returns it anyway — you get *a* result, not an exception, and there's no flag on it telling you whether that result was ever actually approved.
+5. This repeats up to `max_verify` attempts (default 3). If the last attempt is still rejected, LazyBridge returns it anyway — you get *a* result, not an exception (more on what that means for you below).
 
 The important design choice here is what `verify=` actually requires: anything with a `.run()` method — any `Agent`, running on any engine — or a plain callable. That's it. There's no separate routing graph, no special "reviewer" subclass. Wiring a Claude-writes/Codex-reviews loop is just picking two engines and passing one Agent as the `verify=` argument to another's `.run()` call.
 
