@@ -1,0 +1,1048 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Python composition runtime for LLM workflows — not an agent framework. Compose functions, agents, plans and humans through one tool interface.">
+      
+      
+      
+        <link rel="canonical" href="https://lazybridge.com/blog/archive/2026/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>2026 - LazyBridge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2026" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="LazyBridge" class="md-header__button md-logo" aria-label="LazyBridge" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LazyBridge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2026
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/selvaz/LazyBridge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    selvaz/LazyBridge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/concepts/mental-model/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concepts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/guides/basic/agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/recipes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Recipes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://pulse.lazybridge.com/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LazyPulse
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://tools.lazybridge.com/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LazyTools
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="LazyBridge" class="md-nav__button md-logo" aria-label="LazyBridge" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    LazyBridge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/selvaz/LazyBridge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    selvaz/LazyBridge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/concepts/mental-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/guides/basic/agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recipes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://pulse.lazybridge.com/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LazyPulse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://tools.lazybridge.com/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LazyTools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#claude-writes-codex-reviews-no-second-api-key-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Writes, Codex Reviews — No Second API Key Required
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#welcome-to-lazybridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Welcome to LazyBridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        <h1 id="2026">2026</h1>
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-08-24 00:00:00+00:00">August 24, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              8 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="claude-writes-codex-reviews-no-second-api-key-required"><a class="toclink" href="../../claude-writes-codex-reviews--no-second-api-key-required/">Claude Writes, Codex Reviews — No Second API Key Required</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Written by LazyBridge agents, reviewed by a human before publishing</p>
+<p>This post came out of a LazyBridge agent pipeline — research, draft, and
+editorial pass, each a separate agent — and was approved by a human before
+it went live. More on why in the <a href="../../">blog's About note</a>.</p>
+</div>
+<p>You've got a writer agent turning out a small utility function — say, one that decides whether it's actually safe to deploy right now. It mostly works. Then one day someone points out it waves a green light at 3:00pm on the dot on a Friday, because the boundary check used <code>&gt;</code> instead of <code>&gt;=</code>, and you spend twenty minutes tracing a very avoidable incident back to a one-character bug a second pair of eyes would have caught in five seconds. So you think: fine, I'll add a second agent whose whole job is to review the first agent's output before it ships.</p>
+<p>And then you stop mid-keystroke, doing the math. If the writer costs you some amount per call against a metered API key — a key you pay for by the token, the way <code>ANTHROPIC_API_KEY</code> or <code>OPENAI_API_KEY</code> billing works — then a reviewer that runs on every single output, plus retries when it rejects something, could easily double or triple that bill for what's essentially a safety net. Is a nagging feeling of "this output looks fine, probably" really worth 3x the spend?</p>
+<p>That's a legitimate thing to hesitate over. It's also the wrong question to be asking about LazyBridge's <code>ClaudeCodeEngine</code> and <code>CodexEngine</code>, because neither one touches a metered API key at all.</p>
+<h3 id="what-a-coding-cli-is-and-why-it-changes-the-billing-question"><a class="toclink" href="../../claude-writes-codex-reviews--no-second-api-key-required/#what-a-coding-cli-is-and-why-it-changes-the-billing-question">What a "coding CLI" is, and why it changes the billing question</a></h3>
+<p>A coding CLI here means a local program you're already logged into on your machine — <code>claude</code> (the Claude Code CLI) or <code>codex</code> (the Codex CLI or desktop app) — authenticated against your existing Claude Pro/Max or ChatGPT/Codex plan, the same way you'd authenticate a browser session. No <code>ANTHROPIC_API_KEY</code>, no <code>OPENAI_API_KEY</code>, nothing that shows up as per-token usage on an API dashboard.</p>
+<p><code>ClaudeCodeEngine</code> drives the local <code>claude</code> CLI directly and runs requests against your Pro/Max subscription login. <code>CodexEngine</code> drives the local <code>codex</code> CLI (or the Codex desktop app, resolved via a <code>codex_executable()</code> lookup) and runs requests against your ChatGPT/Codex plan login. What changes is <em>which execution path</em> a given agent's requests travel down — subscription-authenticated CLI process vs. metered API key — not whether the requests are somehow free. They aren't: your Claude or ChatGPT plan has its own usage limits and terms, and running two agents through two CLIs still uses two allotments of <em>something</em>.</p>
+<h3 id="write-review-retry-not-a-routing-graph"><a class="toclink" href="../../claude-writes-codex-reviews--no-second-api-key-required/#write-review-retry-not-a-routing-graph">Write, review, retry — not a routing graph</a></h3>
+<p>The pattern LazyBridge gives you for "have a second agent check the first agent's work" is <code>verify=</code>, and the loop underneath it is called <code>verify_with_retry()</code>. In plain terms:</p>
+<ol>
+<li>Run the writer agent on the task.</li>
+<li>Hand the writer's output, plus the original task, to whatever you passed as <code>verify=</code>, and ask it a yes/no question: approved, or rejected with a reason?</li>
+<li>Parse the verdict. Anything that reads as approval passes. Anything that reads as rejection — or that the parser doesn't recognize — is treated as REJECTED. The failure mode is fail-safe, not fail-open.</li>
+<li>If rejected, retry. But not the reviewer's complaint in isolation — LazyBridge re-runs the <em>original task</em>, with the rejection feedback appended as extra context, so the writer gets another full attempt informed by what went wrong.</li>
+<li>This repeats up to <code>max_verify</code> attempts (default 3). If the last attempt is still rejected, LazyBridge returns it anyway — you get <em>a</em> result, not an exception (more on what that means for you below).</li>
+</ol>
+<p>The important design choice here is what <code>verify=</code> actually requires: anything with a <code>.run()</code> method — any <code>Agent</code>, running on any engine — or a plain callable. That's it. There's no separate routing graph, no special "reviewer" subclass. Wiring a Claude-writes/Codex-reviews loop is just picking two engines and passing one Agent as the <code>verify=</code> argument to another's <code>.run()</code> call.</p>
+<h3 id="the-scenario-should-i-deploy-right-now"><a class="toclink" href="../../claude-writes-codex-reviews--no-second-api-key-required/#the-scenario-should-i-deploy-right-now">The scenario: should I deploy right now?</a></h3>
+<p>To make this concrete — and because not every worked example needs to be a boring input-sanitizer — here's a task every developer has an opinion about: write <code>should_i_deploy(now)</code>, which looks at the current time and returns whether it's safe to push to production, plus a message explaining why or why not. The rule: blocked from 3:00pm onward on a Friday, blocked all day on the weekend, fine otherwise.</p>
+<p>The subtlety is in exactly where "3:00pm onward" starts:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">friday_cutoff</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">is_friday_afternoon</span> <span class="o">=</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">now</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">friday_cutoff</span>
+</code></pre></div>
+<p>That <code>&gt;=</code> is doing real work. Write <code>&gt;</code> instead, by a single-character slip, and 3:00pm precisely stops being blocked — the one moment the rule exists to name explicitly turns into the one moment it silently lets through. It's the classic shape of a boundary bug: everything either side of the line behaves correctly, so a handful of obvious manual checks (2:00pm, 4:00pm, Saturday) all pass, and the actual mistake only shows up if someone happens to test the exact second the rule changes. That's precisely the kind of thing a bored human reviewer skims past and a second agent, asked specifically to check the logic rather than skim the vibe, is well-suited to catch.</p>
+<h3 id="the-full-loop-claude-writes-codex-reviews"><a class="toclink" href="../../claude-writes-codex-reviews--no-second-api-key-required/#the-full-loop-claude-writes-codex-reviews">The full loop: Claude writes, Codex reviews</a></h3>
+<p>Now for the actual write/review/retry example, targeting that same task. This needs the <code>claude</code> and <code>codex</code> CLIs installed and logged in — both under your existing subscriptions, no API keys involved:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lazybridge</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lazybridge.engines</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClaudeCodeEngine</span><span class="p">,</span> <span class="n">CodexEngine</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">TASK</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">"Write a Python function `should_i_deploy(now)` where `now` is a "</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">"datetime.datetime. Return a tuple (bool, str): False with a witty, "</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s2">"dry, deadpan-sysadmin-humor excuse if `now` falls on a Friday after "</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="s2">"15:00, or anytime on Saturday or Sunday -- true with a short "</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="s2">"encouraging message otherwise. Handle the exact Friday-15:00 boundary "</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="s2">"correctly (15:00:00 itself should already count as blocked)."</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="n">reviewer</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">"codex-reviewer"</span><span class="p">,</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="n">engine</span><span class="o">=</span><span class="n">CodexEngine</span><span class="p">(),</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="n">writer</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">"claude-writer"</span><span class="p">,</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="n">engine</span><span class="o">=</span><span class="n">ClaudeCodeEngine</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">"sonnet"</span><span class="p">),</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="n">verify</span><span class="o">=</span><span class="n">reviewer</span><span class="p">,</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">max_verify</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="p">)</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="n">result</span> <span class="o">=</span> <span class="n">writer</span><span class="p">(</span><span class="n">TASK</span><span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</code></pre></div>
+<p>We ran this for real while writing this post. Claude's approved function, verbatim — including the excuse bank, because withholding it would be a crime against the bit:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">should_i_deploy</span><span class="p">(</span><span class="n">now</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">weekday</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>  <span class="c1"># Monday=0 ... Sunday=6</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">friday_cutoff</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">is_friday_afternoon</span> <span class="o">=</span> <span class="n">weekday</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">now</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">friday_cutoff</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">is_weekend</span> <span class="o">=</span> <span class="n">weekday</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="k">if</span> <span class="n">is_friday_afternoon</span><span class="p">:</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="n">excuses</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>            <span class="s2">"It's after 3pm on a Friday. That's not a deploy window, "</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>            <span class="s2">"that's a hostage situation waiting to happen."</span><span class="p">,</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>            <span class="s2">"Congratulations, you've entered the Bermuda Triangle of "</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>            <span class="s2">"deploy windows: Friday afternoon. Ships (and services) "</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>            <span class="s2">"that enter do not come back."</span><span class="p">,</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>            <span class="s2">"Sure, ship it now, and spend your weekend explaining to "</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>            <span class="s2">"your family why your phone won't stop buzzing."</span><span class="p">,</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>            <span class="s2">"Friday-afternoon deploys are how legends are made. "</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>            <span class="s2">"Cautionary legends. Told at new-hire orientation."</span><span class="p">,</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>            <span class="s2">"The on-call engineer has requested, via a strongly worded "</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>            <span class="s2">"note taped to their monitor, that you not do this."</span><span class="p">,</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>        <span class="p">]</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">excuses</span><span class="p">)</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    <span class="k">if</span> <span class="n">is_weekend</span><span class="p">:</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>        <span class="n">excuses</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>            <span class="s2">"It's the weekend. Even your CI/CD pipeline deserves a "</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>            <span class="s2">"day off, and frankly, so do you."</span><span class="p">,</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>            <span class="s2">"Deploying on a weekend is like performing surgery in a "</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>            <span class="s2">"dark alley: technically possible, deeply inadvisable."</span><span class="p">,</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>            <span class="s2">"The servers are resting. The on-call engineer is resting. "</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>            <span class="s2">"Nature is healing. Please do not disturb."</span><span class="p">,</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>            <span class="s2">"Weekend deploys have a 100</span><span class="si">% s</span><span class="s2">uccess rate right up until "</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>            <span class="s2">"they don't, and then it's just you, alone, at 2am."</span><span class="p">,</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>            <span class="s2">"This is a weekend. Weekends were invented specifically "</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>            <span class="s2">"so we wouldn't push to prod today."</span><span class="p">,</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>        <span class="p">]</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">excuses</span><span class="p">)</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>    <span class="n">encouragements</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>        <span class="s2">"Green across the board. Ship it like you mean it."</span><span class="p">,</span>
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>        <span class="s2">"The stars, the CI pipeline, and your coffee are all aligned. Go for it."</span><span class="p">,</span>
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>        <span class="s2">"No red flags, no weekend curses in effect. Deploy away."</span><span class="p">,</span>
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a>        <span class="s2">"It's a perfectly reasonable time to push. Go be a hero."</span><span class="p">,</span>
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>        <span class="s2">"All clear! May your rollout be smooth and your logs be boring."</span><span class="p">,</span>
+<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>    <span class="p">]</span>
+<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">encouragements</span><span class="p">)</span>
+</code></pre></div>
+<p>And yes, it actually gets the boundary right:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">when</span> <span class="ow">in</span> <span class="p">[</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="p">(</span><span class="s2">"Friday 2:59pm"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="p">(</span><span class="s2">"Friday 3:00pm exactly"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="p">(</span><span class="s2">"Saturday"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="p">(</span><span class="s2">"Monday"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">]:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">should_i_deploy</span><span class="p">(</span><span class="n">when</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Friday 2:59pm: True</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># Friday 3:00pm exactly: False</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># Saturday: False</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># Monday: True</span>
+</code></pre></div>
+<p>Notice what's <em>not</em> in the snippet above: no explicit prompt-passing between writer and reviewer, no state machine for retries, no manual parsing of "approved" vs "rejected" in your own code. <code>verify=reviewer</code> and <code>max_verify=3</code>, both passed when you <em>construct</em> the writer <code>Agent</code> — not arguments to the call itself — are the whole wiring. Under the hood, <code>verify_with_retry()</code> asks the reviewer something close to <em>"Evaluate this output: \&lt;the writer's code&gt;. Original task: \&lt;the task above&gt;. Approved or rejected, with reason?"</em> — you don't have to build that prompt yourself, and there's no separate object to track attempt counts or the final verdict; <code>result</code> is the same kind of value <code>writer(TASK)</code> always returns, whether or not <code>verify=</code> was ever set.</p>
+<h3 id="where-this-actually-breaks"><a class="toclink" href="../../claude-writes-codex-reviews--no-second-api-key-required/#where-this-actually-breaks">Where this actually breaks</a></h3>
+<p>Three things worth knowing before you rely on this pattern.</p>
+<p><strong>The retry budget is small and fixed, and LazyBridge won't tell you if it ran out.</strong> <code>max_verify</code> defaults to 3. If your writer and reviewer are stuck in a loop — writer keeps making the same mistake, reviewer keeps rejecting it the same way — you get three attempts and then whatever the third one produced, rejected or not, with no flag on the result marking which happened. If you need to know, have your reviewer's approval show up in its own output (a trailing <code>APPROVED</code>/<code>REJECTED</code> line you check yourself, for instance) — don't assume a returned result was ever actually approved.</p>
+<p><strong>Subscription plans are bounded too.</strong> Routing through <code>ClaudeCodeEngine</code> and <code>CodexEngine</code> means you're not paying per-token on top of a plan, but Pro/Max and ChatGPT/Codex plans still have their own usage limits and terms. A write/review loop with several retries on every call is still meaningfully more usage than a single writer call — just usage against a subscription ceiling instead of a token-metered invoice.</p>
+<p><strong>Approval is not correctness.</strong> A reviewer agent approving a writer agent's output means two language models agreed on something, not that the something is right. For a task as narrow as a boundary check on a day and a time, that's a reasonably strong signal — there's not much room for the two of them to be wrong in the same way. For anything with more room to be subtly, plausibly wrong, an approved result out of <code>verify_with_retry()</code> is a reason to trust the code a bit more than an unreviewed first draft. It's not a substitute for reading it.</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-08-23 00:00:00+00:00">August 23, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              4 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="welcome-to-lazybridge"><a class="toclink" href="../../welcome-to-lazybridge/">Welcome to LazyBridge</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Written by LazyBridge agents, reviewed by a human before publishing</p>
+<p>This post came out of a LazyBridge agent pipeline — research, draft, and
+editorial pass, each a separate agent — and was approved by a human before
+it went live. More on why in the <a href="../../">blog's About note</a>.</p>
+</div>
+<p>You know the moment. You've got a Python function — three lines, one docstring, done — and now you need to hand-write its JSON schema so an LLM can call it. <code>"type": "object"</code>, <code>"properties"</code>, <code>"required"</code>, the whole ceremony, duplicating information that's already sitting right there in your type hints. You copy the shape from the last tool you wrote, rename the fields, and immediately misspell <code>"parameters"</code> as <code>"parameter"</code> for the second time this month.</p>
+<p>Then you get the schema working, and the <em>next</em> annoying thing shows up: the tool-calling loop. Call the model. Check <code>stop_reason</code>. If it's <code>tool_use</code>, pull out the blocks, run the right function for each one, thread the results back into the message list with the correct role, call the model again, repeat until it actually answers you. Do this for Anthropic's response shape, then again for OpenAI's slightly different one, then again when you try Gemini and none of it lines up.</p>
+<p>None of this is hard. It's just boilerplate you've now written five times across five projects, and it's the same boilerplate whether you're calling a weather API or orchestrating a whole team of sub-agents.</p>
+<p>That's the gap LazyBridge is for.</p>
+<h3 id="what-lazybridge-actually-does"><a class="toclink" href="../../welcome-to-lazybridge/#what-lazybridge-actually-does">What LazyBridge actually does</a></h3>
+<p>LazyBridge is a Python framework for building LLM agents — one <code>Agent</code> class, one tool contract, and providers you can swap without rewriting your integration code. A plain Python function, another <code>Agent</code>, or an MCP server can all go in the same <code>tools=[...]</code> list. LazyBridge turns them into something the model can call, and turns the model's response into something your code can call back.</p>
+<p>Schematically, the whole surface looks like this:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lazybridge</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">LLMEngine</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">LLMEngine</span><span class="p">(</span><span class="s2">"claude-opus-5"</span><span class="p">))</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</code></pre></div>
+<p>That's genuinely the whole surface to start. No separate "graph" abstraction to learn before you can say hello. (The full, runnable version — with the API-key handling you actually need — is below.)</p>
+<h3 id="the-mental-model-engine-tools-state"><a class="toclink" href="../../welcome-to-lazybridge/#the-mental-model-engine-tools-state">The mental model: Engine + Tools + State</a></h3>
+<p>Every <code>Agent</code> is three things composed together, and once this clicks, the rest of the framework is just filling in the blanks.</p>
+<ul>
+<li><strong>Engine</strong> — the thing that decides what happens next. Most of the time that's <code>LLMEngine</code>, wrapping a model provider. But it's swappable: a <code>Plan</code> engine follows a fixed sequence you define instead of letting the model improvise, a <code>HumanEngine</code> pauses for a person to approve a step, a <code>SupervisorEngine</code> gives you a REPL to drive things interactively.</li>
+<li><strong>Tools</strong> — anything the agent is allowed to invoke. A plain function, another <code>Agent</code> (yes, agents can call agents), or a whole MCP server's worth of remote tools. They all live in the same list and get the same treatment.</li>
+<li><strong>State</strong> — how the agent remembers things: <code>Memory</code> for in-prompt history, <code>Store</code> for a durable blackboard, <code>Session</code> as an event bus you can observe.</li>
+</ul>
+<p>Here's why that matters in practice: the same <code>Agent(engine=..., tools=..., ...)</code> shape works for a quick one-off script and for something much more involved. You're mostly just changing what you pass to <code>engine=</code>, not learning a new API.</p>
+<h3 id="a-real-example-first-post-edition"><a class="toclink" href="../../welcome-to-lazybridge/#a-real-example-first-post-edition">A real example, first post edition</a></h3>
+<p>Here's the thing from earlier — a function becoming a tool, no manual schema — actually wired up to call a provider. It's written so it runs cleanly whether or not you have an API key sitting in your environment, because that's exactly the kind of code you'll want when you're first poking at something new:</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lazybridge</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">LLMEngine</span><span class="p">,</span> <span class="n">Tool</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="sd">"""Return current temperature and conditions for `city`."""</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">: 22°C, sunny"</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">engine</span><span class="o">=</span><span class="n">LLMEngine</span><span class="p">(</span><span class="s2">"claude-opus-5"</span><span class="p">),</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">Tool</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">get_weather</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"get_weather"</span><span class="p">)],</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ANTHROPIC_API_KEY"</span><span class="p">):</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="p">(</span><span class="s2">"what's the weather in Rome and Paris?"</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"No ANTHROPIC_API_KEY set — skipping the live call."</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Set one and rerun: get_weather becomes a callable tool with zero schema code."</span><span class="p">)</span>
+</code></pre></div>
+<p>Run <code>pip install "lazybridge[anthropic]"</code>, drop that in a file, and try it both ways — with <code>ANTHROPIC_API_KEY</code> unset, and then with a real key exported. Same code, no crash either way. And when the key <em>is</em> there, LazyBridge reads the type hints and docstring off <code>get_weather</code> and builds the schema for you. That's one whole category of boilerplate from the top of this post, gone.</p>
+<h3 id="whats-next"><a class="toclink" href="../../welcome-to-lazybridge/#whats-next">What's next</a></h3>
+<p>This is the first post on this blog, so take it as an introduction rather than a tour — there's a lot of LazyBridge I haven't touched yet: giving an agent real memory across turns, wiring up MCP servers as tool catalogues, having agents call other agents and watching parallel tool calls run automatically, and building deterministic <code>Plan</code>-based pipelines when you want less improvisation and more guarantees. Future posts will go through those one at a time, with the same rule as today: working code, honest about what it does and doesn't do.</p>
+    
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
+      
+    </div>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+<div class="lb-footer">
+  <div class="lb-footer__bar">
+    <p class="lb-footer__copy">&copy; 2026 LazyBridge Labs</p>
+    <nav class="lb-footer__links">
+      <a href="mailto:LazyBridgeLabs@gmail.com" class="lb-footer__link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        LazyBridgeLabs@gmail.com
+      </a>
+      <a href="https://github.com/selvaz/LazyBridge" class="lb-footer__link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="https://core.lazybridge.com/quickstart/" class="lb-footer__link">Docs</a>
+      <a href="https://github.com/selvaz/LazyBridge/blob/main/CHANGELOG.md" class="lb-footer__link">Changelog</a>
+    </nav>
+  </div>
+  <p class="footer-built-by">
+    LazyBridge is designed by <strong>selvaz</strong> with
+    <strong>Claude Code</strong> and <strong>ChatGPT Codex</strong>
+    as primary implementation partners.
+    I focus on architecture, mental model, and trade-offs —
+    they handle the building under my direction.
+  </p>
+</div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

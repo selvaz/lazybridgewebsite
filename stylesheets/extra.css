@@ -1,0 +1,704 @@
+/* ── Brand tokens ────────────────────────────────────────────────────────────── */
+[data-md-color-primary="deep purple"] {
+  --md-primary-fg-color:        #6B5DD3;
+  --md-primary-fg-color--light: #8B7DE3;
+  --md-primary-fg-color--dark:  #4A3FB5;
+}
+
+:root {
+  --lb-purple:      var(--md-primary-fg-color);
+  --lb-purple-soft: #EDEAFB;
+  --lb-purple-mid:  #8B7DE3;
+  --lb-border:      var(--md-default-fg-color--lightest);
+  --lb-text-h:      var(--md-default-fg-color);
+  --lb-text-body:   var(--md-default-fg-color--light);
+  --lb-text-muted:  var(--md-default-fg-color--lighter);
+  --lb-surface:     var(--md-default-bg-color);
+}
+
+/* ── Dark mode ────────────────────────────────────────────────────────────────── */
+[data-md-color-scheme="slate"] {
+  --lb-purple:      #A78BFA;
+  --lb-purple-soft: rgba(107, 93, 211, 0.15);
+  --lb-purple-mid:  #C4B5FD;
+  /* On slate the default --light (0.56) / --lighter (0.32) tokens are too dim to
+     read. Match core.lazybridge.com: body text at full strength, secondary one
+     step down — keeps light-mode hierarchy untouched. */
+  --lb-text-body:   var(--md-default-fg-color);
+  --lb-text-muted:  var(--md-default-fg-color--light);
+  /* Headings: lift above body so titles stand out (default fg is only 0.82,
+     same as body now). Near-white, full opacity. */
+  --lb-text-h:      hsla(232, 16%, 96%, 1);
+  /* Surface & border are declared at :root, where the var() resolves against
+     the *light* scheme (the scheme attr lives on <body>, not :root). Re-resolve
+     them here so chip / pulse-step backgrounds aren't light-on-light in dark. */
+  --lb-surface:     var(--md-default-bg-color);
+  --lb-border:      var(--md-default-fg-color--lightest);
+}
+/* Buttons: dark enough bg for white text (A78BFA fails contrast, 6B5DD3 passes) */
+[data-md-color-scheme="slate"] .lb-btn--primary              { background: #6B5DD3; }
+[data-md-color-scheme="slate"] .lb-btn--primary:hover        { background: #4A3FB5; }
+/* Cards: slightly elevated surface vs page bg */
+[data-md-color-scheme="slate"] .lb-card,
+[data-md-color-scheme="slate"] .lb-eco-card                  { background: var(--md-code-bg-color); }
+/* Pulse case: more visible purple tint */
+[data-md-color-scheme="slate"] .lb-pulse-case {
+  background: rgba(107, 93, 211, 0.18);
+  border-color: rgba(167, 139, 250, 0.3);
+}
+/* Pill border */
+[data-md-color-scheme="slate"] .lb-pill                      { border-color: rgba(167, 139, 250, 0.35); }
+/* Hero image: constrained white bubble */
+[data-md-color-scheme="slate"] .lb-hero__art {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 1.5rem;
+  width: fit-content;
+  margin: 0 auto;
+}
+/* Provider logos: invert dark SVGs for dark bg */
+[data-md-color-scheme="slate"] .lb-providers__logos img       { filter: grayscale(1) invert(1); opacity: 0.55; }
+[data-md-color-scheme="slate"] .lb-providers__logos img:hover { filter: invert(1); opacity: 0.9; }
+/* Badges */
+[data-md-color-scheme="slate"] .lb-eco-card__badge--core  { background: rgba(124, 58, 237, 0.2); color: #C4B5FD; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--tools { background: rgba(3, 105, 161, 0.2);   color: #7DD3FC; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--pulse { background: rgba(180, 83, 9, 0.2);    color: #FCD34D; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--data    { background: rgba(21, 128, 61, 0.2);  color: #86EFAC; }
+[data-md-color-scheme="slate"] .lb-eco-card__badge--finance { background: rgba(190, 24, 93, 0.2);  color: #F9A8D4; }
+
+/* ── Material content reset ─────────────────────────────────────────────────── */
+/* Material caps .md-grid (the tabs row *and* the main content wrapper) at 61rem
+   (~976px) and centres it, which left the landing narrow with empty side margins.
+   Lift it to the 1280px the .lb-* sections are already designed around, applied to
+   tabs + content together so the whole page shares one width. */
+.md-grid { max-width: 1280px; }
+.md-content__inner { max-width: 100% !important; padding: 0 !important; }
+.md-content         { padding-bottom: 0 !important; }
+
+/* ── Shared horizontal gutter (6rem sides) ────────────────────────────────────── */
+.lb-hero,
+.lb-feature-cards,
+.lb-code-panel,
+.lb-ecosystem,
+.lb-updates,
+.lb-providers {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  box-sizing: border-box;
+}
+
+/* ── Diagram deck: wider gutter so images fill more screen ─────────────────── */
+.lb-concepts {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--lb-border);
+  box-sizing: border-box;
+}
+
+/* ── HERO ───────────────────────────────────────────────────────────────────── */
+.lb-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 3.5rem;
+  align-items: center;
+}
+
+.lb-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--lb-purple-soft);
+  color: var(--lb-purple);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(107, 93, 211, 0.2);
+}
+
+.lb-hero h1 {
+  font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.12;
+  color: var(--lb-text-h);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+.lb-hero h1 .accent { color: var(--lb-purple); }
+
+.lb-subhead {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--lb-text-body);
+  max-width: 440px;
+  margin: 0 0 1.75rem;
+}
+
+.lb-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lb-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none !important;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s, color 0.15s;
+  white-space: nowrap;
+  line-height: 1;
+}
+.lb-btn--primary {
+  background: var(--lb-purple);
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(107, 93, 211, 0.3);
+}
+.lb-btn--primary:hover {
+  background: var(--md-primary-fg-color--dark);
+  box-shadow: 0 4px 14px rgba(107, 93, 211, 0.4);
+  transform: translateY(-1px);
+}
+.lb-btn--ghost {
+  background: transparent;
+  color: var(--lb-text-h) !important;
+  border: 1.5px solid var(--lb-border);
+}
+.lb-btn--ghost:hover {
+  border-color: var(--lb-purple);
+  color: var(--lb-purple) !important;
+  background: var(--lb-purple-soft);
+}
+
+.lb-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.lb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  color: var(--lb-text-body);
+  border: 1px solid var(--lb-border);
+  border-radius: 999px;
+  padding: 0.22rem 0.65rem;
+  background: var(--lb-surface);
+}
+.lb-chip svg { flex-shrink: 0; color: var(--lb-purple); }
+
+.lb-hero__art { display: flex; justify-content: center; align-items: center; }
+.lb-hero__art img { width: 100%; max-width: 500px; object-fit: contain; }
+
+/* ── FEATURE CARDS ──────────────────────────────────────────────────────────── */
+.lb-feature-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.lb-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--lb-border);
+  border-radius: 12px;
+  padding: 1.4rem;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.lb-card:hover {
+  box-shadow: 0 4px 20px rgba(107, 93, 211, 0.12);
+  border-color: rgba(107, 93, 211, 0.3);
+}
+
+.lb-card__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: var(--lb-purple-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lb-purple);
+}
+.lb-card__body { flex: 1; }
+.lb-card h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--lb-text-h);
+  margin: 0 0 0.35rem;
+}
+.lb-card p {
+  font-size: 0.85rem;
+  color: var(--lb-text-body);
+  line-height: 1.65;
+  margin: 0 0 0.6rem;
+}
+.lb-card__link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--lb-purple) !important;
+  text-decoration: none !important;
+}
+.lb-card__link:hover { text-decoration: underline !important; }
+
+/* ── CODE PANEL ─────────────────────────────────────────────────────────────── */
+.lb-code-panel { padding-top: 3rem; padding-bottom: 3rem; border-top: 1px solid var(--lb-border); }
+
+.lb-code-caption {
+  font-size: 0.82rem;
+  color: var(--lb-text-muted);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* ── DIAGRAM DECK header ─────────────────────────────────────────────── */
+.lb-concepts__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.lb-concepts__header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lb-text-h);
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.02em;
+}
+.lb-concepts__sub {
+  font-size: 0.95rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+}
+
+/* ── DIAGRAM WRAPPER ────────────────────────────────────────────────────────── */
+.lb-diagram-wrap {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 0.25rem;
+  overflow: hidden;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.07);
+}
+.lb-diagram-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+[data-md-color-scheme="slate"] .lb-diagram-wrap {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── LAZYPULSE CASE STUDY ───────────────────────────────────────────────────── */
+.lb-pulse-case {
+  max-width: 720px;
+  margin: 3rem auto 4rem;
+  padding: 3rem 2rem;
+  background: var(--lb-purple-soft);
+  border: 1px solid rgba(107, 93, 211, 0.25);
+  border-radius: 16px;
+  text-align: center;
+}
+.lb-pulse-case__header { margin-bottom: 2.5rem; }
+.lb-pulse-case__header .lb-eco-card__badge { margin: 0 auto 0.75rem; }
+.lb-pulse-case__header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--lb-text-h);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.lb-pulse-case__sub {
+  font-size: 1rem;
+  color: var(--lb-text-body);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.lb-pulse-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0 auto 2rem;
+}
+.lb-pulse-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--lb-surface);
+  border: 1px solid rgba(107, 93, 211, 0.2);
+  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+.lb-pulse-step__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lb-purple);
+  min-width: 48px;
+  text-align: left;
+}
+.lb-pulse-step__value {
+  font-size: 0.9rem;
+  color: var(--lb-text-h);
+  text-align: left;
+}
+.lb-pulse-arrow {
+  font-size: 1.2rem;
+  color: var(--lb-purple);
+  line-height: 1;
+  opacity: 0.6;
+}
+.lb-pulse-case__cta { margin-top: 1.5rem; }
+
+/* ── ECOSYSTEM ───────────────────────────────────────────────────────────────── */
+.lb-ecosystem {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--lb-border);
+}
+.lb-ecosystem__header { text-align: center; margin-bottom: 2rem; }
+.lb-ecosystem__header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lb-text-h);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+.lb-ecosystem__header p { font-size: 0.95rem; color: var(--lb-text-muted); margin: 0; }
+
+.lb-ecosystem__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.lb-eco-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--lb-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: var(--md-default-bg-color);
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+}
+.lb-eco-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border-color: rgba(107, 93, 211, 0.3);
+  transform: translateY(-2px);
+}
+
+.lb-eco-card__badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+.lb-eco-card__badge--core  { background: #EDE9FE; color: #7C3AED; }
+.lb-eco-card__badge--tools { background: #E0F2FE; color: #0369A1; }
+.lb-eco-card__badge--pulse { background: #FEF3C7; color: #B45309; }
+.lb-eco-card__badge--data    { background: #DCFCE7; color: #15803D; }
+.lb-eco-card__badge--finance { background: #FCE7F3; color: #BE185D; }
+
+.lb-eco-card h3 { font-size: 1rem; font-weight: 700; color: var(--lb-text-h); margin: 0 0 0.4rem; }
+.lb-eco-card p  { font-size: 0.85rem; color: var(--lb-text-body); line-height: 1.65; flex: 1; margin: 0 0 1rem; }
+
+.lb-eco-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--lb-border);
+}
+.lb-eco-card__footer code {
+  font-size: 0.76rem;
+  color: var(--lb-text-muted);
+  background: var(--md-code-bg-color);
+  padding: 0.18rem 0.45rem;
+  border-radius: 4px;
+}
+.lb-eco-arrow {
+  font-size: 1rem;
+  color: var(--lb-purple);
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  transform: translateX(-4px);
+}
+.lb-eco-card:hover .lb-eco-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── PROVIDERS ───────────────────────────────────────────────────────────────── */
+.lb-providers {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+  border-top: 1px solid var(--lb-border);
+}
+.lb-providers__caption {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--lb-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.5rem;
+}
+.lb-providers__logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.lb-providers__logos img {
+  height: 24px;
+  filter: grayscale(1);
+  opacity: 0.45;
+  transition: filter 0.2s, opacity 0.2s;
+}
+.lb-providers__logos img:hover { filter: none; opacity: 1; }
+
+/* ── UPDATES ─────────────────────────────────────────────────────────────────── */
+.lb-updates {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--lb-border);
+}
+.lb-updates__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.lb-updates__header h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--lb-text-h);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+.lb-updates__sub {
+  font-size: 0.95rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+}
+
+.lb-update-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 780px;
+}
+
+.lb-update-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--lb-border);
+  align-items: flex-start;
+}
+.lb-update-item:last-child { border-bottom: none; }
+
+.lb-update-item__meta {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-width: 90px;
+}
+
+.lb-update-date {
+  font-size: 0.76rem;
+  color: var(--lb-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.lb-update-item__body { flex: 1; min-width: 0; }
+.lb-update-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--lb-text-h);
+  margin: 0 0 0.25rem;
+}
+.lb-update-desc {
+  font-size: 0.85rem;
+  color: var(--lb-text-body);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .lb-hero,
+  .lb-feature-cards,
+  .lb-code-panel,
+  .lb-ecosystem,
+  .lb-updates,
+  .lb-providers,
+  .lb-footer__bar { padding-left: 3rem; padding-right: 3rem; }
+  .lb-concepts   { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+@media (max-width: 900px) {
+  .lb-hero {
+    grid-template-columns: 1fr;
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    gap: 1.5rem;
+  }
+  .lb-hero__art { display: flex; justify-content: center; }
+  .lb-hero__art img { max-width: 380px; }
+
+  .lb-feature-cards {
+    grid-template-columns: 1fr;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .lb-concepts {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .lb-code-panel {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .lb-pulse-case {
+    margin: 2rem 1.5rem 2rem;
+    padding: 2rem 1.25rem;
+  }
+  .lb-pulse-step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    max-width: 100%;
+  }
+
+  .lb-ecosystem {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .lb-ecosystem__cards { grid-template-columns: 1fr; }
+
+  .lb-providers {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 3rem;
+  }
+  .lb-providers__logos { gap: 1.25rem; }
+
+  .lb-updates { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .lb-update-item { flex-direction: column; gap: 0.5rem; }
+  .lb-update-item__meta { flex-direction: row; align-items: center; min-width: 0; }
+
+  .lb-footer__bar { padding-left: 1.5rem; padding-right: 1.5rem; gap: 0.5rem 1rem; }
+  .lb-footer__copy { white-space: normal; overflow-wrap: anywhere; }
+  .footer-built-by { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────────── */
+/* Simple one-row bar: copyright + email on the left, links on the right. Full-bleed
+   band, inner bar on the shared 1280px / 6rem gutter so it fills the width and lines
+   up with the sections above. Stays horizontal; only wraps if it truly has to. */
+.lb-footer {
+  background: var(--md-code-bg-color);
+  border-top: 1px solid var(--lb-border);
+  padding: 1.75rem 0;
+}
+
+.lb-footer__bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.lb-footer__copy {
+  font-size: 0.85rem;
+  color: var(--lb-text-muted);
+  margin: 0;
+}
+.lb-footer__copy a {
+  color: var(--lb-text-body) !important;
+  text-decoration: none !important;
+}
+.lb-footer__copy a:hover { color: var(--lb-purple) !important; }
+
+.lb-footer__links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.lb-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--lb-text-body) !important;
+  text-decoration: none !important;
+  transition: color 0.15s;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.lb-footer__link svg { flex-shrink: 0; }
+.lb-footer__link:hover { color: var(--lb-purple) !important; }
+
+/* ── HOW THIS WAS BUILT ──────────────────────────────────────────────────────── */
+.footer-built-by {
+  font-size: 13px;
+  color: var(--lb-text-muted);
+  margin-top: 24px;
+  margin-bottom: 0;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
