@@ -46,38 +46,6 @@ is_friday_afternoon = weekday == 4 and now.time() >= friday_cutoff
 
 That `>=` is doing real work. Write `>` instead, by a single-character slip, and 3:00pm precisely stops being blocked — the one moment the rule exists to name explicitly turns into the one moment it silently lets through. It's the classic shape of a boundary bug: everything either side of the line behaves correctly, so a handful of obvious manual checks (2:00pm, 4:00pm, Saturday) all pass, and the actual mistake only shows up if someone happens to test the exact second the rule changes. That's precisely the kind of thing a bored human reviewer skims past and a second agent, asked specifically to check the logic rather than skim the vibe, is well-suited to catch.
 
-Here's the function actually exercised, standalone:
-
-```python
-import datetime
-import random
-
-
-def should_i_deploy(now: datetime.datetime) -> tuple[bool, str]:
-    weekday = now.weekday()  # Monday=0 ... Sunday=6
-    friday_cutoff = datetime.time(15, 0, 0)
-
-    is_friday_afternoon = weekday == 4 and now.time() >= friday_cutoff
-    is_weekend = weekday in (5, 6)
-
-    if is_friday_afternoon:
-        return False, "It's after 3pm on a Friday. That's not a deploy window, that's a hostage situation waiting to happen."
-    if is_weekend:
-        return False, "It's the weekend. Even your CI/CD pipeline deserves a day off, and frankly, so do you."
-    return True, "Green across the board. Ship it like you mean it."
-
-
-cases = [
-    ("Friday 2:59pm", datetime.datetime(2026, 8, 21, 14, 59, 0)),
-    ("Friday 3:00pm exactly", datetime.datetime(2026, 8, 21, 15, 0, 0)),
-    ("Saturday", datetime.datetime(2026, 8, 22, 10, 0, 0)),
-    ("Monday", datetime.datetime(2026, 8, 24, 11, 0, 0)),
-]
-
-for label, when in cases:
-    print(f"{label}: {should_i_deploy(when)}")
-```
-
 ## The full loop: Claude writes, Codex reviews
 
 Now for the actual write/review/retry example, targeting that same task. This needs the `claude` and `codex` CLIs installed and logged in — both under your existing subscriptions, no API keys involved:
@@ -163,6 +131,23 @@ def should_i_deploy(now: datetime.datetime) -> tuple[bool, str]:
         "All clear! May your rollout be smooth and your logs be boring.",
     ]
     return True, random.choice(encouragements)
+```
+
+And yes, it actually gets the boundary right:
+
+```python
+for label, when in [
+    ("Friday 2:59pm", datetime.datetime(2026, 8, 21, 14, 59, 0)),
+    ("Friday 3:00pm exactly", datetime.datetime(2026, 8, 21, 15, 0, 0)),
+    ("Saturday", datetime.datetime(2026, 8, 22, 10, 0, 0)),
+    ("Monday", datetime.datetime(2026, 8, 24, 11, 0, 0)),
+]:
+    print(f"{label}: {should_i_deploy(when)[0]}")
+
+# Friday 2:59pm: True
+# Friday 3:00pm exactly: False
+# Saturday: False
+# Monday: True
 ```
 
 Notice what's *not* in the snippet above: no explicit prompt-passing between writer and reviewer, no state machine for retries, no manual parsing of "approved" vs "rejected" in your own code. `verify=reviewer` and `max_verify=3`, both passed when you *construct* the writer `Agent` — not arguments to the call itself — are the whole wiring. Under the hood, `verify_with_retry()` asks the reviewer something close to *"Evaluate this output: \<the writer's code\>. Original task: \<the task above\>. Approved or rejected, with reason?"* — you don't have to build that prompt yourself, and there's no separate object to track attempt counts or the final verdict; `result` is the same kind of value `writer(TASK)` always returns, whether or not `verify=` was ever set.
