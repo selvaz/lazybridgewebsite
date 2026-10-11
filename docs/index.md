@@ -2,482 +2,190 @@
 hide:
   - navigation
   - toc
-title: LazyBridge — Python composition runtime for LLM workflows
-description: Build LLM workflows where functions, agents, plans, humans and external systems all compose through one tool interface.
+title: LazyBridge — Claude Code and Codex as agent engines
+description: Interchangeable engines, opposite-engine review, async delegation, shared projects and quota routing through LazyTools.
 ---
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="lb-hero">
   <div class="lb-hero__copy">
-    <div class="lb-pill">Everything is a tool &bull; Python-first &bull; Composition runtime</div>
-
-    <h1>LazyBridge is the Python framework for <span class="accent">composable LLM workflows</span>.</h1>
-
-    <p class="lb-subhead">
-      Functions, agents, deterministic plans, humans and external systems
-      all compose through one tool interface &mdash; with validation,
-      checkpointing and tracing built in.
-    </p>
-
+    <div class="lb-pill">Engine + Tools + State &bull; Python-first</div>
+    <h1>Claude Code and Codex, <span class="accent">as engines of your agent</span>.</h1>
+    <p class="lb-subhead">Run a LazyBridge Agent on your subscription-backed coding runtime or a provider API. Keep your tools and state. Let one engine write and the other review, with LazyTools connecting the work.</p>
     <div class="lb-cta-row">
-      <a href="https://core.lazybridge.com/quickstart/" class="lb-btn lb-btn--primary">Get started &rarr;</a>
-      <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-btn lb-btn--ghost">See the model</a>
+      <a href="#engines" class="lb-btn lb-btn--primary">Start with the engines &rarr;</a>
+      <a href="built-with/" class="lb-btn lb-btn--ghost">Built with LazyBridge</a>
     </div>
-
-    <div class="lb-chips">
-      <span class="lb-chip">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
-        Multi-provider
-      </span>
-      <span class="lb-chip">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Python-first
-      </span>
-      <span class="lb-chip">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Plan-based
-      </span>
-      <span class="lb-chip">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
-        Observable
-      </span>
-      <span class="lb-chip">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Human-in-the-loop
-      </span>
-      <span class="lb-chip">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-        Coding agents
-      </span>
-    </div>
+    <div class="lb-chips"><span class="lb-chip">Interchangeable engines</span><span class="lb-chip">Opposite-engine review</span><span class="lb-chip">Durable projects</span></div>
   </div>
-
-  <div class="lb-hero__art">
-    <img src="assets/hero.png" alt="LazyBridge mascot" />
-  </div>
+  <div class="lb-hero__art"><img src="assets/hero.png" alt="LazyBridge mascot" /></div>
 </section>
 
-<!-- ═══════════════════ FEATURE CARDS ═══════════════════ -->
 <section class="lb-feature-cards">
-  <div class="lb-card">
-    <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
-    </div>
-    <div class="lb-card__body">
-      <h3>One abstraction, not five</h3>
-      <p>Most agent frameworks split your system into chains, graphs, tools, agents, routers, and executors. LazyBridge collapses them into one recursive model: everything is a tool.</p>
-      <a href="https://core.lazybridge.com/concepts/layered-composition/" class="lb-card__link">See how it composes &rarr;</a>
-    </div>
-  </div>
-
-  <div class="lb-card">
-    <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-    </div>
-    <div class="lb-card__body">
-      <h3>Fail at build time, not at 3am</h3>
-      <p>Deterministic plans catch duplicate steps, broken references, type drift, and invalid sentinels before the first LLM call runs.</p>
-      <a href="https://core.lazybridge.com/guides/full/plan/" class="lb-card__link">See validation &rarr;</a>
-    </div>
-  </div>
-
-  <div class="lb-card">
-    <div class="lb-card__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
-    </div>
-    <div class="lb-card__body">
-      <h3>Nested systems stay traceable</h3>
-      <p>Agents can call plans, plans can call agents, and sub-agents can become tools &mdash; while sessions, event logs, costs, and OpenTelemetry spans roll up automatically.</p>
-      <a href="https://core.lazybridge.com/guides/mid/session/" class="lb-card__link">See Session &rarr;</a>
-    </div>
-  </div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Swap the engine</h3><p>ClaudeCodeEngine, CodexEngine and LLMEngine use the same Agent surface for tools, memory and sessions.</p><a href="#engines" class="lb-card__link">See the code &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Separate writing from review</h3><p>Delegate a job, keep its evidence, and route its review to the opposite engine. The producer never signs its own review.</p><a href="#collaboration" class="lb-card__link">Follow a job &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Keep work in a shared project</h3><p>Plans, task claims, acceptance contracts and verification records live in a Store. Schedules render as deterministic Gantt charts.</p><a href="#projects" class="lb-card__link">See the project layer &rarr;</a></div></div>
 </section>
 
-<!-- ═══════════════════ DIAGRAM DECK (unified) ═══════════════════ -->
-<div class="lb-concepts" markdown="1">
+<div class="lb-home-section" markdown="1">
 
-<div class="lb-concepts__header">
-<h2>Under the hood</h2>
-<p class="lb-concepts__sub">From a one-liner to governed multi-agent pipelines &mdash; one composition model throughout.</p>
-</div>
+## Claude Code / Codex as engines {#engines}
 
-=== "Complexity"
+**Agent = Engine + Tools + State.** `ClaudeCodeEngine` runs through the Claude Agent SDK and its local runtime; `CodexEngine` speaks to `codex app-server`. With a subscription login, calls use that plan's quota instead of per-token API billing. The login determines the billing path; LazyBridge does not change an API-key login into a subscription login.
 
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/progressive-complexity.png" alt="Progressive Complexity: 6 steps from a single Agent call to a full Multi-Agent System" />
-    </div>
+```python
+from lazybridge import Agent, ClaudeCodeEngine, CodexEngine, LLMEngine, Memory, Session
 
-=== "Agent model"
+def project_status() -> str:
+    """Return this example project's status."""
+    return "The draft is ready for review."
 
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/agent-overview.png" alt="Agent = Engine + Tools + State" />
-    </div>
+state = dict(tools=[project_status], memory=Memory(), session=Session())
+agent = Agent(engine=ClaudeCodeEngine(), **state)
+agent = Agent(engine=CodexEngine(), **state)  # same tools, memory and session
+agent = Agent(engine=LLMEngine("gpt-6.1-sol"), **state)  # API-backed alternative
+```
 
-=== "Engine"
+This constructs the alternatives without making a model call. Subscription engines need their local runtime signed in; the API alternative needs provider credentials. The shared surface does not imply identical native permissions or model capabilities.
 
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/engine-switchboard.png" alt="Engine Switchboard: swap LLMEngine, Plan, HumanEngine, or Supervisor" />
-    </div>
+For continuity across processes, use `persist_session=True` / `session_id` on Claude or `persist_thread=True` / `thread_id` on Codex. Both accept `session_alias` through `SessionRegistry`. LazyBridge state can be reused when swapping engines; a native session or thread stays with its original engine.
 
-=== "Recursive tools"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/recursive-tools.png" alt="Recursive Tools: functions, MCP, plans, and agents all compose through the same tool interface" />
-    </div>
-
-=== "Plan → Agent"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/plan-calls-agent.png" alt="Plan Calls Agent: a plan step can invoke a nested agent" />
-    </div>
-
-=== "Human review"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/human-review-loop.png" alt="Human Review Loop: agent produces output, human approves, edits, or stops" />
-    </div>
-
-=== "Pulse overview"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/pulse-agent-overview.jpg" alt="PulseAgent Overview: LazyPulse adds adapters, tick loop, and policy to a LazyBridge Agent" />
-    </div>
-
-=== "Tick loop"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/pulse-tick-loop.jpg" alt="One Tick, Start to Finish: Recover, Intake, Execute, Emit on every heartbeat" />
-    </div>
-
-=== "Policy"
-
-    <div class="lb-diagram-wrap">
-      <img src="assets/diagrams/pulse-policy-matrix.jpg" alt="Trust &times; Action Matrix: PulsePolicy authorizes by sender identity before the worker runs" />
-    </div>
+[Claude Code engine](https://core.lazybridge.com/guides/full/claude-code-engine/) · [Codex engine](https://core.lazybridge.com/guides/full/codex-engine/) · [Engine permissions](https://core.lazybridge.com/guides/full/coding-agent-config/)
 
 </div>
 
-<!-- ═══════════════════ CODE BLOCK ═══════════════════ -->
-<div class="lb-code-panel" markdown="1">
+<div class="lb-home-section" markdown="1">
 
-<span class="lb-code-caption">Same mental model: from a one-line agent to nested, checkpointed pipelines.</span>
+## One writes, the other reviews {#collaboration}
 
-=== "Simplest"
+**The producer never signs its own review.** Configure a different engine as the reviewer for a small output, or use the LazyTools code bridge for repository work that needs time, write access and approvals.
 
-    ```python
-    from lazybridge import Agent, LLMEngine
+```python
+from lazybridge import Agent, ClaudeCodeEngine, CodexEngine
 
-    agent = Agent(engine=LLMEngine("claude-sonnet-4-6"))
-    print(agent("Explain LazyBridge in one sentence.").text())
-    ```
+reviewer = Agent(name="codex-reviewer", engine=CodexEngine())
+writer = Agent(name="claude-writer", engine=ClaudeCodeEngine(),
+               verify=reviewer, max_verify=3)
+result = writer("Draft a Python function that blocks deployment from Friday 15:00 through Sunday.")
+print(result.text())
+```
 
-=== "Pipelines that nest"
+`verify=` checks the output and retries with feedback. It returns the last output if the attempt limit is exhausted, so a returned result is not proof of approval. Use explicit verification records and deterministic checks when acceptance must gate the next step.
 
-    ```python
-    from lazybridge import Agent, LLMEngine, Plan, Step, Session, from_step
+For longer tasks, the **async code bridge** gives you `run`, `pending`, `approve`, `result` and `cancel`. Detached jobs run in a separate process; a durable ticket queue holds escalation requests with the command and reason. Unfinished jobs retain best-effort workspace evidence to inspect after a failure.
 
-    search    = Agent(engine=LLMEngine("gpt-5.4-mini"),      name="search")
-    summarise = Agent(engine=LLMEngine("gemini-2.5-pro"),    name="summarise")
-    writer    = Agent(engine=LLMEngine("claude-sonnet-4-6"), name="write")
+```sh
+lazytools-code-bridge run --detach --engine claude --cwd . --task "Implement the agreed retry fix" --session retry-fix
+lazytools-code-bridge pending --json
+lazytools-code-bridge approve APPROVAL_ID
+lazytools-code-bridge result WRITER_JOB_ID
+lazytools-code-bridge run --detach --tier writing --review-of WRITER_JOB_ID --cwd . --task "Review the retry fix; report defects without editing"
+lazytools-code-bridge cancel ACTIVE_JOB_ID --reason "Stop this attempt"
+```
 
-    research = Agent(
-        engine=Plan(Step("search"), Step("summarise")),
-        tools=[search, summarise], name="research",
-    )
-    article = Agent(
-        engine=Plan(Step("research"),
-                    Step("write", context=from_step("research"))),
-        tools=[research, writer], session=Session(),
-    )
-    print(article("AI agents in 2026").text())
-    ```
+Run each command at the relevant stage: replace the uppercase IDs with IDs printed by the bridge, inspect a ticket before approving, and launch review after the writer finishes. `--tier … --review-of` excludes the producer's engine; if the opposite engine cannot be admitted, review is refused. `wait JOB_ID` follows a detached job without owning its lifetime. `--timeout` configures the engine request timeout.
 
-=== "Agents route each other"
+The synchronous MCP tools include `codex_code_review`, `codex_write`, `claude_code_review`, `claude_ask` and `claude_code_write`. Their `session_name` aliases resume durable conversations; MCP calls still wait for completion.
 
-    ```python
-    from lazybridge import Agent, AgentPool, LLMEngine, conclude
-
-    pool = AgentPool()
-    researcher = Agent(engine=LLMEngine("claude-sonnet-4-6", max_tool_calls_per_turn=1),
-                       name="researcher", tools=[pool.as_tool(), conclude])
-    writer     = Agent(engine=LLMEngine("claude-sonnet-4-6", max_tool_calls_per_turn=1),
-                       name="writer", tools=[pool.as_tool(), conclude])
-    pool.register(researcher, writer)        # register after construction
-
-    # one pool = one local action space; researcher and writer self-organise
-    # inside it. researcher may route("writer", ...); any agent may conclude(...)
-    print(researcher("Brief me on 2026 AI trends.").text())
-    ```
+[Async bridge and approvals](https://tools.lazybridge.com/code-bridge/) · [Code support tools](https://tools.lazybridge.com/code-support/) · [Worked writer/reviewer example](blog/posts/claude-writes-codex-reviews.md)
 
 </div>
 
-<!-- ═══════════════════ ECOSYSTEM ═══════════════════ -->
-<section class="lb-ecosystem">
-  <div class="lb-ecosystem__header">
-    <h2>The LazyBridge ecosystem</h2>
-    <p>Not an agent framework &mdash; a composition runtime. A stable core, its extensions, and a finance data stack &mdash; one mental model.</p>
-    <p class="lb-eco-note">Only <strong>LazyBridge</strong> is published on PyPI. Everything else installs from GitHub &mdash; copy the command on each card (append <code>@vX.Y.Z</code> to pin a release tag).</p>
-  </div>
+<div class="lb-home-section" markdown="1">
 
-  <div class="lb-ecosystem__cards">
+## A shared project layer {#projects}
 
-    <a href="https://core.lazybridge.com/" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--core">core</div>
-      <h3>LazyBridge</h3>
-      <p>The composition runtime. Build agents and pipelines where functions, plans, humans, and other agents all share one tool interface.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install lazybridge</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
+LazyTools keeps project records, plans and schedules in a LazyBridge `Store`, with `DurableBlackboard` task claims, acceptance contracts, verification states and a per-project quota brake. Gantt charts render from those records in code, without a model call. Point both callers at the same Store to share state.
 
-    <a href="https://pulse.lazybridge.com/" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
-      <h3>LazyPulse</h3>
-      <p>Turn workflows into always-on governed services. Gmail push notifications, Telegram, and webhooks feed a tick loop that runs policy, requests review, and keeps an audit trail.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install "lazypulse @ git+https://github.com/selvaz/LazyPulse.git"</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
+```python
+from lazybridge import Store
+from lazybridge.ext.planners import DurableBlackboard
+from lazytools.projects import brake, owner, records
 
-    <a href="https://tools.lazybridge.com/" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--tools">tools</div>
-      <h3>LazyTools</h3>
-      <p>Connector clients, reusable tool providers, and safety wrappers for bringing external systems into LazyBridge without bloating the core.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install "lazytoolkit @ git+https://github.com/selvaz/LazyTools.git"</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
+store = Store()  # in-memory demo; use Store(db="projects.sqlite") for persistence
+records.open_project(store, project_id="retry-fix", title="Retry fix",
+                     objective="Handle transient failures and verify boundary cases")
+owner.set_project_owner(store, "retry-fix", "shared")
+board = DurableBlackboard(store, plan_id="project:retry-fix")
+board.set_plan("Write, then review with the opposite engine",
+               ["Implement retry fix", "Review and run boundary checks"])
+print(brake.get_project_brake_enabled(store, "retry-fix"))  # True
+```
 
-    <a href="https://github.com/selvaz/LazyCrawler" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--data">data</div>
-      <h3>LazyCrawler</h3>
-      <p>Web crawl &amp; search in three modes &mdash; pure (no-LLM), local-ML (zero tokens), and smart (LazyBridge LLM) &mdash; with a secure-by-default SSRF guard. Surfaced into agents through LazyTools.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install "lazycrawler @ git+https://github.com/selvaz/LazyCrawler.git"</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
+This creates a draft and its task board. Promotion, scheduling, claiming and contract acceptance are separate operations. Owner labels are not access controls. The brake gates work through admission APIs; it does not stop a session's direct work or kill a running process.
 
-    <a href="https://github.com/selvaz/market-data-hub" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--finance">finance</div>
-      <h3>market-data-hub</h3>
-      <p>The single source of financial data for the ecosystem: a DuckDB warehouse with a read-only discovery, resolution and extraction API. Agents reach it through LazyTools&rsquo; <code>datahub_*</code> tools &mdash; ids in, bounded results out.</p>
-      <div class="lb-eco-card__footer">
-        <code>pip install "market-data-hub @ git+https://github.com/selvaz/market-data-hub.git"</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
+[Project layer, contracts and Gantt](https://tools.lazybridge.com/projects/)
 
-    <a href="https://github.com/selvaz/LazyFin" class="lb-eco-card">
-      <div class="lb-eco-card__badge lb-eco-card__badge--finance">finance</div>
-      <h3>LazyFin <span style="font-weight:400;font-size:0.75em">(private)</span></h3>
-      <p>Portfolio Manager AI &mdash; the finance <strong>domain layer</strong> on top of the whole stack: canonical data model, deterministic finance kernel (returns, exposure, risk, optimizer), security-selection scoring, and PM agents. Agents orchestrate and explain; deterministic engines calculate and enforce constraints.</p>
-      <div class="lb-eco-card__footer">
-        <code>LazyFin &rarr; {LazyPulse, LazyCrawler, LazyTools} &rarr; LazyBridge</code>
-        <span class="lb-eco-arrow">&rarr;</span>
-      </div>
-    </a>
+</div>
 
-  </div>
-</section>
+<div class="lb-home-section" markdown="1">
 
-<!-- ═══════════════════ LAZYPULSE CASE ═══════════════════ -->
-<section class="lb-pulse-case">
-  <div class="lb-pulse-case__header">
-    <div class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</div>
-    <h2>From workflow to governed service.</h2>
-    <p class="lb-pulse-case__sub">
-      LazyPulse runs LazyBridge agents on inboxes, webhooks and schedules,
-      applies policy before risky actions, escalates to human review
-      and logs every decision.
-    </p>
-  </div>
+## Choose an engine and model from remaining quota {#quota-routing}
 
-  <div class="lb-pulse-flow">
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Input</span>
-      <span class="lb-pulse-step__value">Telegram &bull; Gmail &bull; Webhook</span>
-    </div>
-    <span class="lb-pulse-arrow">&darr;</span>
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Agent</span>
-      <span class="lb-pulse-step__value">LazyPulse agent &mdash; always-on, tick-driven</span>
-    </div>
-    <span class="lb-pulse-arrow">&darr;</span>
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Policy</span>
-      <span class="lb-pulse-step__value">Auto-approve or escalate to human review</span>
-    </div>
-    <span class="lb-pulse-arrow">&darr;</span>
-    <div class="lb-pulse-step">
-      <span class="lb-pulse-step__label">Audit</span>
-      <span class="lb-pulse-step__value">Every decision logged &mdash; tamper-proof</span>
-    </div>
-  </div>
+The deterministic router walks the `basic`, `writing`, `thinking` and `critical` tier ladders and ranks eligible choices by quota admission margins. It accounts for engine/model restrictions, native session continuity and review separation. The bridge checks the selected model's weekly bucket and the engine's short window before launch.
 
-  <div class="lb-pulse-case__cta">
-    <a href="https://pulse.lazybridge.com/" class="lb-btn lb-btn--primary">Explore LazyPulse &rarr;</a>
+```sh
+lazytools-code-bridge route --tier writing --cwd . --json
+```
+
+This reads quota and explains the engine, model, effort and exclusions without launching a coding job. `run --tier writing` uses the same routing logic to launch work. Shared `route()` / `recommend()` default to autonomous admission; the bridge uses operator-directed admission, while still refusing absolute ceilings and unreadable telemetry.
+
+The ladders are configurable policy, not measured model rankings. There is no measured per-model subscription quota cost or published routing performance comparison here. **Planned proof:** a reproducible demo and benchmark comparing a fixed-engine baseline with quota routing on completion rate, accepted reviews, elapsed time and quota consumed.
+
+[Routing behavior and constraints](https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota)
+
+</div>
+
+<div class="lb-home-section" markdown="1">
+
+## LazyTools connects the work {#lazytools}
+
+LazyBridge supplies the Agent and engine primitives. **LazyTools is the integration layer**: MCP server, async code bridge, shared projects, routing and connectors. Expose a focused tool set to your coding runtime rather than maintaining a separate integration for every agent.
+
+```sh
+lazytools-mcp projects code_review claude_review code_write code_sessions --allow-unsafe
+```
+
+This serves the named providers over stdio. Coding providers require explicit opt-in even for reviews because repository text and diffs leave the machine for model processing. `code_write` also requires `LAZYTOOLS_CODE_WRITE_BASE_DIR`; configure `LAZYTOOLS_PROJECTS_STORE_DB` for a durable shared project Store. `--allow-unsafe` enables mutating tools, so choose providers deliberately. The async bridge keeps its separate ticket workflow.
+
+The source versions checked here are **LazyBridge 1.8.0** and **LazyTools 0.10.1** (distribution `lazytoolkit`, import `lazytools`). LazyTools currently declares Alpha maturity; shipped modules are not a blanket stability promise.
+
+Install into your project environment:
+
+```sh
+python -m pip install "lazybridge[claude-code,openai]==1.8.0"
+python -m pip install "lazytoolkit[engines,mcp] @ git+https://github.com/selvaz/LazyTools.git@v0.10.1"
+```
+
+Sign the local Claude Code and Codex runtimes into their subscription accounts before using them as engines. Installing Python packages does not perform that sign-in. Connectors and data tools are available when your project needs them.
+
+[MCP server setup](https://tools.lazybridge.com/mcp-server/) · [LazyTools docs](https://tools.lazybridge.com/) · [LazyBridge quickstart](https://core.lazybridge.com/quickstart/)
+
+</div>
+
+<div class="lb-home-section" markdown="1">
+
+## Built with LazyBridge {#built-with}
+
+### LazyCommittee — private repository
+
+An AI investment committee organised as a linear pipeline of dated documents: daily digests for geopolitics, economics, markets and central banks → weekly world state (strategic and tactical) → asset-class views → portfolio. It uses LazyBridge with Claude Code and Codex as engines. Code computes the numbers; the LLM receives the results. Deterministic publication checks cover freshness, numeric lint and source mapping; blocking findings gate publication, while some narrative lint findings remain warnings. Daily and weekly runs are scheduled.
+
+These projects are private. If you are interested in collaborating, write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
+
+### LazyBricks — private repository
+
+A local 3D brick-model editor with a Three.js front end, FastAPI + SQLite back end and an index of the full installed LDraw Official Parts Library. A phone interface and MCP server let a person and an AI agent work on the same projects and revisions. Mobile interaction has been checked through touch/viewport emulation; a physical-phone test remains open.
+
+These projects are private. If you are interested in collaborating, write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
+
+[Read the project notes](built-with.md)
+
+</div>
+
+<section class="lb-home-cta">
+  <h2>Build a workflow with two engines and one project.</h2>
+  <div class="lb-cta-row">
+    <a href="https://core.lazybridge.com/guides/full/coding-agents/" class="lb-btn lb-btn--primary">Coding agents in practice &rarr;</a>
+    <a href="mailto:lazybridgelabs@gmail.com" class="lb-btn lb-btn--ghost">lazybridgelabs@gmail.com</a>
   </div>
 </section>
-
-<!-- ═══════════════════ UPDATES ═══════════════════ -->
-<section class="lb-updates">
-  <div class="lb-updates__header">
-    <h2>What's new</h2>
-    <p class="lb-updates__sub">Key releases and milestones across the LazyBridge ecosystem.</p>
-  </div>
-
-  <ul class="lb-update-list">
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Aug 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">LazyBridge 1.2.0 &mdash; a coding agent that may write, once someone says yes</p>
-        <p class="lb-update-desc">A gated coding agent could never be <em>asked</em> about a write: the engine handed the runtime a read-only tool list, so the model simply never had <code>Write</code>. <code>ClaudeCodePolicy.extra_tools</code> grants those names, and granting is not pre-approving &mdash; every call still routes through the approval gate. Because <code>file_roots</code> confinement is a hook over the file tools only, <code>Bash</code> has no path sandbox at all: the engine now <strong>refuses at construction</strong> to grant it without a gate, rather than advertising a boundary it cannot deliver. Also in this release: <code>CodexEngine(thread_source=&hellip;)</code> and <code>ClaudeCodeEngine(tag=&hellip;)</code> label the threads and sessions an engine creates, so a retention pass can find its own and leave your interactive ones alone. <a href="https://core.lazybridge.com/guides/full/coding-agents/">Coding agents in practice &rarr;</a> &middot; <a href="https://core.lazybridge.com/changelog/">Changelog &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Aug 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">LazyBridge 1.1.0 &mdash; Claude Code and Codex become engines</p>
-        <p class="lb-update-desc">The two local coding runtimes are now ordinary LazyBridge engines: same <code>Agent</code>, <code>Memory</code>, <code>Session</code> and <code>tools=</code> surface as <code>LLMEngine</code>, each reusing its own CLI login rather than an API key in the project. <code>ClaudeCodeEngine</code> speaks to the Claude Agent SDK in-process; <code>CodexEngine</code> speaks JSON-RPC to <code>codex app-server</code>. Both keep durable conversations &mdash; <code>persist_session=</code> / <code>persist_thread=</code> hand back a handle a <em>later process</em> can resume, and a resumed conversation stops re-sending <code>Memory</code>, because the runtime already holds the history. This release also adds <code>DurableBlackboard</code>: a to-do list in a <code>Store</code> with claim, lease and attempt limits, so work interrupted by a crash returns to the queue instead of staying "in progress" forever. <a href="https://core.lazybridge.com/guides/full/claude-code-engine/">Claude Code engine &rarr;</a> &middot; <a href="https://core.lazybridge.com/guides/full/codex-engine/">Codex engine &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Aug 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--tools">tools</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">DB registry &amp; artifact catalog &mdash; find any repo's database, catalog any report</p>
-        <p class="lb-update-desc">LazyTools adds a core, always-installed <code>registry</code> module: <code>KNOWN_DBS</code> declares &mdash; in code, one PR at a time &mdash; which env var names which repo's database, so callers resolve a path instead of guessing an env var name. Alongside it, a per-repo SQLite artifact catalog (<code>register_artifact</code>/<code>search_artifacts</code>) lets scheduled jobs and agents register reports, digests, and analysis results as searchable metadata &mdash; without pushing raw payloads through an LLM's context. <code>search_everywhere()</code> fans out across every repo's catalog at once. market-data-hub, LazyCrawler, LazyStats, and LazyPortfolio are wired in already. <a href="https://tools.lazybridge.com/registry/">See the guide &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Jul 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">LazyBridge 1.0.1 &mdash; the first Stable release</p>
-        <p class="lb-update-desc"><code>lazybridge.__stability__</code> moves <code>"beta"</code> &rarr; <code>"stable"</code>: the core public API contract (<code>Agent</code>, <code>Plan</code>, <code>Tool</code>, <code>Envelope</code>) won't break without a major version bump. Guardrails and Checkpoint/resume are promoted Alpha &rarr; Stable in this release, backed by a live adversarial/load stress-testing pass &mdash; <code>LLMGuard</code> resisted a deliberate prompt-injection/tag-smuggling attempt, and <code>Plan</code> checkpoint/resume correctly resumed after a forced step failure without re-billing the completed step. Not everything is done: Native tools, <code>HumanEngine</code>/<code>SupervisorEngine</code>, Evals, and the Visualizer remain Alpha/Experimental, called out explicitly rather than glossed over. <a href="https://core.lazybridge.com/#maturity">Maturity table &rarr;</a> &middot; <a href="https://core.lazybridge.com/changelog/">Changelog &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Jun 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">Event-driven Gmail &mdash; push notifications are the new default</p>
-        <p class="lb-update-desc">Gmail now tells the agent when mail arrives instead of being polled: <code>GmailPushInbox</code> arms Gmail's <code>users.watch</code> onto a Cloud&nbsp;Pub/Sub topic (and re-arms it before expiry), receives push notifications on a token-protected endpoint, and makes <strong>one</strong> <code>history.list</code> call per email received &mdash; <strong>zero Gmail API calls while the mailbox is quiet</strong>. At-least-once delivery with a persisted cursor that never skips mail, burst-safe draining, self-healing resync, and exponential backoff on adapter failures. <a href="https://pulse.lazybridge.com/gmail/">Gmail push &amp; polling guide &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Jun 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">True token streaming for Plan &amp; ReplanEngine</p>
-        <p class="lb-update-desc"><code>Agent(engine=plan).stream(&hellip;)</code> now streams tokens <strong>live from each sequential step</strong> as the pipeline runs &mdash; watch it think step by step instead of waiting for one final block. Parallel bands stay silent (no token interleaving), early disconnects cancel the in-flight run, and <code>Plan(stream_buffer=)</code> bounds the queue. Plus <code>Plan.store_write_is_current()</code>: sidecar consumers can now mechanically detect the checkpoint crash-window instead of reconciling by hand. <a href="https://core.lazybridge.com/guides/full/plan/#streaming">Plan streaming &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Jun 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">ReplanEngine &mdash; the adaptive replan loop, with checkpoint/resume</p>
-        <p class="lb-update-desc">The dynamic counterpart to <code>Plan</code>: instead of a fixed DAG, a <strong>planner agent</strong> (built with <code>output=PlanRound</code>) decides the work one round at a time. <code>ReplanEngine</code> dispatches the tasks it emits &mdash; agents, plain functions, or pool routes alike &mdash; running <code>parallel=True</code> siblings concurrently, then feeds the results back for the next round. Workers can be plain functions, so it works on a simple agent too. Pass <code>store=</code> + <code>checkpoint_key=</code> and it <strong>checkpoints after every round</strong>, so a crash resumes from the right round instead of redoing completed work &mdash; same single-writer semantics as <code>Plan</code>. <a href="https://core.lazybridge.com/guides/full/replan-engine/">ReplanEngine guide &rarr;</a> &middot; <a href="https://core.lazybridge.com/recipes/dynamic-replanning/">Dynamic re-planning recipe &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">Jun 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--tools">tools</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">Code Support Agent &mdash; delegate to Claude Code &amp; Codex</p>
-        <p class="lb-update-desc">LazyTools adds a <strong>Code Support Agent</strong> connector that puts <strong>Claude Code</strong> and <strong>Codex</strong> behind a LazyBridge agent &mdash; each in two modes: <strong>CLI</strong> (the CLI is the agent: one call, one delegated task) or <strong>MCP</strong> (the CLI exposes its own tools for your agent to orchestrate). <strong>Read-only by construction</strong>: write access lives behind the gated <code>CodeWriteTools</code> capability (mandatory <code>base_dir</code> sandbox + one-shot confirmation). <code>build_cli_collaboration()</code> runs the default three-session flow &mdash; Claude Code analyses, Codex critiques, a synthesizer writes the <em>plan</em>; execution is opt-in and sandboxed. <a href="https://tools.lazybridge.com/code-support/">See the guide &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">May 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">Pool chains &mdash; dynamic workflows from bounded local action spaces</p>
-        <p class="lb-update-desc"><code>AgentPool</code> isn't just a routing registry &mdash; it's a <strong>bounded local action space</strong>: the set of specialists an agent may reach directly via a single <code>route(agent_name,&nbsp;task)</code> tool. Give a chosen agent access to a second pool and it becomes a <strong>gateway</strong> that links one local world to the next, composing a <strong>pool chain</strong>. The builder defines the local worlds and transition points; the runtime path emerges from agent decisions. Where <code>Plan</code> is the <em>static</em> workflow runtime (topology known up front), <code>AgentPool</code> is the <em>dynamic</em> one &mdash; and <code>conclude(&hellip;)</code> lets a terminal agent end the whole chain. Pair with <code>LLMEngine(max_tool_calls_per_turn=1)</code> for a single, traceable path. <a href="https://core.lazybridge.com/guides/mid/dynamic-graph/">Dynamic graph &rarr;</a> &middot; <a href="https://core.lazybridge.com/guides/mid/pool-chain/">Pool chains &rarr;</a></p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">May 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">First framework to support Claude Opus 4.8</p>
-        <p class="lb-update-desc">LazyBridge ships <code>claude-opus-4-8</code> support on day one &mdash; adaptive thinking, no-sampling mode, updated thinking-token extraction (SDK &ge;&nbsp;0.105), and tier cascade (<code>top&nbsp;&rarr;&nbsp;opus-4-8</code>, <code>expensive&nbsp;&rarr;&nbsp;opus-4-7</code>).</p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">May 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--pulse">pulse</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">LazyPulse v0.2.0 &mdash; cron triggers &amp; PulsePolicy</p>
-        <p class="lb-update-desc">Schedule agents on cron expressions with timezone support. <code>PulsePolicy</code> gates every action on sender trust level before the worker runs, with concurrency-safe compare-and-swap scheduling.</p>
-      </div>
-    </li>
-
-    <li class="lb-update-item">
-      <div class="lb-update-item__meta">
-        <span class="lb-update-date">May 2026</span>
-        <span class="lb-eco-card__badge lb-eco-card__badge--core">core</span>
-      </div>
-      <div class="lb-update-item__body">
-        <p class="lb-update-title">LazyBridge v0.9 &mdash; one framework becomes three</p>
-        <p class="lb-update-desc">v0.9 marks the point where a single monolithic package was split into three focused libraries: <strong>LazyBridge</strong> (the composition runtime), <strong>LazyPulse</strong> (always-on governed services), and <strong>LazyTools</strong> (connector clients and safety wrappers). Each package ships and versions independently, so teams only install what they need.</p>
-      </div>
-    </li>
-
-  </ul>
-</section>
-
-<!-- ═══════════════════ PROVIDERS ═══════════════════ -->
-<section class="lb-providers">
-  <p class="lb-providers__caption">Native adapters for the leading providers &mdash; plus any model via LiteLLM or LM Studio</p>
-  <div class="lb-providers__logos">
-    <img src="assets/providers/anthropic.svg" alt="Anthropic" title="Anthropic" />
-    <img src="assets/providers/openai.svg"    alt="OpenAI"    title="OpenAI" />
-    <img src="assets/providers/google.svg"    alt="Google"    title="Google" />
-    <img src="assets/providers/deepseek.svg"  alt="DeepSeek"  title="DeepSeek" />
-    <img src="assets/providers/ollama.svg"    alt="Ollama"    title="Ollama" />
-  </div>
-</section>
-
-<!-- Footer lives in the theme footer block (overrides/main.html) so it spans the
-     full page width instead of the centred content column. -->

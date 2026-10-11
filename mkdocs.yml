@@ -1,5 +1,5 @@
 site_name: LazyBridge
-site_description: A Python composition runtime for LLM workflows — not an agent framework. Compose functions, agents, plans and humans through one tool interface.
+site_description: Claude Code and Codex as LazyBridge agent engines, with opposite-engine review, async delegation, shared projects and quota routing through LazyTools.
 site_url: https://lazybridge.com/
 repo_url: https://github.com/selvaz/LazyBridge
 repo_name: selvaz/LazyBridge
@@ -174,11 +174,12 @@ extra:
       link: https://pypi.org/project/lazybridge/
       name: PyPI
     - icon: fontawesome/solid/envelope
-      link: mailto:LazyBridgeLabs@gmail.com
+      link: mailto:lazybridgelabs@gmail.com
       name: Email LazyBridge Labs
 
 nav:
   - Home: index.md
+  - Built with LazyBridge: built-with.md
   - Blog: blog/index.md
   - Quickstart: https://core.lazybridge.com/quickstart/
   - Concepts: https://core.lazybridge.com/concepts/mental-model/

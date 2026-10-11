@@ -702,3 +702,25 @@
   line-height: 1.6;
   opacity: 0.75;
 }
+
+/* Homepage narrative sections follow the existing purple card/hero styling. */
+.lb-home-section,
+.lb-home-cta {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 6rem;
+  box-sizing: border-box;
+  border-top: 1px solid var(--lb-border);
+}
+.lb-home-section h2 { color: var(--lb-text-h); font-weight: 700; }
+.lb-home-section p { line-height: 1.75; }
+.lb-home-section pre { max-width: 100%; overflow-x: auto; }
+.lb-home-cta { background: var(--lb-purple-soft); }
+.lb-home-cta h2 { margin-top: 0; }
+@media (max-width: 900px) {
+  .lb-home-section, .lb-home-cta { padding: 2rem 2rem; }
+}
+@media (max-width: 600px) {
+  .lb-home-section, .lb-home-cta { padding: 1.5rem 1.25rem; }
+  .lb-home-cta .lb-btn { white-space: normal; overflow-wrap: anywhere; }
+}
