@@ -781,3 +781,8 @@
   .lb-home-section, .lb-home-cta { padding: 1.5rem 1.25rem; }
   .lb-home-cta .lb-btn { white-space: normal; overflow-wrap: anywhere; }
 }
+
+/* Engine parity band: three equal engines above the shared Agent example. */
+.lb-engine-parity { margin: 0 0 1.6rem; }
+.lb-engine-parity .lb-card p { margin: .35rem 0; }
+.lb-engine-parity code { font-size: .85em; }

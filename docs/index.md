@@ -2,17 +2,17 @@
 hide:
   - navigation
   - toc
-title: LazyBridge — build complex pipelines with Claude Code and Codex
-description: Interchangeable engines, independent review and deterministic project records. See real work built with LazyBridge.
+title: "LazyBridge — one agent, any engine: subscription or API"
+description: "Claude Code and Codex on your subscription, or any API model per token — same Agent, same tools, same state. Build complex pipelines and see real work built with LazyBridge."
 ---
 
 <section class="lb-hero lb-manifesto">
   <div class="lb-hero__copy">
     <div class="lb-pill">Agent = Engine + Tools + State</div>
-    <h1>Build complex pipelines with <span class="accent">Claude Code and Codex</span>.</h1>
-    <p class="lb-subhead">LazyBridge makes coding runtimes engines of your Python agent. LazyTools connects their work into durable projects.</p>
+    <h1>One agent. Any engine. <span class="accent">Subscription or API.</span></h1>
+    <p class="lb-subhead">LazyBridge treats Claude Code and Codex on your subscription exactly like API models billed per token: same Agent, same tools, same state. Swap the engine in one line, and build complex pipelines where one engine writes and another reviews.</p>
     <ul class="lb-principles">
-      <li>Swap subscription and API engines; keep tools and state.</li>
+      <li>Subscription agents and API models are equal engines.</li>
       <li>One writes, the other reviews. The producer never signs its own review.</li>
       <li>Code computes. The LLM reads the results.</li>
       <li>Use deterministic gates before anything ships.</li>
@@ -22,26 +22,27 @@ description: Interchangeable engines, independent review and deterministic proje
       <a href="#engines" class="lb-btn lb-btn--ghost">Read the code &rarr;</a>
     </div>
   </div>
-  <figure class="lb-hero__proof">
-    <a href="#built-with"><img src="assets/showcase/stazione-fronte.webp" alt="Victorian station built brick by brick by the LazyBricks pipeline" width="1600" height="1600" fetchpriority="high" /></a>
-    <figcaption>LazyBricks · from brief and concept to an LDraw model</figcaption>
-  </figure>
+  <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
 </section>
 
 <div class="lb-demo lb-home-section" markdown="1">
 
-## Swap the engine. Keep the agent. {#engines}
+## Subscription or tokens: same Agent. {#engines}
+
+<div class="lb-feature-cards lb-engine-parity">
+  <div class="lb-card"><div class="lb-card__body"><h3>Claude Code</h3><p><strong>Subscription</strong> · your Claude plan quota.</p><p><code>ClaudeCodeEngine()</code></p></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Codex</h3><p><strong>Subscription</strong> · your ChatGPT plan quota.</p><p><code>CodexEngine()</code></p></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>API models</h3><p><strong>Per token</strong> · Anthropic, OpenAI, Google, DeepSeek, LiteLLM.</p><p><code>LLMEngine("model-id")</code></p></div></div>
+</div>
 
 <div class="lb-demo__grid" markdown="1">
 <div markdown="1">
 
-**Claude Code, Codex and provider APIs share one Agent contract.**
+**One Agent contract for every engine.** Tools, memory, session and verification are LazyBridge objects, not engine features: change the engine and the rest of your pipeline stays the same. Mix them freely — a subscription agent can write while an API model reviews, or the other way round.
 
-With a subscription login, the coding engines use your plan’s quota. Your tools, memory and session stay in Python when you change engines.
+The login decides billing: a subscription login uses the plan's quota, an API key is billed per token.
 
 [How it works →](https://core.lazybridge.com/guides/full/coding-agents/)
-
-
 
 </div>
 <div class="lb-demo__code" markdown="1">
@@ -54,9 +55,14 @@ def project_status() -> str:
     return "The draft is ready for review."
 
 state = dict(tools=[project_status], memory=Memory(), session=Session())
-agent = Agent(engine=ClaudeCodeEngine(), **state)
-agent = Agent(engine=CodexEngine(), **state)  # same tools, memory and session
-agent = Agent(engine=LLMEngine("gpt-6.1-sol"), **state)  # provider API
+
+# Subscription agents: your plan's quota
+claude = Agent(engine=ClaudeCodeEngine(), **state)
+codex = Agent(engine=CodexEngine(), **state)
+
+# API models: billed per token
+opus = Agent(engine=LLMEngine("claude-opus-5-5"), **state)
+gpt = Agent(engine=LLMEngine("gpt-6.1-sol"), **state)
 ```
 
 </div>
