@@ -119,6 +119,7 @@ The code bridge supports run, pending, approve, result and cancel. Native sessio
 lazytools-code-bridge run --detach --engine claude --cwd . --task "Implement the retry fix" --session retry-fix
 lazytools-code-bridge pending --json
 lazytools-code-bridge approve APPROVAL_ID
+lazytools-code-bridge wait WRITER_JOB_ID      # blocks until done / failed / interrupted
 lazytools-code-bridge result WRITER_JOB_ID
 lazytools-code-bridge run --detach --tier writing --review-of WRITER_JOB_ID --cwd . --task "Review the fix without editing"
 lazytools-code-bridge cancel ACTIVE_JOB_ID --reason "Stop this attempt"
