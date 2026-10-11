@@ -10,10 +10,10 @@ description: "Claude Code and Codex on your subscription, or any API model per t
   <div class="lb-hero__copy">
     <div class="lb-pill">Agent = Engine + Tools + State</div>
     <h1>One agent. Any engine. <span class="accent">Subscription or API.</span></h1>
-    <p class="lb-subhead">LazyBridge treats Claude Code and Codex on your subscription exactly like API models billed per token: same Agent, same tools, same state. Swap the engine in one line, and build complex pipelines where one engine writes and another reviews.</p>
+    <p class="lb-subhead">LazyBridge treats Claude Code and Codex on your subscription exactly like API models billed per token: same Agent, same tools, same state. Swap the engine in one line, and build pipelines where LLMs from different providers work together and review each other’s work — catching hallucinations and mistakes a single model would miss, and producing better code.</p>
     <ul class="lb-principles">
       <li>Subscription agents and API models are equal engines.</li>
-      <li>One writes, the other reviews. The producer never signs its own review.</li>
+      <li>Models from different providers review each other. The producer never signs its own review.</li>
       <li>Code computes. The LLM reads the results.</li>
       <li>Use deterministic gates before anything ships.</li>
     </ul>
@@ -72,14 +72,14 @@ gpt = Agent(engine=LLMEngine("gpt-6.1-sol"), **state)
 
 <div class="lb-demo lb-home-section" markdown="1">
 
-## One writes. The other reviews. {#collaboration}
+## Different providers, checking each other. {#collaboration}
 
 <div class="lb-demo__grid" markdown="1">
 <div markdown="1">
 
-**Make review a separate engine’s job.**
+**A second model from another provider reviews every output.**
 
-Give Claude Code the draft and Codex the review, or reverse the roles. The Agent verification loop brings reviewer feedback into the next attempt.
+Models trained differently make different mistakes: what one invents or overlooks, the other is likely to catch. Give Claude the draft and Codex the review — or any API model — and the Agent verification loop feeds the reviewer’s findings into the next attempt until the work passes.
 
 [How it works →](blog/posts/claude-writes-codex-reviews.md)
 

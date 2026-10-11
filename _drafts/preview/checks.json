@@ -5,7 +5,7 @@
     "scrollWidth": 1440,
     "images": [
       {
-        "alt": "Victorian station built brick by brick by the LazyBricks pipeline",
+        "alt": "LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch",
         "loaded": true
       },
       {
@@ -52,7 +52,7 @@
     "privateLabels": 3,
     "contacts": 3,
     "benchmarkNotes": 1,
-    "proseWords": 516
+    "proseWords": 629
   },
   {
     "viewport": "mobile-390",
@@ -60,7 +60,7 @@
     "scrollWidth": 390,
     "images": [
       {
-        "alt": "Victorian station built brick by brick by the LazyBricks pipeline",
+        "alt": "LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch",
         "loaded": true
       },
       {
@@ -107,6 +107,6 @@
     "privateLabels": 3,
     "contacts": 3,
     "benchmarkNotes": 1,
-    "proseWords": 516
+    "proseWords": 629
   }
 ]
