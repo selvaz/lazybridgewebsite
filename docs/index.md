@@ -25,6 +25,58 @@ description: "Claude Code and Codex on your subscription, or any API model per t
   <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
 </section>
 
+<div class="lb-demo lb-home-section lb-why" markdown="1">
+
+## Different models. One working system. {#why}
+
+<div class="lb-demo__grid" markdown="1">
+<div markdown="1">
+
+**LazyBridge began as a bridge between LLMs from different providers.** A model rarely spots its own mistakes; a model trained differently often does. So in LazyBridge they work together and review each other’s work, catching hallucinations and errors before they reach the result.
+
+**One building block: Agent = Engine + Tools + State.** Everything is a tool: a function, another agent, a whole pipeline. The engine can be anything: an API model, Claude Code or Codex on your subscription, a human, or a deterministic **Plan**. Every level keeps the same contract (tools, memory, verification, one Envelope out), so pipelines nest inside pipelines.
+
+**Build a team once. Reuse it as one tool in the next thing you build.**
+
+[Why LazyBridge →](https://core.lazybridge.com/why/)
+
+</div>
+<div class="lb-demo__code" markdown="1">
+
+```python
+from lazybridge import (Agent, ClaudeCodeEngine, CodexEngine,
+                        LLMEngine, Plan, Step)
+
+# OpenAI researches (API); Claude Code writes (subscription);
+# Codex, another provider, reviews the draft before it moves on.
+research = Agent(name="research", engine=LLMEngine("gpt-6.1-sol"))
+write = Agent(name="write", engine=ClaudeCodeEngine(),
+              verify=Agent(name="review", engine=CodexEngine()))
+
+# A deterministic Plan is just another engine; agents are its tools.
+report = Agent(name="report", engine=Plan(Step("research"), Step("write")),
+               tools=[research, write])
+
+# The whole pipeline is now one tool for the next agent.
+desk = Agent(engine=LLMEngine("claude-opus-5-5"), tools=[report])
+```
+
+<div class="lb-nest" aria-label="Diagram: an Agent whose tools include a Plan-driven Agent, whose tools are agents from different providers with a cross-provider reviewer">
+<div class="lb-nest__box"><span class="lb-nest__tag">Agent · desk</span><span class="lb-nest__engine">engine: Claude Opus (API)</span>
+<div class="lb-nest__box"><span class="lb-nest__tag">Agent · report</span><span class="lb-nest__engine">engine: Plan (deterministic)</span>
+<div class="lb-nest__row">
+<div class="lb-nest__leaf">research<br><small>OpenAI · API</small></div>
+<div class="lb-nest__leaf">write<br><small>Claude Code · subscription</small><br><small class="lb-nest__review">⟲ reviewed by Codex</small></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
 <div class="lb-demo lb-home-section" markdown="1">
 
 ## Subscription or tokens: same Agent. {#engines}

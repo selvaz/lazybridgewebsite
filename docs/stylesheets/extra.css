@@ -786,3 +786,14 @@
 .lb-engine-parity { margin: 0 0 1.6rem; }
 .lb-engine-parity .lb-card p { margin: .35rem 0; }
 .lb-engine-parity code { font-size: .85em; }
+
+/* "Different models. One working system." nested-agent diagram */
+.lb-nest { margin: 1.2rem 0 1rem; font-size: .82rem; }
+.lb-nest__box { border: 2px solid var(--md-primary-fg-color, #5c4ee5); border-radius: 12px; padding: .7rem .8rem .8rem; margin-top: .5rem; background: rgba(92, 78, 229, .04); }
+.lb-nest__box .lb-nest__box { border-style: dashed; background: rgba(92, 78, 229, .06); }
+.lb-nest__tag { font-weight: 700; margin-right: .6rem; }
+.lb-nest__engine { opacity: .75; }
+.lb-nest__row { display: flex; gap: .6rem; margin-top: .6rem; flex-wrap: wrap; }
+.lb-nest__leaf { flex: 1 1 8rem; border: 1px solid rgba(92, 78, 229, .45); border-radius: 10px; padding: .45rem .6rem; background: var(--md-default-bg-color, #fff); font-weight: 600; }
+.lb-nest__leaf small { font-weight: 400; opacity: .8; }
+.lb-nest__review { color: var(--md-accent-fg-color, #e05a47); }
