@@ -1,0 +1,112 @@
+[
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "images": [
+      {
+        "alt": "Victorian station built brick by brick by the LazyBricks pipeline",
+        "loaded": true
+      },
+      {
+        "alt": "Docs project schedule in the LazyCEO Gantt overview",
+        "loaded": true
+      },
+      {
+        "alt": "LazyCEO Brake page excerpt showing separate Codex and Claude Code quota-history charts",
+        "loaded": true
+      },
+      {
+        "alt": "Front view of the Victorian station with clock tower and brick facade",
+        "loaded": true
+      },
+      {
+        "alt": "Exploded storeys of the station showing the tower, roof and two floors",
+        "loaded": true
+      },
+      {
+        "alt": "Station ground-floor interior with counter, seating and platform",
+        "loaded": true
+      },
+      {
+        "alt": "Victorian station viewed from the tracks and covered platform",
+        "loaded": true
+      },
+      {
+        "alt": "Real economics digest excerpt with dated values, percentiles, source references and a source list",
+        "loaded": true
+      },
+      {
+        "alt": "Hierarchical asset-class allocation tree from the portfolio optimizer report",
+        "loaded": true
+      },
+      {
+        "alt": "LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset",
+        "loaded": true
+      },
+      {
+        "alt": "LazyCEO program Gantt: completed tasks, tasks in progress and planned tasks around today",
+        "loaded": true
+      }
+    ],
+    "privateLabels": 3,
+    "contacts": 3,
+    "benchmarkNotes": 1,
+    "proseWords": 516
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "scrollWidth": 390,
+    "images": [
+      {
+        "alt": "Victorian station built brick by brick by the LazyBricks pipeline",
+        "loaded": true
+      },
+      {
+        "alt": "Docs project schedule in the LazyCEO Gantt overview",
+        "loaded": true
+      },
+      {
+        "alt": "LazyCEO Brake page excerpt showing separate Codex and Claude Code quota-history charts",
+        "loaded": true
+      },
+      {
+        "alt": "Front view of the Victorian station with clock tower and brick facade",
+        "loaded": true
+      },
+      {
+        "alt": "Exploded storeys of the station showing the tower, roof and two floors",
+        "loaded": true
+      },
+      {
+        "alt": "Station ground-floor interior with counter, seating and platform",
+        "loaded": true
+      },
+      {
+        "alt": "Victorian station viewed from the tracks and covered platform",
+        "loaded": true
+      },
+      {
+        "alt": "Real economics digest excerpt with dated values, percentiles, source references and a source list",
+        "loaded": true
+      },
+      {
+        "alt": "Hierarchical asset-class allocation tree from the portfolio optimizer report",
+        "loaded": true
+      },
+      {
+        "alt": "LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset",
+        "loaded": true
+      },
+      {
+        "alt": "LazyCEO program Gantt: completed tasks, tasks in progress and planned tasks around today",
+        "loaded": true
+      }
+    ],
+    "privateLabels": 3,
+    "contacts": 3,
+    "benchmarkNotes": 1,
+    "proseWords": 516
+  }
+]

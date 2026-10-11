@@ -26,7 +26,7 @@ Schematically, the whole surface looks like this:
 ```python
 from lazybridge import Agent, LLMEngine
 
-agent = Agent(engine=LLMEngine("claude-opus-5"))
+agent = Agent(engine=LLMEngine("claude-sonnet-5-5"))
 result = agent("hello")
 print(result.text())
 ```
@@ -37,7 +37,7 @@ That's genuinely the whole surface to start. No separate "graph" abstraction to 
 
 Every `Agent` is three things composed together, and once this clicks, the rest of the framework is just filling in the blanks.
 
-- **Engine** — the thing that decides what happens next. Most of the time that's `LLMEngine`, wrapping a model provider. But it's swappable: a `Plan` engine follows a fixed sequence you define instead of letting the model improvise, a `HumanEngine` pauses for a person to approve a step, a `SupervisorEngine` gives you a REPL to drive things interactively.
+- **Engine** — the thing that decides what happens next. `LLMEngine` wraps a model provider API; `ClaudeCodeEngine` and `CodexEngine` use local coding runtimes and their login. A `Plan` engine follows a fixed sequence, a `HumanEngine` pauses for a person, and a `SupervisorEngine` gives you a REPL.
 - **Tools** — anything the agent is allowed to invoke. A plain function, another `Agent` (yes, agents can call agents), or a whole MCP server's worth of remote tools. They all live in the same list and get the same treatment.
 - **State** — how the agent remembers things: `Memory` for in-prompt history, `Store` for a durable blackboard, `Session` as an event bus you can observe.
 
@@ -57,12 +57,11 @@ def get_weather(city: str) -> str:
     return f"{city}: 22°C, sunny"
 
 
-agent = Agent(
-    engine=LLMEngine("claude-opus-5"),
-    tools=[Tool.wrap(get_weather, name="get_weather")],
-)
-
 if os.environ.get("ANTHROPIC_API_KEY"):
+    agent = Agent(
+        engine=LLMEngine("claude-sonnet-5-5"),
+        tools=[Tool.wrap(get_weather, name="get_weather")],
+    )
     result = agent("what's the weather in Rome and Paris?")
     print(result.text())
 else:
@@ -70,7 +69,7 @@ else:
     print("Set one and rerun: get_weather becomes a callable tool with zero schema code.")
 ```
 
-Run `pip install "lazybridge[anthropic]"`, drop that in a file, and try it both ways — with `ANTHROPIC_API_KEY` unset, and then with a real key exported. Same code, no crash either way. And when the key *is* there, LazyBridge reads the type hints and docstring off `get_weather` and builds the schema for you. That's one whole category of boilerplate from the top of this post, gone.
+Run `python -m pip install "lazybridge[anthropic]==1.8.0"` in your project environment. This example checks `ANTHROPIC_API_KEY` before constructing the API engine, so it can also run without credentials. LazyBridge reads the type hints and docstring off `get_weather` and builds the schema. The weather values here are fixed demo data, not a live forecast. For subscription engines and the current collaboration tools, see the [homepage](../../index.md#engines).
 
 ## What's next
 

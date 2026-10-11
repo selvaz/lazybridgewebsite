@@ -1,0 +1,123 @@
+# LazyBridge strengths analysis — October 2026
+
+Evidence checked on 11 October 2026. This draft is outside `docs_dir` and is not published by MkDocs. The source checkouts were read only. All changes belong to the website worktree on `refresh/engines-collaboration`.
+
+## Source baseline and maturity vocabulary
+
+- LazyBridge main: `e475be8`, package version **1.8.0** from `pyproject.toml` and `lazybridge/__init__.py`. Main contains transport fixes after the 1.8.0 release. Core `__stability__` is `stable`; this does not promote every engine or extension to Stable.
+- LazyTools main/release: `69957de`, **0.10.1**, released 2026-10-09. Distribution name **lazytoolkit**, import namespace **lazytools**; `pyproject.toml` requires `lazybridge>=1.8.0,<2.0` and still declares **Alpha**.
+- Private project descriptions use the owner-authorised README/documentation and narrowly checked implementation behavior. No private repository links, internal deployment paths, credentials, server information or portfolio contents belong on the site.
+- **Shipped** below means implemented in these source baselines, with supporting release/history and tests. It is not synonymous with Stable. **Beta** is used only if explicitly established by a source, rather than inferred. **Planned** means proposed work without an available result.
+
+## Strengths table
+
+Paths in the evidence column are relative to the named public repository. PR numbers come from its Git history; they are not interchangeable between repositories.
+
+| Strength | Evidence | Maturity |
+| --- | --- | --- |
+| Claude Code and Codex as interchangeable Agent engines | LazyBridge: `lazybridge/agent.py` (`Agent(engine, tools, memory, store, session, verify, max_verify)`); `lazybridge/engines/claude_code/engine.py` (`ClaudeCodeEngine`); `claude_code/sdk_client.py` (`AgentSdkClient`); `lazybridge/engines/codex/engine.py` (`CodexEngine`); `codex/app_server.py` (`CodexAppServerClient`); `tests/unit/engines/{claude_code,codex}/test_engine.py`. `CHANGELOG.md` 1.1.0 introduced coding engines; 1.8.0 and PRs #188–190 add hooks/transport fixes. | Shipped; coding engine modules still describe their prototype origins. Core Agent is Stable, not a blanket engine maturity guarantee. |
+| Durable native conversations and named aliases | LazyBridge: `lazybridge/engines/sessions.py` (`SessionRegistry`, `AliasBinding`); `persist_session` / `session_id`, `persist_thread` / `thread_id`, `session_alias`; `tests/unit/engines/test_sessions.py`, both engine test files and lock tests. PR #180, CHANGELOG 1.6.0; PR #184 and 1.6.2 lock fixes. LazyTools `_sessions.py`, `tests/test_code_sessions.py`, PR #175, CHANGELOG 0.8.1 add `session_name` to tools. | Shipped; native history remains engine-specific. |
+| Opposite-engine writing/review and async delegation | LazyTools: `src/lazytools/code_bridge/{cli.py,_jobs.py,_engines.py,_routing.py,_policy.py,_lockfile.py,_store.py}`. `run --detach`, `wait`, `pending`, `approve`, `reject`, `result`, `cancel`, `--review-of`; durable approvals and results; `tests/test_code_bridge{,_cli,_policy,_routing,_cancel,_evidence}.py`. PR #179 initial bridge, #181 readable tickets, #183 detach/wait, #186 tier/opposite-engine routing, #188 failure evidence/cancel/timeout, #189 release. CHANGELOG 0.9.0, 0.10.0, 0.10.1. LazyBridge `lazybridge/_verify.py` and `tests/unit/test_verify_judge.py` cover the smaller `verify=` loop. | Shipped; LazyTools package is Alpha. Opposite-engine selection is enforced on tier-based review, not on every arbitrary caller. |
+| MCP code tools as a synchronous integration | LazyTools: `src/lazytools/connectors/code_support/{_review.py,_claude_review.py,_writer.py,_sessions.py}` and `mcp_server/providers.py`. `codex_code_review`, `codex_review_changes`, `codex_ask`, `codex_write`, `claude_code_review`, `claude_ask`, `claude_code_write`, `code_sessions_*`. `tests/test_code_review_tool.py`, `test_code_support_mcp.py`, `test_code_sessions.py`; PR #175, CHANGELOG 0.8.1 migration to engines and per-call model/effort/session overrides. | Shipped; synchronous calls still block for the delegated turn; coding providers explicitly opt in. |
+| Shared projects, deterministic Gantt, claims, contracts and brake | LazyTools: `src/lazytools/projects/{records,owner,plan_edit,schedule,timeline,gantt,task_claims,contracts,verification,brake,admission}.py`; `connectors/projects/tools.py` (`ProjectsTools`); `tests/test_projects_{records,gantt,owner_brake,task_claims,contracts_verification,verification,schedule_timeline,mcp_tools}.py`. LazyBridge `lazybridge/ext/planners/durable_blackboard.py` (`DurableBlackboard`). PR #184, CHANGELOG 0.9.0. | Shipped; Alpha package. Shared mechanisms are available independently; final LazyCEO adoption/deployment is not established here. |
+| Deterministic quota-driven tiers and launch admission | LazyTools: `src/lazytools/routing/{router,live,policy,catalogue}.py`, `default_tiers.toml`; `route()`, `recommend()`, `CapabilityRequirement`, `ContinuityHint`; `code_bridge/_routing.py` selected-bucket admission. `tests/test_routing_{parity,policy,live,operator}.py`, `test_code_bridge_routing.py`, `tests/fixtures/routing_parity.json`. PR #186 and CHANGELOG 0.10.0. | Shipped policy/telemetry/routing; Alpha package. Empirical quality, time and quota-efficiency comparison is Planned. |
+| LazyTools as the integration layer | LazyTools `pyproject.toml`: `engines` / `mcp` extras and `lazytools-code-bridge` / `lazytools-mcp` entry points; `src/lazytools/mcp_server/{__main__,providers,server}.py`; code bridge/projects/routing modules above, connector packages. CHANGELOG 0.9.0–0.10.1. | Shipped; Alpha. Install from the immutable Git ref `v0.10.1`, not an assumed PyPI package named `lazytools`. |
+| Real projects: LazyCommittee and LazyBricks | Owner-authorised private project README/documentation; narrowly checked committee publication validation, engine factories and numeric-lint severity. LazyCommittee documents dated pipeline stages, append-only publication, computed statistics and scheduled daily/weekly runs. LazyBricks README documents Three.js/FastAPI/SQLite, the installed full official LDraw index, MCP/editor revision sharing and mobile emulation. | Implemented private projects. Public reproducible demos of their integrations are Planned; no outcome/performance claims. |
+
+## What is distinctive, and what is ordinary infrastructure
+
+The strongest positioning is the **combination** of subscription coding runtimes as Agent engines, opposite-engine review, detached delegation with durable approval tickets, shared project acceptance evidence, and quota-driven routing. It offers a concrete way to carry one project between the two runtimes while keeping review separate from production. It should be demonstrated as a connected workflow.
+
+No competitive uniqueness has been proved. This audit inspects our implementation, not the current capabilities of other frameworks. Do not say “first”, “only”, “best”, or that a named third party cannot do this. “Hard to find elsewhere” remains a hypothesis about the complete combination, not an established market fact.
+
+Individually, an Agent wrapper, tool schemas, MCP, provider adapters, connectors, a job queue, SQLite persistence, Gantt rendering and a model router are ordinary building blocks. The value here is how they fit together and preserve the job/project evidence. Connectors, data hub and statistics are supporting capabilities and should not displace engines/collaboration as the headline.
+
+## Boundaries and claims we must not make
+
+1. **Subscription billing is a login choice.** The adapters reuse runtime authentication; they do not force a subscription account. The SDK/CLI can use another configured billing path. Say “with a subscription login”, never “these engines cannot use API keys”, “free”, “unlimited” or a quantified saving. Verify current account eligibility outside this code audit if plan names are used.
+2. **Interchangeability is the Agent contract.** Keep tools, Memory, Store and Session references. Native tools, permissions, structured-output support and attachment capabilities differ. A Claude native transcript cannot migrate into a Codex thread. The bridge pins a named native session to its engine.
+3. **Review independence needs wiring.** `verify=` accepts an arbitrary judge; it does not force an opposite engine. Tier-based `--review-of` excludes the producing engine and refuses when no opposite reviewer is eligible. Project verification records are generic mechanisms; caller authorization policy is a separate hook. Do not claim a universal runtime prohibition on self-review.
+4. **Review exhaustion is not acceptance.** `verify_with_retry()` returns the final output even if still rejected, with no approval flag. Unknown verdicts reject, but exhausted retries still return a result. Tests and explicit acceptance records are required for a publication/release gate.
+5. **Async is not automatic recovery.** Detached jobs have their own process lifetime; OS teardown can still stop them. Workspace evidence is best-effort and covers the whole repository, including pre-existing changes. “Commits since start” means commits reachable at the final HEAD and not at the initial HEAD; it does not prove job authorship. The bridge does not resume/retry a timed-out turn automatically. Cancellation has a documented residual PID-reuse risk when identity inspection is unavailable.
+6. **Permissions are engine-specific.** Claude file hooks confine file tools, not Bash. Shell access is governed by approval policy. `--allow-unsafe` exposes mutating MCP tools and is not the bridge's ticket queue. Do not call all writes path-sandboxed or all reviews privacy-neutral.
+7. **Project labels are not ACLs.** Owner `ceo` / `claude` / `shared` is coordination metadata. The brake affects admission paths, not a session's direct work and not already-running processes. Do not claim automatic final LazyCEO integration, merges or releases.
+8. **Gantt is deterministic rendering, not predictive scheduling.** Schedules/dates come from records; an LLM does not calculate bar placement. The current renderer has Italian fixed labels, so this phase does not publish its generated output or promise an English Gantt UI. Rendering requires a fixed `now` for byte-identical comparisons.
+9. **Quota policy is not a measured optimiser.** The first eligible ladder rung wins. Margins rank offers; tie-breaking preserves the existing five-hour behavior (Claude's session window is displayed/admitted but does not contribute to that score), then provisional API-price/provider ordering. Those price ranks are not subscription cost measurements. Bridge operator-directed admission differs from the shared autonomous default. Do not claim best quality, lowest cost, no rate-limit failures, forecast certainty, or a quality ranking established by benchmarks.
+10. **Private examples need privacy and limits.** No code links or installation commands for either private repository. No users/customers, returns, investment performance or portfolio contents for LazyCommittee. Its world-document narrative numeric lint includes warnings; source lineage is not proof of entailment. The pipeline also contains independent parallel bands, so “linear pipeline” describes the document progression, not a claim that every step is sequential. LazyBricks mobile checks are emulated; static placement checks do not certify real mechanical stability, all parts or all connections. Its README does not establish that the editor embeds a LazyBridge Agent: describe its MCP integration as the project example without inventing that dependency.
+
+## Outdated or misleading site/docs findings
+
+| Location | Finding against current code | Phase 1 action |
+| --- | --- | --- |
+| Website `docs/index.md`, hero/cards | Generic composition/provider-first story obscures both coding engines and their collaboration; competitor claims in the old cards were unsupported. | Replaced with engines → collaboration → projects → quota → LazyTools, keeping the existing visual style. |
+| Website homepage update feed | Newest core headline was 1.1.1; it omitted 1.6 native aliases/locking and 1.8 delegation hooks; LazyTools 0.9–0.10.1 absent. The older code-support paragraph described only CLI/MCP modes and a three-session plan flow, rather than current engine-backed write/review and bridge jobs. | Removed stale feed from homepage; show the verified source versions and current mechanisms with guide links. |
+| Website old “first framework to support…” update | Release/model support cannot prove market priority. | Removed. No third-party comparisons added. |
+| Website ecosystem emphasis | Connector/datahub/statistics cards dominated the story. | Supporting role under LazyTools; private projects get their own section/page. |
+| Website `docs/blog/posts/claude-writes-codex-reviews.md` | “Neither engine touches API billing” was unconditional; Claude was described as directly driven CLI rather than SDK adapter; prose placed `verify=` on `.run()` while code puts it on construction. | Corrected auth/transport/construction descriptions; kept retry caveat; linked async/project update. |
+| Website `docs/blog/posts/welcome-to-lazybridge.md` | Model literal did not reflect current recommended source models; engine list omitted coding engines; runnable example constructed the credential-requiring provider before the no-key guard. | Use source-supported `claude-sonnet-5-5`; include both coding engines; construct only inside the key-present branch; pin install to 1.8.0 and label demo weather. |
+| Website footer/config | Mixed-case contact, generic metadata and no private-project destination. | Consistent `lazybridgelabs@gmail.com`, new navigation page, engine/collaboration metadata. |
+| Read-only LazyBridge `docs/index.md` maturity/navigation | Coding engines, SessionRegistry and delegation additions are not represented in the maturity table, despite current code/CHANGELOG. The public core guarantee alone must not imply Stable status for them. | Recorded for a later docs phase; source untouched. |
+| Read-only LazyTools `docs/projects.md` | Documents mechanisms separately from final CEO adoption. Core profile/full profile and Store configuration matter; no configured Store means in-memory. | Homepage states Store configuration, draft status and owner/brake limits; no claim that final CEO deployment is done. |
+| Read-only core history/API migrations | `lazybridge.ext.mcp` / `lazybridge.ext.gateway` deprecated shims were removed in 0.9; current integrations use `lazytools.connectors.mcp` / `.gateway`. `CodeWriteTools` moved to engine-backed execution in LazyTools 0.8.1. | Homepage uses the current modules and entry points. No old imports introduced. |
+| Read-only private project docs vs owner shorthand | Narrative lint may warn rather than block; mobile support has emulated rather than physical-device verification. | Public summaries keep those distinctions; owner questions below. |
+
+## Proof that exists, and proof still needed
+
+Existing proof is functional: coding-engine fake-transport tests, durable alias/lock tests, bridge approval/cancel/evidence tests, deterministic project Gantt tests, and routing parity fixtures. LazyBridge also has runnable live engine/composition smoke scripts under `examples/claude_code/` and `examples/codex/`. A smoke script is not a comparative benchmark. The historical deployment-checker blog has an output example and boundary checks, without a captured multi-engine benchmark protocol.
+
+No reproducible comparative benchmark for the complete tandem workflow or quota router was found in the supplied public code/docs/examples. No performance or quality numbers are added to the site. Private LazyBricks measurements are specific to its editor and cannot substantiate engine/routing claims.
+
+**Planned demo:** one public fixture repository; Claude writes a bounded change, Codex reviews through `--review-of`; reverse the pair; show approval ticket → decision → result, cancellation/failure workspace evidence, named-session continuation, project contract and deterministic Gantt with a fixed timestamp. Redact account identifiers and sensitive runtime output. Keep prompts, diffs, check results, review scope, engine/model/effort, quota windows and job records with each run.
+
+**Planned benchmark:** compare fixed Claude, fixed Codex and quota-routed runs on the same versioned task set (boundary bug, retry fix, multi-file change, incomplete/rejected review and deterministic acceptance checks). Repeat runs and rotate order; hold starting repo, tests, review budget and prompts constant. Measure completion/acceptance rate, independently checked defects, reviewer independence, elapsed time, retries, approval wait separately from engine time, quota percentage deltas per window and failures/refusals. Report reset crossings, shared-account activity and unavailable telemetry rather than silently excluding them. Record plan/login/model/effort/catalogue/runtime versions. Do not convert API token-price ranks into subscription savings or infer general quality from a small task set.
+
+## Validation and reproduction
+
+`tools/verify_homepage_examples.py` imports directly from the requested read-only checkouts, disables bytecode writes, uses fake engine transports and rejects unmocked runtime calls. It extracts the actual homepage code blocks, executes constructors, runs opposite-engine verification including retry exhaustion, creates the project example, parses CLI commands against real parsers, parses install requirements, and checks the blog's no-key branch and four deployment boundaries.
+
+```powershell
+& C:/ProgramData/spyder-6/python.exe -B tools/verify_homepage_examples.py --bridge C:/Users/Administrator/Documents/GitHub/LazyBridge-docs --tools C:/Users/Administrator/Documents/GitHub/LazyTools-docs
+& C:/ProgramData/spyder-6/python.exe -m mkdocs build --strict
+```
+
+Build dependencies already installed in that interpreter match `requirements.txt`: MkDocs 1.6.1, Material 9.7.6 and redirects 1.2.2. No global install or dependency update was needed. The requirement pin is retained.
+
+Completed checks: the extracted homepage/blog examples pass; the four selected LazyBridge engine/session/verification files pass **184 tests**; the six selected LazyTools routing/bridge/evidence/cancel/Gantt/contract files pass **391 tests**. These counts are software checks, not quality/performance benchmarks. Test runs disable bytecode/cache writes; their fixtures use temporary folders. Initial fixture runs failed because of a denied default temp directory and then parent Git discovery inside the website worktree. The final LazyTools run used a fresh system-temp directory outside any Git repository and passed unchanged source tests. No source edits were needed.
+
+The rendered site has **544 checked local links/assets/fragments**, with no failures, and **16 outgoing documentation links** returning HTTP 200. HTTPS validation uses the installed Certifi trust bundle because the Windows default trust-store load failed; TLS verification is retained. The source redirect destinations are reviewed against the read-only documentation tree. Browser visual preview timed out, so this phase's layout validation is limited to generated HTML, theme reuse and responsive CSS inspection.
+
+All 95 configured redirects targeting the core/tools documentation have corresponding source pages. The final strict build exited 0 with these last lines:
+
+```text
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: C:\Users\Administrator\Documents\GitHub\lazybridgewebsite-refresh\site
+INFO    -  Documentation built in 1.88 seconds
+```
+
+One initial mock-validation attempt assigned the wrong transport attribute and was interrupted after reaching the real runtime. The final verifier injects the correct transports and adds a guard that rejects unmocked runtime calls. No paid live benchmark or production/private pipeline was run.
+
+## Open questions for the owner
+
+1. Which public fixture/demo can be released to prove tandem review and quota routing, and who will run/retain the benchmark evidence? The site labels it Planned; this phase does not schedule or execute a paid live benchmark.
+2. What explicit subsystem maturity wording should coding engines, bridge, projects and routing carry beyond “shipped”? The core Stable flag and LazyTools Alpha classifier do not settle all subsystem guarantees.
+3. Should the project Gantt renderer gain English labels in a later LazyTools change? Its deterministic mechanism ships, but the existing fixed labels are Italian and source edits are outside this phase.
+4. Is the owner satisfied with the code-accurate distinction between blocking publication findings and narrative numeric warnings in LazyCommittee? Strengthening those warnings into gates would require a separate private implementation change.
+5. Can LazyBricks' README establish any direct LazyBridge runtime use beyond the MCP workflow, and can a physical-phone verification be recorded? This phase avoids claiming either without evidence.
+6. When should final LazyCEO adoption of the shared project layer be documented after deployment? This website phase does not deploy that integration.
+
+## Phase 1b update — manifesto and real showcase
+
+The owner confirmed the declared maturity labels (LazyBridge core Stable, LazyTools Alpha), the planned routing benchmark, and deferring Gantt label translation to a later LazyTools task. Public copy now omits Committee lint modes and the physical-phone test note. These are editorial choices, not changes to implementation behavior or the historical audit above.
+
+The homepage now leads with interchangeable engines, independent review, code-computed results and explicit deterministic gates. Six demonstration bands retain the verified Python/CLI signatures. Only one routing benchmark note appears: “Benchmark in progress”; the protocol above remains Planned and has no results.
+
+| Added evidence | Evidence | Maturity |
+| --- | --- | --- |
+| LazyCEO project execution and per-engine brake | Owner-authorised private demo checkout `9d29344`: `src/lazyceo/simple/agent.py` delegation/admission; `src/lazyceo/admission.py` uses LazyTools project admission; `src/lazyceo/gui/views.py` Gantt overview, Program and quota-history SVG; real GUI screenshots supplied in `docs/screenshots/`. | Implemented private project; screenshots show demo data, not a production deployment claim. |
+| Real pipeline outputs | Owner-supplied station renders and Committee digest/allocation excerpts under the website's `docs/assets/showcase/`. Station progression/review description supplied by the owner; editor/library/MCP facts agree with LazyBricks README. | Actual supplied artifacts; no comparative benchmark or investment-performance evidence. |
+
+Images are served as WebP previews, at most 1600 pixels on the longest edge, with links to original PNGs. Four 4K station renders remain available. CEO Gantt/Program images are rectangular excerpts of the supplied GUI captures; the Brake page retains the demo banner and history charts. No screenshot text was edited or retouched. Captions explicitly say “rendered by the real GUI, demo data”. The old stale meters image is retained as an input asset and is not displayed.
+
+`tools/prepare_showcase.py` reproduces the web derivatives and GUI excerpts. `tools/preview_homepage.py` serves the built site on loopback and captures it with Playwright `channel="msedge"`, headless, with explicit 60-second page/navigation/screenshot timeouts. Desktop is 1440 pixels wide; mobile is 390. Full-page, hero, bridge and gallery captures plus DOM check results are saved in `_drafts/preview/`.
+
+Remaining owner decision: which public fixture and task set should be released for the tandem/routing benchmark, and who will retain/run its evidence? The site refresh does not run paid engines or publish a benchmark result.

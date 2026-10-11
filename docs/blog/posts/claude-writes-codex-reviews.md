@@ -11,15 +11,15 @@ date: 2026-08-24
 
 You've got a writer agent turning out a small utility function — say, one that decides whether it's actually safe to deploy right now. It mostly works. Then one day someone points out it waves a green light at 3:00pm on the dot on a Friday, because the boundary check used `>` instead of `>=`, and you spend twenty minutes tracing a very avoidable incident back to a one-character bug a second pair of eyes would have caught in five seconds. So you think: fine, I'll add a second agent whose whole job is to review the first agent's output before it ships.
 
-And then you stop mid-keystroke, doing the math. If the writer costs you some amount per call against a metered API key — a key you pay for by the token, the way `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` billing works — then a reviewer that runs on every single output, plus retries when it rejects something, could easily double or triple that bill for what's essentially a safety net. Is a nagging feeling of "this output looks fine, probably" really worth 3x the spend?
+And then you stop mid-keystroke, doing the math. If the writer uses a metered API key, a reviewer on every output — plus retries after rejection — adds billed calls. How much that costs depends on the task, models and retry count.
 
-That's a legitimate thing to hesitate over. It's also the wrong question to be asking about LazyBridge's `ClaudeCodeEngine` and `CodexEngine`, because neither one touches a metered API key at all.
+LazyBridge's `ClaudeCodeEngine` and `CodexEngine` provide another execution path: the local coding runtime's subscription login. The configured login determines the billing path; the engines do not force subscription billing if the runtime is configured for API-key authentication.
 
 ## What a "coding CLI" is, and why it changes the billing question
 
 A coding CLI here means a local program you're already logged into on your machine — `claude` (the Claude Code CLI) or `codex` (the Codex CLI or desktop app) — authenticated against your existing Claude Pro/Max or ChatGPT/Codex plan, the same way you'd authenticate a browser session. No `ANTHROPIC_API_KEY`, no `OPENAI_API_KEY`, nothing that shows up as per-token usage on an API dashboard.
 
-`ClaudeCodeEngine` drives the local `claude` CLI directly and runs requests against your Pro/Max subscription login. `CodexEngine` drives the local `codex` CLI (or the Codex desktop app, resolved via a `codex_executable()` lookup) and runs requests against your ChatGPT/Codex plan login. What changes is *which execution path* a given agent's requests travel down — subscription-authenticated CLI process vs. metered API key — not whether the requests are somehow free. They aren't: your Claude or ChatGPT plan has its own usage limits and terms, and running two agents through two CLIs still uses two allotments of *something*.
+`ClaudeCodeEngine` uses the Claude Agent SDK and its local Claude Code runtime. `CodexEngine` speaks JSON-RPC to `codex app-server`, resolved through `codex_executable()`. When those runtimes are signed in under subscriptions, the calls use their plan quotas instead of per-token API billing. The calls still consume quota.
 
 ## Write, review, retry — not a routing graph
 
@@ -31,7 +31,7 @@ The pattern LazyBridge gives you for "have a second agent check the first agent'
 4. If rejected, retry. But not the reviewer's complaint in isolation — LazyBridge re-runs the *original task*, with the rejection feedback appended as extra context, so the writer gets another full attempt informed by what went wrong.
 5. This repeats up to `max_verify` attempts (default 3). If the last attempt is still rejected, LazyBridge returns it anyway — you get *a* result, not an exception (more on what that means for you below).
 
-The important design choice here is what `verify=` actually requires: anything with a `.run()` method — any `Agent`, running on any engine — or a plain callable. That's it. There's no separate routing graph, no special "reviewer" subclass. Wiring a Claude-writes/Codex-reviews loop is just picking two engines and passing one Agent as the `verify=` argument to another's `.run()` call.
+The important design choice is what `verify=` accepts: an `Agent` on any engine, or a plain callable. Wiring this loop means passing the reviewer as `verify=` when constructing the writer Agent, as in the example below.
 
 ## The scenario: should I deploy right now?
 
@@ -158,6 +158,10 @@ Three things worth knowing before you rely on this pattern.
 
 **The retry budget is small and fixed, and LazyBridge won't tell you if it ran out.** `max_verify` defaults to 3. If your writer and reviewer are stuck in a loop — writer keeps making the same mistake, reviewer keeps rejecting it the same way — you get three attempts and then whatever the third one produced, rejected or not, with no flag on the result marking which happened. If you need to know, have your reviewer's approval show up in its own output (a trailing `APPROVED`/`REJECTED` line you check yourself, for instance) — don't assume a returned result was ever actually approved.
 
-**Subscription plans are bounded too.** Routing through `ClaudeCodeEngine` and `CodexEngine` means you're not paying per-token on top of a plan, but Pro/Max and ChatGPT/Codex plans still have their own usage limits and terms. A write/review loop with several retries on every call is still meaningfully more usage than a single writer call — just usage against a subscription ceiling instead of a token-metered invoice.
+**Subscription plans are bounded too.** With subscription logins, a write/review loop consumes both engines' quotas. API-key authentication follows the runtime's API billing path instead.
 
-**Approval is not correctness.** A reviewer agent approving a writer agent's output means two language models agreed on something, not that the something is right. For a task as narrow as a boundary check on a day and a time, that's a reasonably strong signal — there's not much room for the two of them to be wrong in the same way. For anything with more room to be subtly, plausibly wrong, an approved result out of `verify_with_retry()` is a reason to trust the code a bit more than an unreviewed first draft. It's not a substitute for reading it.
+**Approval is not correctness.** A reviewer accepting an output is a review result. Check the boundary cases with code before using the function.
+
+## October update: async repository work
+
+This example checks a generated output. LazyTools 0.10.1 also provides an async code bridge for longer repository jobs: detached launches, approval tickets, cancellation and workspace evidence on failure. Tier-based `--review-of JOB_ID` selects the opposite engine. Named sessions keep native conversations durable; the shared project layer adds contracts and explicit verification records. See [collaboration on the homepage](../../index.md#collaboration) and the [bridge guide](https://tools.lazybridge.com/code-bridge/).
