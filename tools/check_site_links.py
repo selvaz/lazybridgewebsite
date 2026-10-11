@@ -31,6 +31,8 @@ class Page(HTMLParser):
             self.links.append(attrs[field])
 
 pages = {p.resolve(): Page(p.read_text(encoding="utf-8")) for p in site.rglob("*.html")}
+if not pages:
+    raise SystemExit(f"No rendered pages under {site}: run `mkdocs build` first.")
 failures = []
 count = 0
 for file, page in pages.items():
