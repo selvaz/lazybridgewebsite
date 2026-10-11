@@ -104,3 +104,20 @@ One initial mock-validation attempt assigned the wrong transport attribute and w
 4. Is the owner satisfied with the code-accurate distinction between blocking publication findings and narrative numeric warnings in LazyCommittee? Strengthening those warnings into gates would require a separate private implementation change.
 5. Can LazyBricks' README establish any direct LazyBridge runtime use beyond the MCP workflow, and can a physical-phone verification be recorded? This phase avoids claiming either without evidence.
 6. When should final LazyCEO adoption of the shared project layer be documented after deployment? This website phase does not deploy that integration.
+
+## Phase 1b update — manifesto and real showcase
+
+The owner confirmed the declared maturity labels (LazyBridge core Stable, LazyTools Alpha), the planned routing benchmark, and deferring Gantt label translation to a later LazyTools task. Public copy now omits Committee lint modes and the physical-phone test note. These are editorial choices, not changes to implementation behavior or the historical audit above.
+
+The homepage now leads with interchangeable engines, independent review, code-computed results and explicit deterministic gates. Six demonstration bands retain the verified Python/CLI signatures. Only one routing benchmark note appears: “Benchmark in progress”; the protocol above remains Planned and has no results.
+
+| Added evidence | Evidence | Maturity |
+| --- | --- | --- |
+| LazyCEO project execution and per-engine brake | Owner-authorised private demo checkout `9d29344`: `src/lazyceo/simple/agent.py` delegation/admission; `src/lazyceo/admission.py` uses LazyTools project admission; `src/lazyceo/gui/views.py` Gantt overview, Program and quota-history SVG; real GUI screenshots supplied in `docs/screenshots/`. | Implemented private project; screenshots show demo data, not a production deployment claim. |
+| Real pipeline outputs | Owner-supplied station renders and Committee digest/allocation excerpts under the website's `docs/assets/showcase/`. Station progression/review description supplied by the owner; editor/library/MCP facts agree with LazyBricks README. | Actual supplied artifacts; no comparative benchmark or investment-performance evidence. |
+
+Images are served as WebP previews, at most 1600 pixels on the longest edge, with links to original PNGs. Four 4K station renders remain available. CEO Gantt/Program images are rectangular excerpts of the supplied GUI captures; the Brake page retains the demo banner and history charts. No screenshot text was edited or retouched. Captions explicitly say “rendered by the real GUI, demo data”. The old stale meters image is retained as an input asset and is not displayed.
+
+`tools/prepare_showcase.py` reproduces the web derivatives and GUI excerpts. `tools/preview_homepage.py` serves the built site on loopback and captures it with Playwright `channel="msedge"`, headless, with explicit 60-second page/navigation/screenshot timeouts. Desktop is 1440 pixels wide; mobile is 390. Full-page, hero, bridge and gallery captures plus DOM check results are saved in `_drafts/preview/`.
+
+Remaining owner decision: which public fixture and task set should be released for the tandem/routing benchmark, and who will retain/run its evidence? The site refresh does not run paid engines or publish a benchmark result.

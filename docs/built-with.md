@@ -1,39 +1,38 @@
 ---
 title: Built with LazyBridge
-description: Two private projects using LazyBridge and MCP tools in document pipelines and a shared 3D editor.
+description: Three private projects using coding engines, shared tools and deterministic project records.
 ---
 
 # Built with LazyBridge
 
-<div class="lb-home-section" markdown="1">
-
-These two private repositories show where the engine and tool model is being used.
-
-## LazyCommittee — private repository
-
-LazyCommittee is an AI investment committee run as a linear pipeline of dated documents:
-
-1. Daily digests covering geopolitics, economics, markets and central banks.
-2. Weekly world state, split into strategic and tactical documents.
-3. Views by asset class.
-4. A portfolio document.
-
-The pipeline uses LazyBridge with Claude Code and Codex as engines. Code computes numeric results and gives the LLM the computed outputs. Deterministic publication checks cover freshness, numeric lint and source mapping. Blocking findings gate publication; some narrative numeric lint findings remain warnings. Daily and weekly runs are scheduled.
-
-The document registry is append-only, admits one document per name in a batch, and moves document heads through compare-and-swap. Those rules preserve document history and make concurrent publication conflicts explicit.
-
-These projects are private. If you are interested in collaborating, write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
+Three private projects show the engine and tool model at work. The [homepage gallery](index.md#built-with) contains the real outputs and GUI screenshots.
 
 ## LazyBricks — private repository
 
-LazyBricks is a local 3D editor for building brick models. It combines a Three.js front end with FastAPI and SQLite and indexes the full installed LDraw Official Parts Library. Search, categories, pagination, 3D thumbnails and inventory filters make the catalogue usable without loading it all into the browser.
+A local 3D brick-model editor with a Three.js front end, FastAPI and SQLite back end, and an index of the full LDraw Official Parts Library. Its phone interface and MCP server let a person and an agent work on the same projects and revisions.
 
-The editor and MCP server work on the same projects and revisions, so an AI agent can propose changes while a person works in the editor. A phone interface supports touch selection, camera controls and part editing. Mobile checks have used viewport/touch emulation on a PC; a physical-phone test remains open.
+The Victorian station starts from a brief and a concept. The pipeline builds it brick by brick through volumetric, simple and detailed phases, with quality reviews at each phase. The gallery shows the front, exploded storeys, interiors and tracks; each image links to its 4K original.
 
-Static checks cover placement, collisions, inventory and declared connections. They do not certify mechanical stability or simulate gravity, clutch forces or flexible parts. Indexing the installed official library does not imply coverage of every brick ever produced or every possible connection.
+[View the station →](index.md#lazybricks)
 
-These projects are private. If you are interested in collaborating, write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
+Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
 
-[Explore engines and collaboration](index.md#engines)
+## LazyCommittee — private repository
 
-</div>
+An AI investment committee built on LazyBridge with Claude Code and Codex as engines. Its dated documents progress from daily digests for geopolitics, economics, markets and central banks to a weekly world state, asset-class views and a portfolio document. Daily and weekly runs are scheduled.
+
+Code computes numeric results and gives the LLM the outputs. Deterministic publication checks cover freshness, numeric lint and source mapping. The real economics digest excerpt cites dated, sourced numbers with percentiles and lists its sources. The optimizer image shows the allocation hierarchy, with some labels in Italian.
+
+[View the report excerpts →](index.md#lazycommittee)
+
+Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
+
+## LazyCEO — private repository
+
+A CEO agent that runs projects across the workspace and delegates to Codex and Claude Code. Durable project records feed a deterministic Gantt and individual Program pages. A quota brake for each engine governs autonomous task admission.
+
+The screenshots are **rendered by the real GUI, demo data**. They show Gantt and Program excerpts and the Brake page with separate quota-history charts for both engines. Synthetic projects and quota readings demonstrate the interface.
+
+[View the project interface →](index.md#lazyceo)
+
+Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
