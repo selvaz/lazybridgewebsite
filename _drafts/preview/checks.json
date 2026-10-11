@@ -41,15 +41,11 @@
         "loaded": true
       },
       {
-        "alt": "LazyCEO Brake page with separate quota-history charts for Codex and Claude Code",
+        "alt": "LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset",
         "loaded": true
       },
       {
-        "alt": "LazyCEO Gantt excerpt with two project schedules",
-        "loaded": true
-      },
-      {
-        "alt": "LazyCEO Program excerpt with completed tasks and their scheduled dates",
+        "alt": "LazyCEO program Gantt: completed tasks, tasks in progress and planned tasks around today",
         "loaded": true
       }
     ],
@@ -100,15 +96,11 @@
         "loaded": true
       },
       {
-        "alt": "LazyCEO Brake page with separate quota-history charts for Codex and Claude Code",
+        "alt": "LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset",
         "loaded": true
       },
       {
-        "alt": "LazyCEO Gantt excerpt with two project schedules",
-        "loaded": true
-      },
-      {
-        "alt": "LazyCEO Program excerpt with completed tasks and their scheduled dates",
+        "alt": "LazyCEO program Gantt: completed tasks, tasks in progress and planned tasks around today",
         "loaded": true
       }
     ],

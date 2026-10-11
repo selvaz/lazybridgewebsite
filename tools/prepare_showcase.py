@@ -17,13 +17,13 @@ for source in args.ceo.glob("*.png"):
         print(source.name, img.size)
 
 # Coordinates expressed as fractions keep the crops tied to the supplied GUI capture.
-# Gantt: the lower two projects. Program: completed tasks 0–10, without the
-# unrelated remediation status and missing-date task in this synthetic demo.
+# Gantt: the LazyCommittee remediation card (full, and its first 14 rows). Program: tasks 0–10,
+# from the demo store. Brake: the two engine cards with their 14-day quota history.
 for name, filename, bounds in [
-    ("gantt.png", "ceo-gantt.png", (0.075, 0.644, 0.925, 0.994)),
-    ("program-lazycommittee.png", "ceo-program.png", (0.078, 0.134, 0.699, 0.495)),
-    ("gantt.png", "ceo-gantt-detail.png", (0.075, 0.833, 0.925, 0.990)),
-    ("brake.png", "ceo-brake-history.png", (0.077, 0.162, 0.701, 0.640)),
+    ("gantt-committee.png", "ceo-gantt.png", (0.0, 0.0, 1.0, 1.0)),
+    ("program-lazycommittee.png", "ceo-program.png", (0.078, 0.134, 0.699, 0.80)),
+    ("gantt-committee.png", "ceo-gantt-detail.png", (0.0, 0.0, 1.0, 0.63)),
+    ("brake.png", "ceo-brake-history.png", (0.077, 0.160, 0.701, 0.575)),
 ]:
     with Image.open(args.ceo / name) as img:
         w, h = img.size

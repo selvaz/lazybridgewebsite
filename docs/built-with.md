@@ -21,7 +21,7 @@ Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybrid
 
 An AI investment committee built on LazyBridge with Claude Code and Codex as engines. Its dated documents progress from daily digests for geopolitics, economics, markets and central banks to a weekly world state, asset-class views and a portfolio document. Daily and weekly runs are scheduled.
 
-Code computes numeric results and gives the LLM the outputs. Deterministic publication checks cover freshness, numeric lint and source mapping. The real economics digest excerpt cites dated, sourced numbers with percentiles and lists its sources. The optimizer image shows the allocation hierarchy, with some labels in Italian.
+Code computes numeric results and gives the LLM the outputs. Deterministic publication checks cover freshness, numeric lint and source mapping. The real economics digest excerpt cites dated, sourced numbers with percentiles and lists its sources. The optimizer image shows the hierarchical allocation tree: asset classes, regions and the ETFs under each node.
 
 [View the report excerpts →](index.md#lazycommittee)
 
