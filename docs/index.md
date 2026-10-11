@@ -9,13 +9,12 @@ description: "Claude Code and Codex on your subscription, or any API model per t
 <section class="lb-hero lb-manifesto">
   <div class="lb-hero__copy">
     <div class="lb-pill">Agent = Engine + Tools + State</div>
-    <h1>One agent. Any engine. <span class="accent">Subscription or API.</span></h1>
-    <p class="lb-subhead">LazyBridge treats Claude Code and Codex on your subscription exactly like API models billed per token: same Agent, same tools, same state. Swap the engine in one line, and build pipelines where LLMs from different providers work together and review each other’s work — catching hallucinations and mistakes a single model would miss, and producing better code.</p>
+    <h1>Let models from different providers <span class="accent">check each other’s work</span>.</h1>
+    <p class="lb-subhead">LazyBridge is a Python framework where Claude Code, Codex and any API model are interchangeable engines of the same Agent. They collaborate and review each other, catching the mistakes and hallucinations one model alone would miss.</p>
     <ul class="lb-principles">
-      <li>Subscription agents and API models are equal engines.</li>
-      <li>Models from different providers review each other. The producer never signs its own review.</li>
-      <li>Code computes. The LLM reads the results.</li>
-      <li>Use deterministic gates before anything ships.</li>
+      <li>Subscription or API: every engine runs the same Agent.</li>
+      <li>Everything is a tool, so pipelines nest inside pipelines.</li>
+      <li>Code computes and gates decide what ships; models never sign their own review.</li>
     </ul>
     <div class="lb-cta-row">
       <a href="#built-with" class="lb-btn lb-btn--primary">See what it builds &rarr;</a>
@@ -27,12 +26,12 @@ description: "Claude Code and Codex on your subscription, or any API model per t
 
 <div class="lb-demo lb-home-section lb-why" markdown="1">
 
-## Different models. One working system. {#why}
+## One building block. Endless combinations. {#why}
 
 <div class="lb-demo__grid" markdown="1">
 <div markdown="1">
 
-**LazyBridge began as a bridge between LLMs from different providers.** A model rarely spots its own mistakes; a model trained differently often does. So in LazyBridge they work together and review each other’s work, catching hallucinations and errors before they reach the result.
+<span id="collaboration"></span>**LazyBridge began as a bridge between LLMs from different providers.** A model rarely spots its own mistakes; a model trained differently often does. So in LazyBridge they work together and review each other’s work, catching hallucinations and errors before they reach the result.
 
 **One building block: Agent = Engine + Tools + State.** Everything is a tool: a function, another agent, a whole pipeline. The engine can be anything: an API model, Claude Code or Codex on your subscription, a human, or a deterministic **Plan**. Every level keeps the same contract (tools, memory, verification, one Envelope out), so pipelines nest inside pipelines.
 
@@ -122,161 +121,20 @@ gpt = Agent(engine=LLMEngine("gpt-6.1-sol"), **state)
 
 </div>
 
-<div class="lb-demo lb-home-section" markdown="1">
+<div class="lb-home-section" markdown="1">
 
-## Different providers, checking each other. {#collaboration}
+## Everything around it ships too. {#ecosystem}
 
-<div class="lb-demo__grid" markdown="1">
-<div markdown="1">
-
-**A second model from another provider reviews every output.**
-
-Models trained differently make different mistakes: what one invents or overlooks, the other is likely to catch. Give Claude the draft and Codex the review — or any API model — and the Agent verification loop feeds the reviewer’s findings into the next attempt until the work passes.
-
-[How it works →](blog/posts/claude-writes-codex-reviews.md)
-
-
-
-</div>
-<div class="lb-demo__code" markdown="1">
-
-```python
-from lazybridge import Agent, ClaudeCodeEngine, CodexEngine
-
-reviewer = Agent(name="codex-reviewer", engine=CodexEngine())
-writer = Agent(name="claude-writer", engine=ClaudeCodeEngine(),
-               verify=reviewer, max_verify=3)
-result = writer("Draft a function that blocks weekend deployment.")
-print(result.text())
-```
-
-</div>
+<div class="lb-feature-cards lb-ecosystem-cards">
+  <div class="lb-card"><div class="lb-card__body"><h3>Async code bridge</h3><p>Run Claude Code and Codex jobs in the background, approve their requests, route the review to the other engine.</p><a href="https://tools.lazybridge.com/code-bridge/" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Shared projects</h3><p>Plans, claims and acceptance evidence in one Store; code renders a deterministic Gantt.</p><a href="https://tools.lazybridge.com/projects/" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Quota routing</h3><p>Pick engine and model from remaining subscription quota; a brake stops work past the limits.</p><a href="https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>MCP server</h3><p>LazyTools exposes the bridge, projects, routing and connectors to any coding runtime.</p><a href="https://tools.lazybridge.com/mcp-server/" class="lb-card__link">How it works &rarr;</a></div></div>
 </div>
 
-</div>
-
-<div class="lb-demo lb-home-section" markdown="1">
-
-## Delegate work that takes time. {#async-bridge}
-
-<div class="lb-demo__grid" markdown="1">
-<div markdown="1">
-
-**Detached jobs keep approvals and results in a durable queue.**
-
-The code bridge supports run, pending, approve, result and cancel. Native sessions and threads resume by name; failed jobs retain workspace evidence.
-
-[How it works →](https://tools.lazybridge.com/code-bridge/)
-
-
-
-</div>
-<div class="lb-demo__code" markdown="1">
-
-```sh
-lazytools-code-bridge run --detach --engine claude --cwd . --task "Implement the retry fix" --session retry-fix
-lazytools-code-bridge pending --json
-lazytools-code-bridge approve APPROVAL_ID
-lazytools-code-bridge wait WRITER_JOB_ID      # blocks until done / failed / interrupted
-lazytools-code-bridge result WRITER_JOB_ID
-lazytools-code-bridge run --detach --tier writing --review-of WRITER_JOB_ID --cwd . --task "Review the fix without editing"
-lazytools-code-bridge cancel ACTIVE_JOB_ID --reason "Stop this attempt"
-```
-
-</div>
-</div>
-
-</div>
-
-<div class="lb-demo lb-home-section" markdown="1">
-
-## One project, shared state. {#projects}
-
-<div class="lb-demo__grid" markdown="1">
-<div markdown="1">
-
-**Plans, claims and acceptance evidence live together.**
-
-LazyTools adds contracts, verification records and a quota brake to the shared Store. Code renders the schedule as a deterministic Gantt.
-
-[How it works →](https://tools.lazybridge.com/projects/)
-
-
-
-</div>
-<div class="lb-demo__code" markdown="1">
-
-```python
-from lazybridge import Store
-from lazybridge.ext.planners import DurableBlackboard
-from lazytools.projects import brake, owner, records
-
-store = Store()  # use Store(db="projects.sqlite") to persist
-records.open_project(store, project_id="retry-fix", title="Retry fix",
-                     objective="Handle transient failures and verify boundary cases")
-owner.set_project_owner(store, "retry-fix", "shared")
-board = DurableBlackboard(store, plan_id="project:retry-fix")
-board.set_plan("Write, then review with the opposite engine",
-               ["Implement retry fix", "Review and run boundary checks"])
-print(brake.get_project_brake_enabled(store, "retry-fix"))  # True
-```
-
-</div>
-</div>
-<figure class="lb-band-proof"><a href="assets/showcase/ceo-gantt.png"><img src="assets/showcase/ceo-gantt-detail.webp" alt="Docs project schedule in the LazyCEO Gantt overview" loading="lazy" /></a><figcaption>Gantt overview excerpt — rendered by the real GUI, demo data.</figcaption></figure>
-</div>
-
-<div class="lb-demo lb-home-section" markdown="1">
-
-## Route by remaining quota. {#quota-routing}
-
-<div class="lb-demo__grid" markdown="1">
-<div markdown="1">
-
-**Deterministic tiers choose an eligible engine and model.**
-
-The router reads quota, applies the tier ladder and explains its choice. Review routing excludes the producing engine.
-
-[How it works →](https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota)
-
-<p class="lb-benchmark">Benchmark in progress</p>
-
-</div>
-<div class="lb-demo__code" markdown="1">
-
-```sh
-lazytools-code-bridge route --tier writing --cwd . --json
-```
-
-</div>
-</div>
-<figure class="lb-band-proof"><a href="assets/showcase/ceo-brake.png"><img src="assets/showcase/ceo-brake-history.webp" alt="LazyCEO Brake page excerpt showing separate Codex and Claude Code quota-history charts" loading="lazy" /></a><figcaption>Per-engine quota history excerpt — rendered by the real GUI, demo data.</figcaption></figure>
-</div>
-
-<div class="lb-demo lb-home-section" markdown="1">
-
-## LazyTools connects the work. {#lazytools}
-
-<div class="lb-demo__grid" markdown="1">
-<div markdown="1">
-
-**Expose the same project and coding tools through MCP.**
-
-The integration layer brings together the code bridge, projects, routing and connectors. Tools include codex_code_review, codex_write and claude_*.
-
-[How it works →](https://tools.lazybridge.com/mcp-server/)
+<p class="lb-benchmark">Benchmark in progress: cross-provider review vs a single model, and quota routing.</p>
 
 <p class="lb-version">LazyBridge 1.8.0 · core Stable &nbsp; / &nbsp; LazyTools 0.10.1 · Alpha</p>
-
-</div>
-<div class="lb-demo__code" markdown="1">
-
-```sh
-lazytools-mcp projects code_review claude_review code_write code_sessions --allow-unsafe
-```
-
-</div>
-</div>
 
 </div>
 
