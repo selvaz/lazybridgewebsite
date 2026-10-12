@@ -8,18 +8,20 @@ description: "Claude Code and Codex on your subscription, or any API model per t
 
 <section class="lb-hero lb-manifesto">
   <div class="lb-hero__copy">
-    <div class="lb-pill">Agent = Engine + Tools + State</div>
-    <h1>Let models from different providers <span class="accent">check each other’s work</span>.</h1>
-    <p class="lb-subhead">LazyBridge is a Python framework where Claude Code, Codex and any API model are interchangeable engines of the same Agent. They collaborate and review each other, catching the mistakes and hallucinations one model alone would miss.</p>
+    <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
+    <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
+    <p class="lb-subhead">LazyBridge is an orchestration framework: you compose agents, tools and deterministic steps into pipelines that run on Claude Code or Codex with your subscription, or on any API model billed per token.</p>
+    <p class="lb-apart-title">What sets it apart</p>
     <ul class="lb-principles">
-      <li>Subscription or API: every engine runs the same Agent.</li>
-      <li>Everything is a tool, so pipelines nest inside pipelines.</li>
-      <li>Code computes and gates decide what ships; models never sign their own review.</li>
+      <li><strong>Models check each other.</strong> Agents from different providers review each other’s work, catching the mistakes and hallucinations one model alone would miss.</li>
+      <li><strong>Everything is a tool.</strong> Functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
+      <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
     </ul>
     <div class="lb-cta-row">
-      <a href="#built-with" class="lb-btn lb-btn--primary">See what it builds &rarr;</a>
-      <a href="#engines" class="lb-btn lb-btn--ghost">Read the code &rarr;</a>
+      <a href="#why" class="lb-btn lb-btn--primary">See how it works &rarr;</a>
+      <a href="#built-with" class="lb-btn lb-btn--ghost">See what it builds &rarr;</a>
     </div>
+    <p class="lb-install"><code>pip install lazybridge</code></p>
   </div>
   <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
 </section>

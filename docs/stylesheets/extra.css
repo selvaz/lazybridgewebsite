@@ -801,3 +801,8 @@
 /* Ecosystem band: four compact cards instead of four code bands. */
 .lb-ecosystem-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 600px) { .lb-ecosystem-cards { grid-template-columns: 1fr; } }
+
+/* Hero: say what it is first, then what sets it apart. */
+.lb-apart-title { margin: 1.4rem 0 .2rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .78rem; color: var(--md-primary-fg-color, #5c4ee5); }
+.lb-install { margin-top: 1rem; }
+.lb-install code { font-size: .95rem; padding: .35rem .7rem; }
