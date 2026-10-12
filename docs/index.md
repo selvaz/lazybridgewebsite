@@ -140,15 +140,50 @@ gpt = Agent(engine=LLMEngine("gpt-6.1-sol"), **state)
 
 </div>
 
+<div class="lb-demo lb-home-section" markdown="1">
+
+## No Python required: run the fleet from Claude Code or Codex. {#mcp}
+
+<div class="lb-demo__grid" markdown="1">
+<div markdown="1">
+
+**Plug it into the tools your team already uses.** Add the LazyTools MCP server to Claude Code (CLI, desktop or IDE) or to Codex, and your assistant gains tools to work with the other one: Claude can ask Codex to write or review code, Codex can ask Claude, and both share project plans, a deterministic Gantt and a quota brake.
+
+Specialist agents built with LazyBridge can run on other API models too, so the fleet of agents you direct from one chat is not limited to one provider.
+
+[MCP server setup →](https://tools.lazybridge.com/mcp-server/)
+
+</div>
+<div class="lb-demo__code" markdown="1">
+
+```sh
+# Claude Code: Codex becomes a tool
+claude mcp add lazytools -- lazytools-mcp projects code_review code_write \
+    code_sessions --allow-unsafe --config lazytools.json
+```
+
+```toml
+# Codex (~/.codex/config.toml): Claude becomes a tool
+[mcp_servers.lazytools]
+command = "lazytools-mcp"
+args = ["projects", "claude_review", "code_write", "code_sessions",
+        "--allow-unsafe", "--config", "lazytools.json"]
+```
+
+</div>
+</div>
+
+</div>
+
 <div class="lb-home-section" markdown="1">
 
-## Everything around it ships too. {#ecosystem}
+## From one agent to a fleet. {#ecosystem}
 
 <div class="lb-feature-cards lb-ecosystem-cards">
   <div class="lb-card"><div class="lb-card__body"><h3>Async code bridge</h3><p>Run Claude Code and Codex jobs in the background, approve their requests, route the review to the other engine.</p><a href="https://tools.lazybridge.com/code-bridge/" class="lb-card__link">How it works &rarr;</a></div></div>
-  <div class="lb-card"><div class="lb-card__body"><h3>Shared projects</h3><p>Plans, claims and acceptance evidence in one Store; code renders a deterministic Gantt.</p><a href="https://tools.lazybridge.com/projects/" class="lb-card__link">How it works &rarr;</a></div></div>
-  <div class="lb-card"><div class="lb-card__body"><h3>Quota routing</h3><p>Pick engine and model from remaining subscription quota; a brake stops work past the limits.</p><a href="https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota" class="lb-card__link">How it works &rarr;</a></div></div>
-  <div class="lb-card"><div class="lb-card__body"><h3>MCP server</h3><p>LazyTools exposes the bridge, projects, routing and connectors to any coding runtime.</p><a href="https://tools.lazybridge.com/mcp-server/" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Fleets across projects</h3><p>Run fleets of agents on many projects at once: plans, claims and acceptance evidence in one Store, a deterministic Gantt for every project.</p><a href="https://tools.lazybridge.com/projects/" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Quota routing</h3><p>Spread the fleet’s work by each engine’s remaining subscription quota; a brake stops work past the limits.</p><a href="https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Durable sessions</h3><p>Name native Claude Code and Codex conversations and resume them across processes and restarts.</p><a href="https://tools.lazybridge.com/code-support/" class="lb-card__link">How it works &rarr;</a></div></div>
 </div>
 
 <p class="lb-benchmark">Benchmark in progress: cross-provider review vs a single model, and quota routing.</p>
@@ -179,9 +214,9 @@ Code computes the numbers; the LLM reads results. Freshness, numeric lint and so
 <figure class=""><a href="assets/showcase/committee-digest-eco.png"><img src="assets/showcase/committee-digest-eco.webp" alt="Real economics digest excerpt with dated values, percentiles, source references and a source list" loading="lazy" /></a><figcaption>Daily economics digest excerpt · each number is dated and sourced, with its percentile.</figcaption></figure><figure class=""><a href="assets/showcase/committee-portfolio-tree.png"><img src="assets/showcase/committee-portfolio-tree.webp" alt="Hierarchical asset-class allocation tree from the portfolio optimizer report" loading="lazy" /></a><figcaption>Portfolio optimizer · hierarchical allocation tree: asset classes, regions and the ETFs under each node.</figcaption></figure></div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
 <article class="lb-project" id="lazyceo">
 <div class="lb-project__heading"><h3>LazyCEO</h3><span class="lb-private">Private repository</span></div>
-<p>A CEO agent that runs projects across the workspace and delegates to Codex and Claude Code.<br />
-Durable project records feed a deterministic Gantt and individual Program pages.<br />
-A quota brake for each engine governs autonomous task admission; its GUI shows quota history.</p>
+<p>A CEO agent that runs a fleet of agents across many projects at once, delegating to Codex and Claude Code.<br />
+Every project has a deterministic Gantt; the portfolio of running projects is tracked side by side.<br />
+A quota brake per engine routes and paces the fleet’s work; its GUI shows quota history.</p>
 <div class="lb-gallery lb-gallery--ceo">
 <figure class="lb-gallery__lead"><a href="assets/showcase/ceo-brake-history.png"><img src="assets/showcase/ceo-brake-history.webp" alt="LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset" loading="lazy" /></a><figcaption>Quota brake per engine, with 14 days of history — rendered by the real GUI, demo data.</figcaption></figure><figure class="lb-gallery__lead"><a href="assets/showcase/ceo-gantt-detail.png"><img src="assets/showcase/ceo-gantt-detail.webp" alt="LazyCEO program Gantt: completed tasks, tasks in progress and planned tasks around today" loading="lazy" /></a><figcaption>Project Gantt: done, in progress and planned — rendered by the real GUI, demo data.</figcaption></figure></div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
 
