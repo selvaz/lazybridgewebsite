@@ -6,7 +6,8 @@ title: "LazyBridge — one agent, any engine: subscription or API"
 description: "Claude Code and Codex on your subscription, or any API model per token — same Agent, same tools, same state. Build complex pipelines and see real work built with LazyBridge."
 ---
 
-<section class="lb-hero lb-manifesto">
+<section class="lb-hero lb-manifesto lb-hero--banner">
+  <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
   <div class="lb-hero__copy">
     <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
     <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
@@ -23,7 +24,7 @@ description: "Claude Code and Codex on your subscription, or any API model per t
     </div>
     <p class="lb-install"><code>pip install lazybridge</code></p>
   </div>
-  <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
+
 </section>
 
 <div class="lb-home-section lb-compare" markdown="1">

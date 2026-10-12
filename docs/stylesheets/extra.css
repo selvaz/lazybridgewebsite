@@ -816,3 +816,13 @@
 @media (max-width: 600px) {
   .lb-compare th:nth-child(3), .lb-compare td:nth-child(3) { display: none; }
 }
+
+/* Hero with the LazyBridge logo as a banner on top, copy in one wide column. */
+.lb-hero.lb-hero--banner { display: block; max-width: 920px; margin-left: auto; margin-right: auto; }
+.lb-hero--banner .lb-hero__art { justify-content: center; margin: 0 0 1.4rem; }
+.lb-hero--banner .lb-hero__art img { max-width: 600px; width: 100%; }
+.lb-hero--banner .lb-hero__copy { max-width: none; }
+.lb-hero--banner h1 { font-size: clamp(2rem, 4vw, 3.4rem); }
+@media (max-width: 600px) { .lb-hero--banner .lb-hero__art img { max-width: 340px; } }
+.lb-hero--banner .lb-subhead { max-width: none; }
+.lb-hero.lb-hero--banner { padding-top: 1.5rem; }
