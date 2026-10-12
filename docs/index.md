@@ -14,7 +14,7 @@ description: "Claude Code and Codex on your subscription, or any API model per t
     <p class="lb-apart-title">What sets it apart</p>
     <ul class="lb-principles">
       <li><strong>Models check each other.</strong> Agents from different providers review each other’s work, catching the mistakes and hallucinations one model alone would miss.</li>
-      <li><strong>Everything is a tool.</strong> Functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
+      <li><strong>Everything is a tool.</strong> No graph to wire, no crew of roles: functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
       <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
     </ul>
     <div class="lb-cta-row">
@@ -25,6 +25,22 @@ description: "Claude Code and Codex on your subscription, or any API model per t
   </div>
   <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
 </section>
+
+<div class="lb-home-section lb-compare" markdown="1">
+
+## Not a graph. Not a crew. Agents that nest. {#compare}
+
+Graph frameworks such as LangGraph model a workflow as nodes and edges over a shared state, compiled into a graph. Crew frameworks such as CrewAI assign roles and tasks to a crew of agents. **LazyBridge has one building block: the agent** (engine + tools + state). A pipeline is an agent too, with a deterministic **Plan** as its engine when the order must be fixed, so you compose by putting agents inside agents.
+
+| | You model a workflow as | Main concepts |
+|---|---|---|
+| **LangGraph** | a state graph of nodes and edges, compiled | graph, state, node, edge |
+| **CrewAI** | a crew of agents with roles, running tasks in a process | agent, role, task, crew, process |
+| **LazyBridge** | agents inside agents; a Plan when the order must be fixed | agent, engine, tool, plan |
+
+<p class="lb-compare__note">Summary of each project’s documented programming model. <a href="https://core.lazybridge.com/best-python-ai-agent-frameworks/">Full comparison with sources →</a></p>
+
+</div>
 
 <div class="lb-demo lb-home-section lb-why" markdown="1">
 
