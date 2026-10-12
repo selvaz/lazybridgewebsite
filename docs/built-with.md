@@ -29,7 +29,7 @@ Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybrid
 
 ## LazyCEO — private repository
 
-A CEO agent that runs projects across the workspace and delegates to Codex and Claude Code. Durable project records feed a deterministic Gantt and individual Program pages. A quota brake for each engine governs autonomous task admission.
+A CEO agent that runs a fleet of agents across many projects at once, delegating to Codex and Claude Code. Durable project records feed a deterministic Gantt for every project, with all running projects visible on one screen. A quota brake for each engine routes and paces the fleet’s work.
 
 The screenshots are **rendered by the real GUI, demo data**. They show Gantt and Program excerpts and the Brake page with separate quota-history charts for both engines. Synthetic projects and quota readings demonstrate the interface.
 
