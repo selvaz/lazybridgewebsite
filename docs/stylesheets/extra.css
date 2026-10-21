@@ -145,6 +145,14 @@
   margin: 0 0 1.75rem;
 }
 
+.lb-motto {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--lb-purple);
+  max-width: 440px;
+  margin: -1rem 0 1.5rem;
+}
+
 .lb-cta-row {
   display: flex;
   align-items: center;
@@ -766,6 +774,7 @@
   .lb-manifesto { padding-top: 1.5rem; padding-left: 1.25rem; padding-right: 1.25rem; }
   .lb-manifesto h1 { font-size: 1.75rem; }
   .lb-manifesto .lb-subhead { font-size: .82rem; line-height: 1.55; }
+  .lb-manifesto .lb-motto { font-size: .9rem; margin-top: -.75rem; }
   .lb-manifesto .lb-principles { font-size: .78rem; line-height: 1.5; }
   .lb-manifesto .lb-btn { font-size: .75rem; white-space: normal; }
   .lb-gallery { grid-template-columns: 1fr; gap: 1rem; }

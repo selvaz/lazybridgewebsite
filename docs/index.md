@@ -3,7 +3,7 @@ hide:
   - navigation
   - toc
 title: "LazyBridge — one agent, any engine: subscription or API"
-description: "Claude Code and Codex on your subscription, or any API model per token — same Agent, same tools, same state. Build complex pipelines and see real work built with LazyBridge."
+description: "Build agents and pipelines in Python with any model, and command your whole fleet from one chat — on your Claude Code or Codex subscription, or any API model per token."
 ---
 
 <section class="lb-hero lb-manifesto lb-hero--banner">
@@ -12,10 +12,12 @@ description: "Claude Code and Codex on your subscription, or any API model per t
     <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
     <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
     <p class="lb-subhead">LazyBridge is an orchestration framework: you compose agents, tools and deterministic steps into pipelines that run on Claude Code or Codex with your subscription, or on any API model billed per token.</p>
+    <p class="lb-motto">One framework. Command your fleet yourself, or hand it to an LLM assistant.</p>
     <p class="lb-apart-title">What sets it apart</p>
     <ul class="lb-principles">
-      <li><strong>Models check each other.</strong> Agents from different providers review each other’s work, catching the mistakes and hallucinations one model alone would miss.</li>
       <li><strong>Everything is a tool.</strong> No graph to wire, no crew of roles: functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
+      <li><strong>Your fleet, under control.</strong> Direct work across projects from one chat, or delegate it to an organizer agent; each task goes to the engine that fits it, with quota and costs kept in check.</li>
+      <li><strong>Deterministic, agentic or both.</strong> Fix the order with a Plan where the process must be repeatable, let agents decide where judgment helps, and mix the two in one pipeline.</li>
       <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
     </ul>
     <div class="lb-cta-row">
