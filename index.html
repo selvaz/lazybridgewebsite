@@ -1,0 +1,1546 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build agents and pipelines in Python with any model, and command your whole fleet from one chat — on your Claude Code or Codex subscription, or any API model per token.">
+      
+      
+      
+        <link rel="canonical" href="https://lazybridge.com/">
+      
+      
+      
+        <link rel="next" href="built-with/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>LazyBridge — one agent, any engine: subscription or API - LazyBridge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compare" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="LazyBridge" class="md-header__button md-logo" aria-label="LazyBridge" data-md-component="logo">
+      
+  <img src="assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LazyBridge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LazyBridge — one agent, any engine: subscription or API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/selvaz/LazyBridge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    selvaz/LazyBridge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="built-with/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Built with LazyBridge
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="blog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/quickstart/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quickstart
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/concepts/mental-model/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Concepts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/guides/basic/agent/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/recipes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Recipes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://core.lazybridge.com/reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://pulse.lazybridge.com/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LazyPulse
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://tools.lazybridge.com/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LazyTools
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="LazyBridge" class="md-nav__button md-logo" aria-label="LazyBridge" data-md-component="logo">
+      
+  <img src="assets/logo.svg" alt="logo">
+
+    </a>
+    LazyBridge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/selvaz/LazyBridge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    selvaz/LazyBridge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not a graph. Not a crew. Agents that nest.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One building block. Endless combinations.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription or tokens: same Agent.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscription or tokens: same Agent.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codex
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Python required: run the fleet from Claude Code or Codex.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From one agent to a fleet.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From one agent to a fleet.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async-code-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async code bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fleets-across-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fleets across projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quota-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quota routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#durable-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durable sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built with LazyBridge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built with LazyBridge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazybricks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LazyBricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazycommittee_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LazyCommittee
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazyceo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LazyCEO
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-your-next-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build your next pipeline.
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="built-with/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Built with LazyBridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/concepts/mental-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/guides/basic/agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recipes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://core.lazybridge.com/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://pulse.lazybridge.com/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LazyPulse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://tools.lazybridge.com/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LazyTools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not a graph. Not a crew. Agents that nest.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One building block. Endless combinations.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscription or tokens: same Agent.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subscription or tokens: same Agent.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codex
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Python required: run the fleet from Claude Code or Codex.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From one agent to a fleet.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From one agent to a fleet.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async-code-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async code bridge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fleets-across-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fleets across projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quota-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quota routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#durable-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Durable sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Built with LazyBridge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built with LazyBridge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazybricks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LazyBricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazycommittee_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LazyCommittee
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazyceo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LazyCEO
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-your-next-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build your next pipeline.
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+  
+
+
+<section class="lb-hero lb-manifesto lb-hero--banner">
+  <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
+  <div class="lb-hero__copy">
+    <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
+    <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
+    <p class="lb-subhead">LazyBridge is an orchestration framework: you compose agents, tools and deterministic steps into pipelines that run on Claude Code or Codex with your subscription, or on any API model billed per token.</p>
+    <p class="lb-motto">One framework. Command your fleet yourself, or hand it to an LLM assistant.</p>
+    <p class="lb-apart-title">What sets it apart</p>
+    <ul class="lb-principles">
+      <li><strong>Everything is a tool.</strong> No graph to wire, no crew of roles: functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
+      <li><strong>Your fleet, under control.</strong> Direct work across projects from one chat, or delegate it to an organizer agent; each task goes to the engine that fits it, with quota and costs kept in check.      </li>
+      <li><strong>Deterministic, agentic or both.</strong> Fix the order with a Plan where the process must be repeatable, let agents decide where judgment helps, and mix the two in one pipeline.</li>
+      <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
+    </ul>
+    <div class="lb-cta-row">
+      <a href="#why" class="lb-btn lb-btn--primary">See how it works &rarr;</a>
+      <a href="#built-with" class="lb-btn lb-btn--ghost">See what it builds &rarr;</a>
+    </div>
+    <p class="lb-install"><code>pip install lazybridge</code></p>
+  </div>
+
+</section>
+
+<div class="lb-home-section lb-compare">
+<h2 id="compare">Not a graph. Not a crew. Agents that nest.</h2>
+<p>Graph frameworks such as LangGraph model a workflow as nodes and edges over a shared state, compiled into a graph. Crew frameworks such as CrewAI assign roles and tasks to a crew of agents. <strong>LazyBridge has one building block: the agent</strong> (engine + tools + state). A pipeline is an agent too, with a deterministic <strong>Plan</strong> as its engine when the order must be fixed, so you compose by putting agents inside agents.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>You model a workflow as</th>
+<th>Main concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LangGraph</strong></td>
+<td>a state graph of nodes and edges, compiled</td>
+<td>graph, state, node, edge</td>
+</tr>
+<tr>
+<td><strong>CrewAI</strong></td>
+<td>a crew of agents with roles, running tasks in a process</td>
+<td>agent, role, task, crew, process</td>
+</tr>
+<tr>
+<td><strong>LazyBridge</strong></td>
+<td>agents inside agents; a Plan when the order must be fixed</td>
+<td>agent, engine, tool, plan</td>
+</tr>
+</tbody>
+</table>
+<p class="lb-compare__note">Summary of each project’s documented programming model. <a href="https://core.lazybridge.com/best-python-ai-agent-frameworks/">Full comparison with sources →</a></p>
+</div>
+<div class="lb-demo lb-home-section lb-why">
+<h2 id="why">One building block. Endless combinations.</h2>
+<div class="lb-demo__grid">
+<div>
+<p><span id="collaboration"></span><strong>LazyBridge began as a bridge between LLMs from different providers.</strong> A model rarely spots its own mistakes; a model trained differently often does. So in LazyBridge they work together and review each other’s work, catching hallucinations and errors before they reach the result.</p>
+<p><strong>One building block: Agent = Engine + Tools + State.</strong> Everything is a tool: a function, another agent, a whole pipeline. The engine can be anything: an API model, Claude Code or Codex on your subscription, a human, or a deterministic <strong>Plan</strong>. Every level keeps the same contract (tools, memory, verification, one Envelope out), so pipelines nest inside pipelines.</p>
+<p><strong>Build a team once. Reuse it as one tool in the next thing you build.</strong></p>
+<p><a href="https://core.lazybridge.com/why/">Why LazyBridge →</a></p>
+</div>
+<div class="lb-demo__code">
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lazybridge</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Agent</span><span class="p">,</span> <span class="n">ClaudeCodeEngine</span><span class="p">,</span> <span class="n">CodexEngine</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                        <span class="n">LLMEngine</span><span class="p">,</span> <span class="n">Plan</span><span class="p">,</span> <span class="n">Step</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># OpenAI researches (API); Claude Code writes (subscription);</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Codex, another provider, reviews the draft before it moves on.</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">research</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"research"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">LLMEngine</span><span class="p">(</span><span class="s2">"gpt-6.1-sol"</span><span class="p">))</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">write</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"write"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">ClaudeCodeEngine</span><span class="p">(),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>              <span class="n">verify</span><span class="o">=</span><span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"review"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">CodexEngine</span><span class="p">()))</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># A deterministic Plan is just another engine; agents are its tools.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">report</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"report"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">Plan</span><span class="p">(</span><span class="n">Step</span><span class="p">(</span><span class="s2">"research"</span><span class="p">),</span> <span class="n">Step</span><span class="p">(</span><span class="s2">"write"</span><span class="p">)),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>               <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">research</span><span class="p">,</span> <span class="n">write</span><span class="p">])</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># The whole pipeline is now one tool for the next agent.</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">desk</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">LLMEngine</span><span class="p">(</span><span class="s2">"claude-opus-5-5"</span><span class="p">),</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">report</span><span class="p">])</span>
+</code></pre></div>
+<div aria-label="Diagram: an Agent whose tools include a Plan-driven Agent, whose tools are agents from different providers with a cross-provider reviewer" class="lb-nest">
+<div class="lb-nest__box"><span class="lb-nest__tag">Agent · desk</span><span class="lb-nest__engine">engine: Claude Opus (API)</span>
+<div class="lb-nest__box"><span class="lb-nest__tag">Agent · report</span><span class="lb-nest__engine">engine: Plan (deterministic)</span>
+<div class="lb-nest__row">
+<div class="lb-nest__leaf">research<br><small>OpenAI · API</small></div>
+<div class="lb-nest__leaf">write<br><small>Claude Code · subscription</small><br><small class="lb-nest__review">⟲ reviewed by Codex</small></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lb-demo lb-home-section">
+<h2 id="engines">Subscription or tokens: same Agent.</h2>
+<div class="lb-feature-cards lb-engine-parity">
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="claude-code">Claude Code</h3>
+<p><strong>Subscription</strong> · your Claude plan quota.</p>
+<p><code>ClaudeCodeEngine()</code></p>
+</div>
+</div>
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="codex">Codex</h3>
+<p><strong>Subscription</strong> · your ChatGPT plan quota.</p>
+<p><code>CodexEngine()</code></p>
+</div>
+</div>
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="api-models">API models</h3>
+<p><strong>Per token</strong> · Anthropic, OpenAI, Google, DeepSeek, LiteLLM.</p>
+<p><code>LLMEngine("model-id")</code></p>
+</div>
+</div>
+</div>
+<div class="lb-demo__grid">
+<div>
+<p><strong>One Agent contract for every engine.</strong> Tools, memory, session and verification are LazyBridge objects, not engine features: change the engine and the rest of your pipeline stays the same. Mix them freely — a subscription agent can write while an API model reviews, or the other way round.</p>
+<p>The login decides billing: a subscription login uses the plan's quota, an API key is billed per token.</p>
+<p><a href="https://core.lazybridge.com/guides/full/coding-agents/">How it works →</a></p>
+</div>
+<div class="lb-demo__code">
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lazybridge</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">ClaudeCodeEngine</span><span class="p">,</span> <span class="n">CodexEngine</span><span class="p">,</span> <span class="n">LLMEngine</span><span class="p">,</span> <span class="n">Memory</span><span class="p">,</span> <span class="n">Session</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">project_status</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="sd">"""Return this example project's status."""</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">return</span> <span class="s2">"The draft is ready for review."</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">project_status</span><span class="p">],</span> <span class="n">memory</span><span class="o">=</span><span class="n">Memory</span><span class="p">(),</span> <span class="n">session</span><span class="o">=</span><span class="n">Session</span><span class="p">())</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># Subscription agents: your plan's quota</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">claude</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">ClaudeCodeEngine</span><span class="p">(),</span> <span class="o">**</span><span class="n">state</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">codex</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">CodexEngine</span><span class="p">(),</span> <span class="o">**</span><span class="n">state</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># API models: billed per token</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">opus</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">LLMEngine</span><span class="p">(</span><span class="s2">"claude-opus-5-5"</span><span class="p">),</span> <span class="o">**</span><span class="n">state</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">gpt</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">LLMEngine</span><span class="p">(</span><span class="s2">"gpt-6.1-sol"</span><span class="p">),</span> <span class="o">**</span><span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="lb-demo lb-home-section">
+<h2 id="mcp">No Python required: run the fleet from Claude Code or Codex.</h2>
+<div class="lb-demo__grid">
+<div>
+<p><strong>Plug it into the tools your team already uses.</strong> Add the LazyTools MCP server to Claude Code (CLI, desktop or IDE) or to Codex, and your assistant gains tools to work with the other one: Claude can ask Codex to write or review code, Codex can ask Claude, and both share project plans, a deterministic Gantt and a quota brake.</p>
+<p>Specialist agents built with LazyBridge can run on other API models too, so the fleet of agents you direct from one chat is not limited to one provider.</p>
+<p><a href="https://tools.lazybridge.com/mcp-server/">MCP server setup →</a></p>
+</div>
+<div class="lb-demo__code">
+<div class="language-sh highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Claude Code: Codex becomes a tool</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>lazytools<span class="w"> </span>--<span class="w"> </span>lazytools-mcp<span class="w"> </span>projects<span class="w"> </span>code_review<span class="w"> </span>code_write<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>code_sessions<span class="w"> </span>--allow-unsafe<span class="w"> </span>--config<span class="w"> </span>lazytools.json
+</code></pre></div>
+<div class="language-toml highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Codex (~/.codex/config.toml): Claude becomes a tool</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">[mcp_servers.lazytools]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lazytools-mcp"</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"projects"</span><span class="p">,</span><span class="w"> </span><span class="s2">"claude_review"</span><span class="p">,</span><span class="w"> </span><span class="s2">"code_write"</span><span class="p">,</span><span class="w"> </span><span class="s2">"code_sessions"</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="s2">"--allow-unsafe"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--config"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lazytools.json"</span><span class="p">]</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="lb-home-section">
+<h2 id="ecosystem">From one agent to a fleet.</h2>
+<div class="lb-feature-cards lb-ecosystem-cards">
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="async-code-bridge">Async code bridge</h3>
+<p>Run Claude Code and Codex jobs in the background, approve their requests, route the review to the other engine.</p><a href="https://tools.lazybridge.com/code-bridge/" class="lb-card__link">How it works &rarr;</a></div>
+</div>
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="fleets-across-projects">Fleets across projects</h3>
+<p>Run fleets of agents on many projects at once: plans, claims and acceptance evidence in one Store, a deterministic Gantt for every project.</p><a href="https://tools.lazybridge.com/projects/" class="lb-card__link">How it works &rarr;</a></div>
+</div>
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="quota-routing">Quota routing</h3>
+<p>Spread the fleet’s work by each engine’s remaining subscription quota; a brake stops work past the limits.</p><a href="https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota" class="lb-card__link">How it works &rarr;</a></div>
+</div>
+<div class="lb-card">
+<div class="lb-card__body">
+<h3 id="durable-sessions">Durable sessions</h3>
+<p>Name native Claude Code and Codex conversations and resume them across processes and restarts.</p><a href="https://tools.lazybridge.com/code-support/" class="lb-card__link">How it works &rarr;</a></div>
+</div>
+</div>
+<p class="lb-benchmark">Benchmark in progress: cross-provider review vs a single model, and quota routing.</p>
+<figure class="lb-board" id="fleet-board">
+<div class="lb-board__heading"><strong>One board. Real projects.</strong><span>21 Oct 2026</span></div>
+<p>The owner's shared project board, with work owned by <code>ceo</code> and <code>claude</code>. Six projects from the real LazyTools Gantt, translated into English.</p>
+<div aria-label="Real project Gantt image. Scroll to explore six projects, or use the full-size and HTML links below." class="lb-board__viewport" role="region" tabindex="0">
+<a href="assets/showcase/projects-gantt-en.webp"><img src="assets/showcase/projects-gantt-en.webp" alt="Real project Gantt updated 21 October 2026: six projects owned by ceo and claude, including the macroeconomic releases database, committee migration, delegation briefs, ecosystem review and alignment; completed, planned, overdue and cancelled tasks retain their original dates and status." loading="lazy" width="1640" height="2760" /></a>
+</div>
+<figcaption>Scroll to explore the board. <a href="assets/showcase/projects-gantt-en.webp">Open full-size image &rarr;</a> · <a href="assets/showcase/projects-gantt-en.html">Open English board with task details &rarr;</a><br />Real data, original dates and statuses. English labels shortened for clarity.</figcaption>
+</figure>
+<p class="lb-version">LazyBridge 1.8.0 · core Stable &nbsp; / &nbsp; LazyTools 0.10.1 · Alpha</p>
+</div>
+<div class="lb-home-section lb-showcase">
+<h2 id="built-with">Built with LazyBridge</h2>
+<p>Working pipelines, real outputs. Three private projects put the engines and shared tools to work.</p>
+<article class="lb-project" id="lazybricks">
+<div class="lb-project__heading">
+<h3 id="lazybricks_1">LazyBricks</h3><span class="lb-private">Private repository</span></div>
+<p>A local 3D brick-model editor built with Three.js, FastAPI and SQLite, indexed over the full LDraw Official Parts Library.<br />
+The station below starts from a brief and a concept, then builds brick by brick: volumetric → simple → detailed, with quality reviews at each phase.<br />
+The phone interface and MCP server let a person and an agent work on the same projects and revisions.</p>
+<div class="lb-gallery lb-gallery--bricks">
+<figure class="lb-gallery__lead"><a href="assets/showcase/stazione-fronte-4K.png"><img src="assets/showcase/stazione-fronte.webp" alt="Front view of the Victorian station with clock tower and brick facade" loading="lazy" /></a><figcaption>Victorian station · front view · open the 4K original</figcaption></figure><figure class=""><a href="assets/showcase/stazione-esplosa-4K.png"><img src="assets/showcase/stazione-esplosa.webp" alt="Exploded storeys of the station showing the tower, roof and two floors" loading="lazy" /></a><figcaption>Exploded storeys · 4K original</figcaption></figure><figure class=""><a href="assets/showcase/stazione-interni-4K.png"><img src="assets/showcase/stazione-interni.webp" alt="Station ground-floor interior with counter, seating and platform" loading="lazy" /></a><figcaption>Interiors · 4K original</figcaption></figure><figure class=""><a href="assets/showcase/stazione-binari-4K.png"><img src="assets/showcase/stazione-binari.webp" alt="Victorian station viewed from the tracks and covered platform" loading="lazy" /></a><figcaption>Tracks and platform · 4K original</figcaption></figure></div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
+<article class="lb-project" id="lazycommittee">
+<div class="lb-project__heading">
+<h3 id="lazycommittee_1">LazyCommittee</h3><span class="lb-private">Private repository</span></div>
+<p>An AI investment committee built on LazyBridge with Claude Code and Codex as engines.<br />
+Scheduled daily digests become a weekly world state, asset-class views and a portfolio document.<br />
+Code computes the numbers; the LLM reads results. Freshness, numeric lint and source-map checks gate publication.</p>
+<div class="lb-gallery lb-gallery--reports">
+<figure class=""><a href="assets/showcase/committee-digest-eco.png"><img src="assets/showcase/committee-digest-eco.webp" alt="Real economics digest excerpt with dated values, percentiles, source references and a source list" loading="lazy" /></a><figcaption>Daily economics digest excerpt · each number is dated and sourced, with its percentile.</figcaption></figure><figure class=""><a href="assets/showcase/committee-portfolio-tree.png"><img src="assets/showcase/committee-portfolio-tree.webp" alt="Hierarchical asset-class allocation tree from the portfolio optimizer report" loading="lazy" /></a><figcaption>Portfolio optimizer · hierarchical allocation tree: asset classes, regions and the ETFs under each node.</figcaption></figure></div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
+<article class="lb-project" id="lazyceo">
+<div class="lb-project__heading">
+<h3 id="lazyceo_1">LazyCEO</h3><span class="lb-private">Private repository</span></div>
+<p>A CEO agent that runs a fleet of agents across many projects at once, delegating to Codex and Claude Code.<br />
+Every project has a deterministic Gantt; the portfolio of running projects is tracked side by side.<br />
+A quota brake per engine routes and paces the fleet’s work; its GUI shows quota history.</p>
+<div class="lb-gallery lb-gallery--ceo">
+<figure class="lb-gallery__lead"><a href="assets/showcase/ceo-brake-history.png"><img src="assets/showcase/ceo-brake-history.webp" alt="LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset" loading="lazy" /></a><figcaption>Quota brake per engine, with 14 days of history — rendered by the real GUI, demo data. <a href="#fleet-board">Explore the real shared project board above &rarr;</a></figcaption></figure>
+</div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
+<p><a href="built-with/">More about these projects →</a></p>
+</div>
+<div class="lb-home-cta">
+<h2 id="build-your-next-pipeline">Build your next pipeline.</h2>
+<p>Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p>
+<p>Install into your project environment, then sign in to your local coding runtimes:</p>
+<div class="language-sh highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"lazybridge[claude-code,openai]==1.8.0"</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"lazytoolkit[engines,mcp] @ git+https://github.com/selvaz/LazyTools.git@v0.10.1"</span>
+</code></pre></div>
+<p><a href="https://core.lazybridge.com/guides/full/coding-agents/">Engine setup →</a> · <a href="https://tools.lazybridge.com/mcp-server/">MCP and workspace configuration →</a></p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+<div class="lb-footer">
+  <div class="lb-footer__bar">
+    <p class="lb-footer__copy">&copy; 2026 LazyBridge Labs</p>
+    <nav class="lb-footer__links">
+      <a href="mailto:lazybridgelabs@gmail.com" class="lb-footer__link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        lazybridgelabs@gmail.com
+      </a>
+      <a href="https://github.com/selvaz/LazyBridge" class="lb-footer__link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/></svg>
+        GitHub
+      </a>
+      <a href="https://core.lazybridge.com/quickstart/" class="lb-footer__link">Docs</a>
+      <a href="https://github.com/selvaz/LazyBridge/blob/main/CHANGELOG.md" class="lb-footer__link">Changelog</a>
+    </nav>
+  </div>
+  <p class="footer-built-by">
+    LazyBridge is designed by <strong>selvaz</strong> with
+    <strong>Claude Code</strong> and <strong>ChatGPT Codex</strong>
+    as primary implementation partners.
+    I focus on architecture, mental model, and trade-offs —
+    they handle the building under my direction.
+  </p>
+</div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
