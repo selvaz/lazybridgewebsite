@@ -835,3 +835,20 @@
 @media (max-width: 600px) { .lb-hero--banner .lb-hero__art img { max-width: 340px; } }
 .lb-hero--banner .lb-subhead { max-width: none; }
 .lb-hero.lb-hero--banner { padding-top: 1.5rem; }
+
+
+/* Keep a real, detailed board legible instead of shrinking it to a thumbnail. */
+.md-typeset .lb-board { display: block; text-align: left; margin: 1.5rem 0; border: 1px solid var(--lb-border); border-radius: 14px; padding: 1rem; background: var(--lb-surface); }
+.lb-board__heading { display: flex; justify-content: space-between; gap: .75rem; align-items: baseline; color: var(--lb-text-h); }
+.lb-board__heading span { font-size: .7rem; color: var(--lb-text-body); white-space: nowrap; }
+.lb-board > p { font-size: .8rem; margin: .5rem 0 1rem; }
+.lb-board__viewport { overflow: auto; max-height: 600px; border: 1px solid var(--lb-border); border-radius: 8px; background: #f7f7f5; overscroll-behavior: contain; }
+.lb-board__viewport:focus-visible { outline: 3px solid var(--lb-purple); outline-offset: 3px; }
+.lb-board__viewport a { display: block; width: max(100%, 1200px); }
+.lb-board__viewport img { display: block; width: 100%; max-width: none; height: auto; }
+.md-typeset .lb-board figcaption { display: block; max-width: none; font-size: .7rem; font-style: normal; text-align: left; color: var(--lb-text-body); margin-top: .75rem; }
+@media (max-width: 600px) {
+  .md-typeset .lb-board { padding: .65rem; }
+  .lb-board__heading { flex-wrap: wrap; gap: .2rem; }
+  .lb-board__viewport { max-height: 480px; }
+}

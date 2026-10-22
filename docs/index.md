@@ -16,7 +16,7 @@ description: "Build agents and pipelines in Python with any model, and command y
     <p class="lb-apart-title">What sets it apart</p>
     <ul class="lb-principles">
       <li><strong>Everything is a tool.</strong> No graph to wire, no crew of roles: functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
-      <li><strong>Your fleet, under control.</strong> Direct work across projects from one chat, or delegate it to an organizer agent; each task goes to the engine that fits it, with quota and costs kept in check.</li>
+      <li><strong>Your fleet, under control.</strong> Direct work across projects from one chat, or delegate it to an organizer agent; each task goes to the engine that fits it, with quota and costs kept in check.      </li>
       <li><strong>Deterministic, agentic or both.</strong> Fix the order with a Plan where the process must be repeatable, let agents decide where judgment helps, and mix the two in one pipeline.</li>
       <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
     </ul>
@@ -190,6 +190,15 @@ args = ["projects", "claude_review", "code_write", "code_sessions",
 
 <p class="lb-benchmark">Benchmark in progress: cross-provider review vs a single model, and quota routing.</p>
 
+<figure class="lb-board" id="fleet-board">
+<div class="lb-board__heading"><strong>One board. Real projects.</strong><span>21 Oct 2026</span></div>
+<p>The owner's shared project board, with work owned by <code>ceo</code> and <code>claude</code>. Six projects from the real LazyTools Gantt, translated into English.</p>
+<div class="lb-board__viewport" tabindex="0" role="region" aria-label="Real project Gantt image. Scroll to explore six projects, or use the full-size and HTML links below.">
+<a href="assets/showcase/projects-gantt-en.webp"><img src="assets/showcase/projects-gantt-en.webp" alt="Real project Gantt updated 21 October 2026: six projects owned by ceo and claude, including the macroeconomic releases database, committee migration, delegation briefs, ecosystem review and alignment; completed, planned, overdue and cancelled tasks retain their original dates and status." loading="lazy" width="1640" height="2760" /></a>
+</div>
+<figcaption>Scroll to explore the board. <a href="assets/showcase/projects-gantt-en.webp">Open full-size image &rarr;</a> · <a href="assets/showcase/projects-gantt-en.html">Open English board with task details &rarr;</a><br />Real data, original dates and statuses. English labels shortened for clarity.</figcaption>
+</figure>
+
 <p class="lb-version">LazyBridge 1.8.0 · core Stable &nbsp; / &nbsp; LazyTools 0.10.1 · Alpha</p>
 
 </div>
@@ -220,7 +229,7 @@ Code computes the numbers; the LLM reads results. Freshness, numeric lint and so
 Every project has a deterministic Gantt; the portfolio of running projects is tracked side by side.<br />
 A quota brake per engine routes and paces the fleet’s work; its GUI shows quota history.</p>
 <div class="lb-gallery lb-gallery--ceo">
-<figure class="lb-gallery__lead"><a href="assets/showcase/ceo-brake-history.png"><img src="assets/showcase/ceo-brake-history.webp" alt="LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset" loading="lazy" /></a><figcaption>Quota brake per engine, with 14 days of history — rendered by the real GUI, demo data.</figcaption></figure><figure class="lb-gallery__lead"><a href="assets/showcase/ceo-gantt-detail.png"><img src="assets/showcase/ceo-gantt-detail.webp" alt="LazyCEO program Gantt: completed tasks, tasks in progress and planned tasks around today" loading="lazy" /></a><figcaption>Project Gantt: done, in progress and planned — rendered by the real GUI, demo data.</figcaption></figure></div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
+<figure class="lb-gallery__lead"><a href="assets/showcase/ceo-brake-history.png"><img src="assets/showcase/ceo-brake-history.webp" alt="LazyCEO quota brake: Codex and Claude Code usage over the last 14 days, with the autonomous and ceiling thresholds and a weekly reset" loading="lazy" /></a><figcaption>Quota brake per engine, with 14 days of history — rendered by the real GUI, demo data. <a href="#fleet-board">Explore the real shared project board above &rarr;</a></figcaption></figure></div><p class="lb-project-contact">Interested in collaborating? Write to <a href="mailto:lazybridgelabs@gmail.com">lazybridgelabs@gmail.com</a>.</p></article>
 
 [More about these projects →](built-with.md)
 
