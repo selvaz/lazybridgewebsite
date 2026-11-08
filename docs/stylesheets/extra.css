@@ -593,6 +593,9 @@
     padding-right: 1.5rem;
     padding-bottom: 2rem;
   }
+  /* Inside a home section the section already has side padding: do not add a second one. */
+  .lb-home-section .lb-feature-cards { padding-left: 0; padding-right: 0; }
+  .lb-card { padding: 1.1rem; }
 
   .lb-concepts {
     padding-left: 0.75rem;
