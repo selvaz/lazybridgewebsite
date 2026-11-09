@@ -21,13 +21,29 @@ description: "Build agents and pipelines in Python with any model, and command y
       <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
     </ul>
     <div class="lb-cta-row">
-      <a href="#why" class="lb-btn lb-btn--primary">See how it works &rarr;</a>
-      <a href="#built-with" class="lb-btn lb-btn--ghost">See what it builds &rarr;</a>
+      <a href="#cards" class="lb-btn lb-btn--primary">Try it in 2 minutes &rarr;</a>
+      <a href="#why" class="lb-btn lb-btn--ghost">See how it works &rarr;</a>
     </div>
-    <p class="lb-install"><code>pip install lazybridge</code></p>
+    <p class="lb-install"><code>pip install "lazybridge[claude-code,deepseek]"</code><br><code>python -m lazybridge.demo</code></p>
   </div>
 
 </section>
+
+<div class="lb-home-section" markdown="1">
+
+## Try it: runnable cards. {#cards}
+
+Each card is one short file you can run today. One command installs everything; you sign in once to Claude Code and Codex.
+
+<div class="lb-feature-cards">
+  <div class="lb-card"><div class="lb-card__body"><h3>Check your engines</h3><p>Finds DeepSeek, Claude Code and Codex on your machine, runs one tool on each, then lets one write and another review.</p><p><code>python -m lazybridge.demo</code></p><a href="https://core.lazybridge.com/quickstart/" class="lb-card__link">Quickstart &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Card 1 · Research desk</h3><p>A lead agent whose tools are a pipeline of agents (parallel research, review, summary) and the specialists themselves. Claude Code, Codex and DeepSeek in one flow.</p><a href="https://core.lazybridge.com/cards/research-desk/" class="lb-card__link">See the card &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Card 2 · Always on</h3><p>The same desk running 24/7 in your Telegram through LazyPulse. Card 1's agent becomes one tool, plus a morning brief on a schedule.</p><a href="https://core.lazybridge.com/cards/research-desk-pulse/" class="lb-card__link">See the card &rarr;</a></div></div>
+</div>
+
+[Install everything with one command &rarr;](https://core.lazybridge.com/cards/#install-everything-with-one-command)
+
+</div>
 
 <div class="lb-home-section lb-compare" markdown="1">
 
@@ -199,7 +215,7 @@ args = ["projects", "claude_review", "code_write", "code_sessions",
 <figcaption>Scroll to explore the board. <a href="assets/showcase/projects-gantt-en.webp">Open full-size image &rarr;</a> · <a href="assets/showcase/projects-gantt-en.html">Open English board with task details &rarr;</a><br />Real data, original dates and statuses. English labels shortened for clarity.</figcaption>
 </figure>
 
-<p class="lb-version">LazyBridge 1.8.0 · core Stable &nbsp; / &nbsp; LazyTools 0.10.1 · Alpha</p>
+<p class="lb-version">LazyBridge 1.8.7 · core Stable &nbsp; / &nbsp; LazyTools 0.10.6 · Alpha</p>
 
 </div>
 
@@ -243,10 +259,10 @@ Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybrid
 Install into your project environment, then sign in to your local coding runtimes:
 
 ```sh
-python -m pip install "lazybridge[claude-code,openai]==1.8.0"
-python -m pip install "lazytoolkit[engines,mcp] @ git+https://github.com/selvaz/LazyTools.git@v0.10.1"
+python -m pip install "lazybridge[claude-code,deepseek]==1.8.7"
+python -m pip install "lazytoolkit[engines,mcp] @ git+https://github.com/selvaz/LazyTools.git@v0.10.6"
 ```
 
-[Engine setup →](https://core.lazybridge.com/guides/full/coding-agents/) · [MCP and workspace configuration →](https://tools.lazybridge.com/mcp-server/)
+[Runnable cards →](https://core.lazybridge.com/cards/) · [Engine setup →](https://core.lazybridge.com/guides/full/coding-agents/) · [MCP and workspace configuration →](https://tools.lazybridge.com/mcp-server/)
 
 </div>
