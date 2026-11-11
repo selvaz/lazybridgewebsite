@@ -1,5 +1,42 @@
 {% extends "base.html" %}
 
+<!-- Link previews on X, LinkedIn, Slack, etc. Page front matter can override
+     title/description; every page falls back to the site card image. -->
+{% block extrahead %}
+  {% set og_title = page.meta.title if page and page.meta and page.meta.title else config.site_name %}
+  {% set og_desc = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
+  {% set og_url = page.canonical_url if page and page.canonical_url else config.site_url %}
+  {% set og_image = config.site_url ~ "assets/og-card.png" %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LazyBridge">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_desc }}">
+  <meta property="og:url" content="{{ og_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="LazyBridge: Claude Code, Codex and API models as one agent team, in Python. github.com/selvaz/LazyBridge">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@LazyBridgeLabs">
+  <meta name="twitter:title" content="{{ og_title }}">
+  <meta name="twitter:description" content="{{ og_desc }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+  {% if config.extra.goatcounter %}
+  <!-- Privacy-friendly, cookie-free analytics. Off until extra.goatcounter is set in mkdocs.yml. -->
+  <script data-goatcounter="https://{{ config.extra.goatcounter }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  {% endif %}
+{% endblock %}
+
+<!-- The home page front matter already ends with the brand, so do not append
+     " - LazyBridge" a second time. -->
+{% block htmltitle %}
+  {% if page and page.is_homepage and page.meta and page.meta.title %}
+  <title>{{ page.meta.title }}</title>
+  {% else %}
+  {{ super() }}
+  {% endif %}
+{% endblock %}
+
 <!-- Render our own footer in Material's footer block. Living here (outside
      .md-main__inner.md-grid) it spans the full page width instead of being
      trapped in the centred 1280px content column. -->

@@ -12,6 +12,12 @@ description: "Build agents and pipelines in Python with any model, and command y
     <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
     <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
     <p class="lb-subhead">LazyBridge is an orchestration framework: you compose agents, tools and deterministic steps into pipelines that run on Claude Code or Codex with your subscription, or on any API model billed per token.</p>
+    <div class="lb-cta-row">
+      <a href="https://github.com/selvaz/LazyBridge" class="lb-btn lb-btn--primary lb-btn--star">&#9733; Star on GitHub</a>
+      <a href="#cards" class="lb-btn lb-btn--ghost">Try it in 2 minutes &rarr;</a>
+    </div>
+    <p class="lb-install"><code>pip install "lazybridge[claude-code,deepseek]"</code><br><code>python -m lazybridge.demo</code></p>
+    <p class="lb-star-note">Open source and built in the open. If it is useful to you, a star helps other people find it.</p>
     <p class="lb-motto">One framework. Command your fleet yourself, or hand it to an LLM assistant.</p>
     <p class="lb-apart-title">What sets it apart</p>
     <ul class="lb-principles">
@@ -20,11 +26,6 @@ description: "Build agents and pipelines in Python with any model, and command y
       <li><strong>Deterministic, agentic or both.</strong> Fix the order with a Plan where the process must be repeatable, let agents decide where judgment helps, and mix the two in one pipeline.</li>
       <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
     </ul>
-    <div class="lb-cta-row">
-      <a href="#cards" class="lb-btn lb-btn--primary">Try it in 2 minutes &rarr;</a>
-      <a href="#why" class="lb-btn lb-btn--ghost">See how it works &rarr;</a>
-    </div>
-    <p class="lb-install"><code>pip install "lazybridge[claude-code,deepseek]"</code><br><code>python -m lazybridge.demo</code></p>
   </div>
 
 </section>
@@ -253,6 +254,10 @@ A quota brake per engine routes and paces the fleet’s work; its GUI shows quot
 <div class="lb-home-cta" markdown="1">
 
 ## Build your next pipeline.
+
+<p class="lb-cta-row"><a href="https://github.com/selvaz/LazyBridge" class="lb-btn lb-btn--primary lb-btn--star">&#9733; Star LazyBridge on GitHub</a></p>
+
+LazyBridge is a small open-source project. Stars, issues and honest feedback are how it gets better and how other people find it.
 
 Interested in collaborating? Write to [lazybridgelabs@gmail.com](mailto:lazybridgelabs@gmail.com).
 
