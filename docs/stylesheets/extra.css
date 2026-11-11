@@ -855,3 +855,16 @@
   .lb-board__heading { flex-wrap: wrap; gap: .2rem; }
   .lb-board__viewport { max-height: 480px; }
 }
+
+/* marketing/proposals: get the GitHub CTA and install command above the fold. */
+.lb-hero--banner .lb-hero__art img { max-width: 420px; }
+.lb-hero--banner .lb-hero__art { margin-bottom: .6rem; }
+.lb-manifesto .lb-cta-row { margin-top: 1.1rem; }
+.lb-btn--star { font-weight: 700; }
+.lb-star-note { font-size: .8rem; color: var(--lb-text-muted, #6b6b80); margin: .4rem 0 0; }
+.lb-home-cta .lb-cta-row { justify-content: center; }
+@media (max-width: 600px) {
+  .lb-hero--banner .lb-hero__art img { max-width: 220px; }
+  .lb-hero.lb-hero--banner { padding-top: .5rem; }
+}
+.lb-manifesto .lb-star-note + .lb-motto { margin-top: 1.4rem; }

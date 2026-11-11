@@ -166,6 +166,9 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
+  # Privacy-friendly analytics (no cookies). Create a free GoatCounter site,
+  # then set its code here, e.g. goatcounter: lazybridge
+  # goatcounter: lazybridge
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/selvaz/LazyBridge
