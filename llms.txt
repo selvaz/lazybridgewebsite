@@ -1,0 +1,39 @@
+# LazyBridge
+
+> Python agent framework where everything is a tool. An agent is Engine + Tools + State; functions, other agents and whole Plan pipelines all go in `tools=[...]`. Engines are swappable: Claude Code and Codex (on a subscription login) or provider APIs (Anthropic, OpenAI, Google, DeepSeek, LiteLLM) behind the same interface. Apache-2.0, Python 3.11+.
+
+Cloud Claude and Codex dispatch lives in the LazyTools code bridge (Alpha, `--where cloud`), not in Core.
+
+Install: `pip install lazybridge`. Integrations (MCP, connectors, async coding bridge) live in LazyTools, installed from GitHub: `pip install "lazytoolkit[mcp] @ git+https://github.com/selvaz/LazyTools@v0.10.6"` (the PyPI name `lazytoolkit` is a placeholder; do not `pip install lazytoolkit`).
+
+Minimal example (one engine writes, the other reviews):
+
+```python
+from lazybridge import Agent, ClaudeCodeEngine, CodexEngine
+
+reviewer = Agent(name="codex-reviewer", engine=CodexEngine(
+    system='Start with "approved" or "rejected: <reason>".'))
+writer = Agent(name="claude-writer", engine=ClaudeCodeEngine(),
+               verify=reviewer, max_verify=3)
+print(writer("Draft a function that blocks weekend deployment.").text())
+```
+
+## Documentation for agents
+
+- [LazyBridge docs index (llms.txt)](https://core.lazybridge.com/llms.txt): every core page as Markdown
+- [LazyBridge full docs (llms-full.txt)](https://core.lazybridge.com/llms-full.txt): all core docs in one file
+- [Quickstart](https://core.lazybridge.com/quickstart/index.md)
+- [Everything is a tool](https://core.lazybridge.com/concepts/everything-is-a-tool/index.md)
+- [Claude Code writes, Codex reviews](https://core.lazybridge.com/guides/full/claude-writes-codex-reviews/index.md)
+- [LazyTools docs index (llms.txt)](https://tools.lazybridge.com/llms.txt): MCP, connectors, async code bridge
+
+## Source
+
+- [GitHub: selvaz/LazyBridge](https://github.com/selvaz/LazyBridge)
+- [PyPI: lazybridge](https://pypi.org/project/lazybridge/)
+- [GitHub: selvaz/LazyTools](https://github.com/selvaz/LazyTools)
+
+## Optional
+
+- [Comparison with other frameworks](https://core.lazybridge.com/best-python-ai-agent-frameworks/index.md)
+- [Changelog](https://github.com/selvaz/LazyBridge/blob/main/CHANGELOG.md)
