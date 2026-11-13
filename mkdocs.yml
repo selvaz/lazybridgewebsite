@@ -1,5 +1,5 @@
 site_name: LazyBridge
-site_description: Claude Code and Codex as LazyBridge agent engines, with opposite-engine review, async delegation, shared projects and quota routing through LazyTools.
+site_description: "LazyBridge lets you deploy and orchestrate any kind of agent — local Claude Code and Codex, cloud Claude and Codex agents that can offload a small VPS, and token-based models via API."
 site_url: https://lazybridge.com/
 repo_url: https://github.com/selvaz/LazyBridge
 repo_name: selvaz/LazyBridge
