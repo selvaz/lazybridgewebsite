@@ -2,8 +2,8 @@
 hide:
   - navigation
   - toc
-title: "LazyBridge — one agent, any engine: subscription or API"
-description: "Build agents and pipelines in Python with any model, and command your whole fleet from one chat — on your Claude Code or Codex subscription, or any API model per token."
+title: "LazyBridge — deploy and orchestrate any kind of agent"
+description: "LazyBridge lets you deploy and orchestrate any kind of agent — local Claude Code and Codex, cloud Claude and Codex agents that can offload a small VPS, and token-based models via API."
 ---
 
 <section class="lb-hero lb-manifesto lb-hero--banner">
@@ -11,7 +11,7 @@ description: "Build agents and pipelines in Python with any model, and command y
   <div class="lb-hero__copy">
     <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
     <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
-    <p class="lb-subhead">LazyBridge is an orchestration framework: you compose agents, tools and deterministic steps into pipelines that run on Claude Code or Codex with your subscription, or on any API model billed per token.</p>
+    <p class="lb-subhead">LazyBridge lets you deploy and orchestrate any kind of agent. You compose agents, tools and deterministic steps into pipelines that run on local Claude Code or Codex, on cloud Claude and Codex agents (offloading your VPS), or on any token-based model via API.</p>
     <div class="lb-cta-row">
       <a href="https://github.com/selvaz/LazyBridge" class="lb-btn lb-btn--primary lb-btn--star">&#9733; Star on GitHub</a>
       <a href="#cards" class="lb-btn lb-btn--ghost">Try it in 2 minutes &rarr;</a>
@@ -24,7 +24,7 @@ description: "Build agents and pipelines in Python with any model, and command y
       <li><strong>Everything is a tool.</strong> No graph to wire, no crew of roles: functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
       <li><strong>Your fleet, under control.</strong> Direct work across projects from one chat, or delegate it to an organizer agent; each task goes to the engine that fits it, with quota and costs kept in check.      </li>
       <li><strong>Deterministic, agentic or both.</strong> Fix the order with a Plan where the process must be repeatable, let agents decide where judgment helps, and mix the two in one pipeline.</li>
-      <li><strong>Subscription or API, same Agent.</strong> Swap Claude Code, Codex or an API model in one line; tools and state stay.</li>
+      <li><strong>Local, cloud or API, same contract.</strong> Mix local Claude Code and Codex, cloud coding jobs, and token-based API models in one pipeline.</li>
     </ul>
   </div>
 
@@ -116,18 +116,20 @@ desk = Agent(engine=LLMEngine("claude-opus-5-5"), tools=[report])
 
 <div class="lb-demo lb-home-section" markdown="1">
 
-## Subscription or tokens: same Agent. {#engines}
+## Local, cloud or tokens: same Agent. {#engines}
 
 <div class="lb-feature-cards lb-engine-parity">
-  <div class="lb-card"><div class="lb-card__body"><h3>Claude Code</h3><p><strong>Subscription</strong> · your Claude plan quota.</p><p><code>ClaudeCodeEngine()</code></p></div></div>
-  <div class="lb-card"><div class="lb-card__body"><h3>Codex</h3><p><strong>Subscription</strong> · your ChatGPT plan quota.</p><p><code>CodexEngine()</code></p></div></div>
-  <div class="lb-card"><div class="lb-card__body"><h3>API models</h3><p><strong>Per token</strong> · Anthropic, OpenAI, Google, DeepSeek, LiteLLM.</p><p><code>LLMEngine("model-id")</code></p></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Local coding agents</h3><p><strong>Local</strong> · Claude Code and Codex on your machine, on your subscription quota.</p><p><code>ClaudeCodeEngine()</code> / <code>CodexEngine()</code></p></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Cloud coding agents</h3><p><strong>Offload a small VPS</strong> · Claude and Codex jobs run in their own cloud environments; only a clean branch comes back.</p><p><code>--where cloud</code></p><p>This lives in the <a href="https://tools.lazybridge.com/code-bridge/#cloud-jobs-run-where-cloud">LazyTools code bridge (Alpha)</a>.</p></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Token-based API models</h3><p><strong>Per token</strong> · Anthropic, OpenAI, Google, DeepSeek, LiteLLM.</p><p><code>LLMEngine("model-id")</code></p></div></div>
 </div>
 
 <div class="lb-demo__grid" markdown="1">
 <div markdown="1">
 
-**One Agent contract for every engine.** Tools, memory, session and verification are LazyBridge objects, not engine features: change the engine and the rest of your pipeline stays the same. Mix them freely — a subscription agent can write while an API model reviews, or the other way round.
+**One Agent contract for every engine.** Tools, memory, session and verification are LazyBridge objects, not engine features: change the engine and the rest of your pipeline stays the same. Mix local subscription engines and token-based API models freely — a subscription agent can write while an API model reviews, or the other way round.
+
+Cloud Claude and Codex jobs are dispatched by the [LazyTools code bridge (Alpha)](https://tools.lazybridge.com/code-bridge/#cloud-jobs-run-where-cloud) with `--where cloud`. They run in their own cloud environments, offloading a small VPS, and only a clean branch comes back. That dispatch is not part of Core.
 
 The login decides billing: a subscription login uses the plan's quota, an API key is billed per token.
 
@@ -199,7 +201,7 @@ args = ["projects", "claude_review", "code_write", "code_sessions",
 ## From one agent to a fleet. {#ecosystem}
 
 <div class="lb-feature-cards lb-ecosystem-cards">
-  <div class="lb-card"><div class="lb-card__body"><h3>Async code bridge</h3><p>Run Claude Code and Codex jobs in the background, approve their requests, route the review to the other engine.</p><a href="https://tools.lazybridge.com/code-bridge/" class="lb-card__link">How it works &rarr;</a></div></div>
+  <div class="lb-card"><div class="lb-card__body"><h3>Async code bridge</h3><p>Run Claude Code and Codex jobs locally or in the cloud, approve their requests, route the review to the other engine.</p><a href="https://tools.lazybridge.com/code-bridge/" class="lb-card__link">How it works &rarr;</a></div></div>
   <div class="lb-card"><div class="lb-card__body"><h3>Fleets across projects</h3><p>Run fleets of agents on many projects at once: plans, claims and acceptance evidence in one Store, a deterministic Gantt for every project.</p><a href="https://tools.lazybridge.com/projects/" class="lb-card__link">How it works &rarr;</a></div></div>
   <div class="lb-card"><div class="lb-card__body"><h3>Quota routing</h3><p>Spread the fleet’s work by each engine’s remaining subscription quota; a brake stops work past the limits.</p><a href="https://tools.lazybridge.com/code-bridge/#choose-a-model-from-quota" class="lb-card__link">How it works &rarr;</a></div></div>
   <div class="lb-card"><div class="lb-card__body"><h3>Durable sessions</h3><p>Name native Claude Code and Codex conversations and resume them across processes and restarts.</p><a href="https://tools.lazybridge.com/code-support/" class="lb-card__link">How it works &rarr;</a></div></div>

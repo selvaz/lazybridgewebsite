@@ -2,6 +2,8 @@
 
 > Python agent framework where everything is a tool. An agent is Engine + Tools + State; functions, other agents and whole Plan pipelines all go in `tools=[...]`. Engines are swappable: Claude Code and Codex (on a subscription login) or provider APIs (Anthropic, OpenAI, Google, DeepSeek, LiteLLM) behind the same interface. Apache-2.0, Python 3.11+.
 
+Cloud Claude and Codex dispatch lives in the LazyTools code bridge (Alpha, `--where cloud`), not in Core.
+
 Install: `pip install lazybridge`. Integrations (MCP, connectors, async coding bridge) live in LazyTools, installed from GitHub: `pip install "lazytoolkit[mcp] @ git+https://github.com/selvaz/LazyTools@v0.10.6"` (the PyPI name `lazytoolkit` is a placeholder; do not `pip install lazytoolkit`).
 
 Minimal example (one engine writes, the other reviews):
