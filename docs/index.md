@@ -6,28 +6,34 @@ title: "LazyBridge — deploy and orchestrate any kind of agent"
 description: "LazyBridge lets you deploy and orchestrate any kind of agent — local Claude Code and Codex, cloud Claude and Codex agents that can offload a small VPS, and token-based models via API."
 ---
 
-<section class="lb-hero lb-manifesto lb-hero--banner">
-  <div class="lb-hero__art"><img src="assets/hero.webp" alt="LazyBridge mascot: a kid running from an idea, through AI, tools and data, to a rocket launch" width="1672" height="941" fetchpriority="high" /></div>
-  <div class="lb-hero__copy">
-    <div class="lb-pill">Open-source Python framework · Apache 2.0</div>
-    <h1>Build AI agents and pipelines in Python, <span class="accent">with any model</span>.</h1>
-    <p class="lb-subhead">LazyBridge lets you deploy and orchestrate any kind of agent. You compose agents, tools and deterministic steps into pipelines that run on local Claude Code or Codex, on cloud Claude and Codex agents (offloading your VPS), or on any token-based model via API.</p>
-    <div class="lb-cta-row">
-      <a href="https://github.com/selvaz/LazyBridge" class="lb-btn lb-btn--primary lb-btn--star">&#9733; Star on GitHub</a>
-      <a href="#cards" class="lb-btn lb-btn--ghost">Try it in 2 minutes &rarr;</a>
+<!-- Taste: software; soot-pale-lime, Reddit Sans; triptych-inspired code hero. -->
+<section class="lb-hero lb-home-hero" data-enter>
+  <div class="lb-home-hero__copy">
+    <p class="lb-home-hero__eyebrow">OPEN SOURCE · PYTHON · APACHE 2.0</p>
+    <h1>Agents that work <em>together.</em></h1>
+    <p class="lb-home-hero__intro">Build AI agents and pipelines in Python. Bring Claude Code, Codex and API models together with one simple building block.</p>
+    <div class="lb-home-hero__actions">
+      <a href="https://core.lazybridge.com/quickstart/" class="lb-home-button">Read the quickstart</a>
+      <a href="https://github.com/selvaz/LazyBridge" class="lb-home-text-link">View on GitHub</a>
     </div>
-    <p class="lb-install"><code>pip install "lazybridge[claude-code,deepseek]"</code><br><code>python -m lazybridge.demo</code></p>
-    <p class="lb-star-note">Open source and built in the open. If it is useful to you, a star helps other people find it.</p>
-    <p class="lb-motto">One framework. Command your fleet yourself, or hand it to an LLM assistant.</p>
-    <p class="lb-apart-title">What sets it apart</p>
-    <ul class="lb-principles">
-      <li><strong>Everything is a tool.</strong> No graph to wire, no crew of roles: functions, agents and whole pipelines plug into each other, so pipelines nest inside pipelines.</li>
-      <li><strong>Your fleet, under control.</strong> Direct work across projects from one chat, or delegate it to an organizer agent; each task goes to the engine that fits it, with quota and costs kept in check.      </li>
-      <li><strong>Deterministic, agentic or both.</strong> Fix the order with a Plan where the process must be repeatable, let agents decide where judgment helps, and mix the two in one pipeline.</li>
-      <li><strong>Local, cloud or API, same contract.</strong> Mix local Claude Code and Codex, cloud coding jobs, and token-based API models in one pipeline.</li>
-    </ul>
+    <p class="lb-home-hero__install"><span>$</span> pip install lazybridge</p>
   </div>
+  <div class="lb-home-hero__visual" aria-label="Example of composing agents in Python">
+    <div class="lb-terminal">
+      <div class="lb-terminal__top"><span>lazybridge / team.py</span><span>PYTHON</span></div>
+      <pre><code><span class="syntax-purple">from</span> lazybridge <span class="syntax-purple">import</span> Agent, ClaudeCodeEngine, CodexEngine
 
+reviewer = Agent(engine=CodexEngine())
+writer = Agent(
+    engine=ClaudeCodeEngine(),
+    verify=reviewer,
+)
+
+result = writer(<span class="syntax-green">"Draft the function"</span>)</code></pre>
+      <div class="lb-terminal__bottom"><span class="lb-terminal__dot"></span> One agent can review another</div>
+    </div>
+    <div class="lb-hero-flow" aria-hidden="true"><span>YOUR TASK</span><i></i><strong>CLAUDE CODE</strong><i></i><strong>CODEX REVIEW</strong></div>
+  </div>
 </section>
 
 <div class="lb-home-section" markdown="1">
