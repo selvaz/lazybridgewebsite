@@ -6,7 +6,7 @@ title: "LazyBridge — deploy and orchestrate any kind of agent"
 description: "LazyBridge lets you deploy and orchestrate any kind of agent — local Claude Code and Codex, cloud Claude and Codex agents that can offload a small VPS, and token-based models via API."
 ---
 
-<!-- Taste: software; soot-pale-lime, Reddit Sans; triptych-inspired code hero. -->
+<!-- Taste: software; LazyBridge violet, Reddit Sans; triptych-inspired code hero. -->
 <section class="lb-hero lb-home-hero" data-enter>
   <div class="lb-home-hero__copy">
     <p class="lb-home-hero__eyebrow">OPEN SOURCE · PYTHON · APACHE 2.0</p>
@@ -18,21 +18,8 @@ description: "LazyBridge lets you deploy and orchestrate any kind of agent — l
     </div>
     <p class="lb-home-hero__install"><span>$</span> pip install lazybridge</p>
   </div>
-  <div class="lb-home-hero__visual" aria-label="Example of composing agents in Python">
-    <div class="lb-terminal">
-      <div class="lb-terminal__top"><span>lazybridge / team.py</span><span>PYTHON</span></div>
-      <pre><code><span class="syntax-purple">from</span> lazybridge <span class="syntax-purple">import</span> Agent, ClaudeCodeEngine, CodexEngine
-
-reviewer = Agent(engine=CodexEngine())
-writer = Agent(
-    engine=ClaudeCodeEngine(),
-    verify=reviewer,
-)
-
-result = writer(<span class="syntax-green">"Draft the function"</span>)</code></pre>
-      <div class="lb-terminal__bottom"><span class="lb-terminal__dot"></span> One agent can review another</div>
-    </div>
-    <div class="lb-hero-flow" aria-hidden="true"><span>YOUR TASK</span><i></i><strong>CLAUDE CODE</strong><i></i><strong>CODEX REVIEW</strong></div>
+  <div class="lb-home-hero__visual">
+    <img class="lb-home-hero__mascot" src="assets/hero.webp" alt="LazyBridge mascot running from an idea through AI, tools and data towards a rocket" width="1672" height="941" fetchpriority="high" />
   </div>
 </section>
 
@@ -71,6 +58,8 @@ Graph frameworks such as LangGraph model a workflow as nodes and edges over a sh
 <div class="lb-demo lb-home-section lb-why" markdown="1">
 
 ## One building block. Endless combinations. {#why}
+
+<img class="lb-editorial-image" src="assets/diagrams/recursive-tools.png" alt="Recursive tools: functions, agents and plans compose through the same agent interface" loading="lazy" />
 
 <div class="lb-demo__grid" markdown="1">
 <div markdown="1">
@@ -123,6 +112,8 @@ desk = Agent(engine=LLMEngine("claude-opus-5-5"), tools=[report])
 <div class="lb-demo lb-home-section" markdown="1">
 
 ## Local, cloud or tokens: same Agent. {#engines}
+
+<img class="lb-editorial-image" src="assets/diagrams/engine-switchboard.png" alt="Engine switchboard: the same agent can use different engines" loading="lazy" />
 
 <div class="lb-feature-cards lb-engine-parity">
   <div class="lb-card"><div class="lb-card__body"><h3>Local coding agents</h3><p><strong>Local</strong> · Claude Code and Codex on your machine, on your subscription quota.</p><p><code>ClaudeCodeEngine()</code> / <code>CodexEngine()</code></p></div></div>
